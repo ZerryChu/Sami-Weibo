@@ -1,0 +1,340 @@
+*{
+	margin:0;
+	padding:0;
+}
+
+body {
+	background: url(../images/bg_background.png) left top repeat;
+}
+
+*:focus{
+	outline: none;
+}
+
+.checknumPic {
+	cursor: pointer;
+	margin-left: 20px;	
+}
+
+/*注册*/
+.reg_wraper{
+	position: fixed;
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+/*	display: none;*/
+}
+.reg_wraper .reg_bg{
+	width: 100%;
+	height: 100%;
+	background-color: black;
+	opacity: 0.7;
+	position: absolute;
+	z-index: 1;
+}
+.reg_wraper .registerbox{
+	width: 25%;
+/*	height: 500px;*/
+	min-width: 400px;
+	margin: 10px auto;
+	background: #fff;
+	opacity: 1;
+/*	padding: 0px 20px 10px;*/
+	border: 1px solid #ccc;
+	border-radius: 5px;
+	position:relative;
+	z-index:2;
+}
+
+.login_success, .reg_success {
+	padding-left: 50px;
+	background-color: #fcffc3;
+}
+
+#close{
+	margin-top: 15px;
+	float: right;
+	background-image: url(../images/del.gif);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	display: block;
+	cursor: pointer;
+}
+
+.registerbox .logintitle{
+	margin-right: 0!important;
+	background: #fff;
+}
+
+.registerbox .reg_un,.registerbox .reg_pwd,.registerbox .reg_c_pwd,.registerbox .reg_btn, .registerbox .reg_ni, .reg_c_email{
+	width: 70%;
+	margin: 30px auto;
+	position:relative;
+}
+.registerbox input{
+	width: 100%;
+}
+.registerbox .holder{
+	left: 3em;
+}
+#reg_btn{
+	font-size: 20px;
+	width: 98%;
+	height: 37px;
+	cursor: pointer;
+	border: 0px;
+	color: #fff;
+	background-color: #7ec92c;
+}
+
+.main{
+	width:100%;
+	/*margin:10px auto;*/
+	height: 100%;
+	min-width: 1040px;
+	min-height: 740px;
+}
+
+.bg{
+	width: 100%;
+	height: 100%;
+	position: absolute;
+/*	top: -100px;*/
+	z-index:-1;
+}
+
+.bg img{
+	width: 100%;
+	margin-top: -40px;
+	min-width: 1040px;
+	min-height: 740px;
+}
+
+.h{
+	width: 100%;
+	margin: 20px auto;
+	height: 100px;
+	/*background: #ccc;*/
+	/*padding-left: 100px;*/
+}
+
+.h img{
+	width: 200px;
+	height: 70px;
+	visibility: hidden;
+}
+.b{
+	height: 480px;
+	/*background: #9CF;*/
+}
+
+.f{
+	/*background: #ff0;*/
+	width: 100%;
+	margin: 20px auto;
+	height: 100px;
+}
+
+.b .b_left{
+	width: 60%;
+	height: 480px;
+	/*background: #f63;*/
+	float: left;
+}
+
+.b .b_right{
+	width: 30%;
+	/*background: #ccc;*/
+	/*float: right;*/
+	float: left;
+	padding: 100px 10px;
+}
+
+.b .b_right .wrap_login{
+	width: 371px;
+	border-radius: 4px;
+	box-shadow:0 0 20px #ccc;
+	background-color: #fff;
+	margin: 0px auto;
+	border-radius: 10px 10px 10px 10px;
+}
+
+.logintitle{
+	width: 400px;
+	height: 50px;
+	line-height: 50px;
+	border-bottom: 1px solid #ccc;	
+	background: #f2f2f2;
+	text-align: center;
+	font-size: 20px;
+	border-radius: 10px 10px 0 0;
+	font-family: "Microsoft YaHei";
+}
+
+.loginbox{
+	width: 378px;
+	border: 1px solid #fff;
+/*	height: 200px;*/
+	padding: 10px 10px 0; 
+	background-color: #fff;
+	overflow: hidden;
+	clear: both;
+}
+
+.loginfooter{
+	width: 390px;
+	height: 30px;
+	background: #fff;
+	padding-right: 10px;
+	padding-top: 10px;
+	border-radius: 0 0 10px 10px;
+}
+
+.loginbox .un,.loginbox .pwd,.loginbox .checknum{
+	/*background-image: url(../images/login.png);
+	background-position: 0px -84px;*/
+	position:relative;
+}
+
+.loginbox .un,.loginbox .pwd,.loginbox .sub,.loginbox .checknum{
+	width: 90%;
+	padding-left: 50px;
+	margin-top: 10px;
+	margin-bottom: 20px;
+}
+/**/
+.loginbox div input,.registerbox .reg_un input,.registerbox .reg_pwd input,.registerbox .reg_c_pwd input,.registerbox .reg_ni input, .reg_c_email input{
+	width: 265px;
+	padding: 10px 5px;
+	height: 25px;
+	line-height: 25px;
+	text-indent: 2em;
+	border: 0px;
+	background-image: url(../images/icon.png);
+	background-repeat: no-repeat;
+	background-position: 0 0;
+}
+
+.holder{
+	position: absolute;
+	font-size: 13px;
+	color: #a9a9a9;
+	top: 16px;
+	left: 88px;
+}
+/*验证码输入框边框问题*/
+#checknum{
+	width: 110px;
+}
+
+.loginbox .checknum .patch{
+	position: absolute;
+	top: 0;
+	left: 160px;
+	width: 10px;
+	height: 45px;
+	background-image: url(../images/icon.png);
+	background-repeat: no-repeat;
+	background-position: -267px 0;
+}
+
+/*居中问题*/
+.loginbox .sub input{
+	float: left;
+	padding: 0px;
+	padding-right: 37px;
+	border: 0;
+	font-size: 20px;
+	cursor: pointer;
+	color: #fff;
+	line-height: 37px;
+	width: 116px;
+	height: 37px;
+	text-align: center;
+	background-position: 0 -90px;
+	background-repeat: no-repeat;
+}
+
+.tip, ._tip {
+	font-size: 10px;
+	color: red;	
+}
+
+.loginbox .sub .auto{
+	float: left;
+	width: 120px;
+	font-size: 12px;
+	height: 37px;
+	line-height:37px;
+	margin-left:52px;
+	/*cursor: pointer; 问题！！！！！*/
+}
+
+.loginbox .sub .auto label{
+	cursor: pointer;
+}
+
+.loginbox .sub .auto a{
+	float: left;/**/
+	display: inline-block;
+	width: 18px;
+	height: 18px;
+	margin:10px 5px;
+	background: url(../images/icon.png) no-repeat -74px -163px;
+}
+
+.loginfooter li{
+	width: 80px;
+	height: 20px;
+	line-height: 20px;
+	float: right;
+	text-align: center;
+	font-size: 13px;
+	list-style: none;
+	/*border-left: 1px solid #666;*/
+}
+.loginfooter li a{
+	text-decoration: none;
+	color: #666;
+}
+
+.loginfooter li a:hover{
+	text-decoration: underline;
+}
+
+/*复选点击样式*/
+.loginbox .sub .auto .click{
+	background: url(../images/icon.png) no-repeat -92px -163px;
+}
+
+/*输入框聚焦样式*/
+.loginbox div .onfoc,.registerbox .onfoc{
+	background-position:0 -44px; 
+}
+
+.loginbox .checknum .patchonfoc{
+	background-position: -267px -44px;
+}
+
+/*按钮经过和点击样式*/
+.loginbox .sub .btnhov{
+	background-position: -116px -90px;
+}
+
+/*holder变淡*/
+/*.loginbox .un .hh{
+	display: none;
+}*/
+.cc{
+	color: #ddd;
+}
+
+.tip{
+	color: red;
+}
+
+.reg_success {
+	background-color: #fcffc3;
+}
