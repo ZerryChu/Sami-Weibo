@@ -1,0 +1,250 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+ <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" 
+ "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="group.zerry.api_server.dao.MessageDao">
+
+	<resultMap id="MessageMap" type="Message">
+		<result property="id" column="id" />
+		<result property="author.nickname" column="author" />
+		<result property="type" column="type" />
+		<result property="content" column="content" />
+		<result property="create_time" column="create_time" />
+		<result property="repost_times" column="repost_times" />
+		<result property="comment_times" column="comment_times" />
+		<result property="support_times" column="support_times" />
+		<result property="pic" column="pic" />
+	</resultMap>
+
+	<resultMap id="CountMap" type="Count">
+		<result property="number" column="number" />
+	</resultMap>
+
+	<select id="getMessageById" resultMap="MessageMap">
+		select
+		*
+		from message_inf
+		where id = #{id}
+	</select>
+
+	<select id="getOwnMessages" parameterType="string" resultMap="MessageMap">
+		select
+		*
+		from message_inf
+		where author = #{nickname}
+		ORDER BY
+		create_time
+		DESC
+	</select>
+	
+	<select id="getLastMessage" parameterType="string" resultMap="MessageMap">
+		select
+		*
+		from message_inf
+		where author = #{nickname}
+		ORDER BY
+		create_time
+		DESC
+		limit 0,1
+	</select>
+
+	<select id="getAnnouncements" resultMap="MessageMap">
+		SELECT
+		message_inf.id as
+		id,
+		author,
+		content,
+		create_time
+		FROM
+		message_inf,
+		user_inf
+		WHERE
+		user_inf.type = 2
+		AND author = nickname
+		ORDER BY
+		create_time
+		DESC
+	</select>
+
+	<select id="getMessages" resultMap="MessageMap">
+		SELECT
+			message_inf.id,
+			type,
+			author,
+			content,
+			create_time,
+			repost_times,
+			comment_times,
+			support_times,
+			pic
+		FROM
+			message_inf
+		WHERE
+			<foreach collection="array" item="friend" index="index" open=" "
+				close=" " separator=" or ">
+				author=#{friend}
+			</foreach>
+			AND create_time &lt; now()
+			ORDER BY
+			create_time DESC
+	</select>
+	
+	<select id="getMessagesAndHotByLabel" resultMap="MessageMap">
+		SELECT
+			message_inf.id,
+			type,
+			author,
+			content,
+			create_time,
+			repost_times,
+			comment_times,
+			support_times,
+			pic		
+		FROM
+			message_inf,
+			msg_lbl_relation,
+			label_inf
+			INNER JOIN weibo_heat
+		WHERE
+			message_inf.id = msg_lbl_relation.msg_id
+			AND label_inf.id = msg_lbl_relation.label_id
+			AND weibo_heat.id = message_inf.id
+			AND label_inf.id = #{label_id}
+			order by hot desc
+	</select>
+	
+	<select id="getMessagesByLabel" resultMap="MessageMap">
+		SELECT
+			message_inf.id,
+			type,
+			author,
+			content,
+			create_time,
+			repost_times,
+			comment_times,
+			support_times,
+			pic,
+			label_inf.name
+		FROM
+			msg_lbl_relation,
+			message_inf,
+			label_inf
+		WHERE
+			label_inf.id = #{label_id}
+		AND message_inf.id = msg_lbl_relation.msg_id
+		AND label_inf.id = msg_lbl_relation.label_id
+	</select>
+
+	<select id="selectWeiboByTopicName" resultMap="MessageMap">
+		SELECT
+			message_inf.id,
+			type,
+			author,
+			content,
+			create_time,
+			repost_times,
+			comment_times,
+			support_times,
+			pic,
+			label_inf.name
+		FROM
+			message_inf
+		WHERE
+			content LIKE #{name}
+			ORDER BY
+			create_time DESC
+	</select>
+
+	<delete id="deleteMessageById" parameterType="int">
+		DELETE
+		FROM
+		message_inf
+		WHERE
+		id = #{id}
+	</delete>
+
+	<insert id="addMessage" parameterType="Message"
+		useGeneratedKeys="true" keyProperty="id">
+		INSERT INTO message_inf (
+			type,
+			author,
+			content,
+			create_time,
+			repost_times,
+			comment_times,
+			support_times,
+			pic
+		)
+		VALUES (
+		 	#{type}, #{author.nickname}, #{content},
+			now(),
+			0,
+			0,
+			0,
+			#{pic}
+		)
+	</insert>
+
+	<!-- 增加点赞信息 -->
+	<insert id="addSupportInfo">
+		INSERT INTO support_inf (message_id, username)
+		VALUES
+		(#{0}, #{1})
+	</insert>
+
+	<delete id="decreaseSupportInfo">
+		DELETE
+		FROM
+		support_inf
+		WHERE
+		message_id = #{0}
+		and
+		username = #{1}
+	</delete>
+
+	<select id="searchMessagesLikeContent" parameterType="string"
+		resultMap="MessageMap">
+		SELECT
+		*
+		FROM
+		message_inf
+		WHERE
+		content LIKE #{content}
+		AND
+		type =
+		1
+	</select>
+
+	<select id="findIfSupportedByUsername" resultType="Count">
+		SELECT
+		count(id) as number
+		FROM
+		support_inf
+		WHERE
+		username = #{0}
+		AND message_id =
+		#{1}
+	</select>
+
+	<update id="addRepostTimes" parameterType="int">
+		UPDATE message_inf
+		SET
+		repost_times = repost_times + 1
+		WHERE
+		id = #{id}
+	</update>
+	
+	<select id="findLabel" resultType="string">
+		SELECT
+			label_inf.name
+		FROM
+			message_inf,
+			msg_lbl_relation,
+			label_inf
+		WHERE
+			message_inf.id = msg_lbl_relation.msg_id
+		AND label_inf.id = msg_lbl_relation.label_id
+		AND message_inf.id = #{msg_id}
+	</select>
+
+</mapper>
