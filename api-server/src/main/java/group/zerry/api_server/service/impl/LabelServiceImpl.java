@@ -139,6 +139,7 @@ public class LabelServiceImpl implements LabelService {
 		return labelDao.searchLabelIdByName(label_name);
 	}
 
+	
 	@Override
 	public LabelStatusEnum subscribeLabel(String username, int label_id) {
 		// TODO Auto-generated method stub
@@ -149,5 +150,11 @@ public class LabelServiceImpl implements LabelService {
 			return LabelStatusEnum.OF;
 		}
 		return LabelStatusEnum.SS;
+	}
+
+	@Override
+	public String showLabelNameById(int id) {
+		// TODO Auto-generated method stub
+		return labelDao.showLabelNameById(id);
 	}
 }

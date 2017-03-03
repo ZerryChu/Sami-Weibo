@@ -46,4 +46,10 @@ public class LabelController {
 
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/show_label_byId", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public String showLabelNamedById(int id) {
+		return labelService.showLabelNameById(id);
+	}
+	
 }

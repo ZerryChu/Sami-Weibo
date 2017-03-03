@@ -16,5 +16,7 @@ public interface LabelService {
 	
 	public int     showLabelIdByName(String label_name);
 	
+	public String  showLabelNameById(int id);
+	
 	public LabelStatusEnum subscribeLabel(String username, int label_id);
 }

@@ -20,43 +20,8 @@
 
 <!-- Simplify -->
 <link href="css/simplify.min.css" rel="stylesheet">
-<style>
-#facebox img {
-	width: 20px;
-	height: 20px;
-}
 
-.msg_emotion {
-	background: url(old/face/icon.gif) no-repeat 2px 2px;
-	padding-left: 20px;
-	padding-right: 20px;
-	padding-top: 3px;
-	cursor: pointer
-}
-
-.msg_emotion:hover {
-	background-position: 2px -28px
-}
-
-.qqFace {
-	margin-top: 4px;
-}
-
-.qqFace table td {
-	padding: 0px;
-}
-
-.qqFace table td img {
-	cursor: pointer;
-	border: 1px #fff solid;
-}
-
-.qqFace table td img:hover {
-	border: 1px #0066cc solid;
-}
-</style>
 </head>
-
 <body class="overflow-hidden">
 	<div class="wrapper preload no-footer">
 		<%@include file="user-frame.jsp"%>
@@ -72,95 +37,97 @@
 								class="text m-left-sm">个人总览</span>
 						</span> <span class="menu-content-hover block"> Home </span>
 					</a>
-					<li class="openable bg-palette3"><a href="#"> <span
+						<li class="openable bg-palette3"><a href="#"> <span
 							class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-list fa-lg"></i></span><span class="text m-left-sm">微博</span>
-								<span class="submenu-icon"></span></span><span
+							<span class="submenu-icon"></span></span><span
 							class="menu-content-hover block"> Messages </span>
-					</a>
-						<ul class="submenu">
-							<li><a
+				</a>
+					<ul class="submenu">
+						<li><a
 								href="message.jsp?username=${param.username}&userToken=${param.userToken}"><span
 									class="submenu-label">朋友圈</span></a></li>
-							<li><a
+						<li><a
 								href="ownmessage.jsp?username=${param.username}&userToken=${param.userToken}"><span
 									class="submenu-label">自己的微博</span></a></li>
-						</ul></li>
-					<li class="bg-palette4"><a
+					</ul></li>
+				<li class="bg-palette4"><a
 						href="label.jsp?username=${param.username}&userToken=${param.userToken}">
-							<span class="menu-content block"> <span class="menu-icon"><i
+						<span class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-tags fa-lg"></i></span> <span
-								class="text m-left-sm">标签</span></span> <span
-							class="menu-content-hover block"> Labaels </span>
-					</a></li>
-					<li class="bg-palette3"><a
+								class="text m-left-sm">标签</span></span>
+						<span class="menu-content-hover block"> Labaels </span>
+				</a></li>
+				<li class="bg-palette3"><a
 						href="topic.jsp?username=${param.username}&userToken=${param.userToken}">
-							<span class="menu-content block"> <span class="menu-icon"><i
+						<span class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-gift fa-lg"></i></span> <span
-								class="text m-left-sm">话题</span></span> <span
-							class="menu-content-hover block"> Topics </span>
-					</a></li>
-					<li class="bg-palette1"><a
+								class="text m-left-sm">话题</span></span>
+						<span class="menu-content-hover block"> Topics </span>
+				</a></li>
+				<li class="bg-palette1"><a
 						href="inbox.jsp?username=${param.username}&userToken=${param.userToken}">
-							<span class="menu-content block"> <span class="menu-icon"><i
+						<span class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-envelope fa-lg"></i></span> <span
 								class="text m-left-sm">私信</span> <small
 								class="badge badge-danger badge-square bounceIn animation-delay5 m-left-xs">5</small>
-						</span> <span class="menu-content-hover block"> Pvt_msg </span>
-					</a></li>
-					<li class="bg-palette2"><a
+					</span> <span class="menu-content-hover block"> Pvt_msg </span>
+				</a></li>
+				<li class="bg-palette2"><a
 						href="notice.jsp?username=${param.username}&userToken=${param.userToken}">
-							<span class="menu-content block"> <span class="menu-icon"><i
+						<span class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-bell fa-lg"></i></span> <span
-								class="text m-left-sm">公告</span> <small
+								class="text m-left-sm">公告</span>
+							<small
 								class="badge badge-warning badge-square bounceIn animation-delay6 m-left-xs pull-right">7</small>
-						</span> <span class="menu-content-hover block"> Notice </span>
-					</a></li>
-					<li class="openable bg-palette4"><a href="#"> <span
+					</span> <span class="menu-content-hover block"> Notice </span>
+				</a></li>
+				<li class="openable bg-palette4"><a href="#"> <span
 							class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-list fa-lg"></i></span> <span
-								class="text m-left-sm">辅助功能</span> <span class="submenu-icon"></span>
-						</span> <span class="menu-content-hover block"> Additions </span>
-					</a>
-						<ul class="submenu">
-							<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
-							<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
-							<li><a href="lockscreen.html"><span
-									class="submenu-label">锁屏</span></a></li>
-						</ul></li>
+								class="text m-left-sm">辅助功能</span>
+							<span class="submenu-icon"></span>
+					</span> <span class="menu-content-hover block"> Additions </span>
+				</a>
+					<ul class="submenu">
+						<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
+						<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
+						<li><a href="lockscreen.html"><span class="submenu-label">锁屏</span></a></li>
+					</ul></li>
+			</ul>
+		</div>
+		<div class="sidebar-fix-bottom clearfix">
+			<div class="user-dropdown dropup pull-left">
+				<a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i
+						class="ion-person-add"></i> </a>
+				<ul class="dropdown-menu">
+					<li><a href="inbox.html"> Inbox <span
+								class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
+					</a></li>
+					<li><a href="#"> Notification <span
+								class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
+					</a></li>
+					<li><a href="#" class="sidebarRight-toggle"> Message <span
+								class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
+					</a></li>
+					<li class="divider"></li>
+					<li><a href="#">Setting</a></li>
 				</ul>
 			</div>
-			<div class="sidebar-fix-bottom clearfix">
-				<div class="user-dropdown dropup pull-left">
-					<a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i
-						class="ion-person-add"></i> </a>
-					<ul class="dropdown-menu">
-						<li><a href="inbox.html"> Inbox <span
-								class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
-						</a></li>
-						<li><a href="#"> Notification <span
-								class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
-						</a></li>
-						<li><a href="#" class="sidebarRight-toggle"> Message <span
-								class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Setting</a></li>
-					</ul>
-				</div>
-				<a href="lockscreen.html" class="pull-right font-18"><i
+			<a href="lockscreen.html" class="pull-right font-18"><i
 					class="ion-log-out"></i></a>
-			</div>
 		</div>
-		</aside>
+	</div>
+	</aside>
 		<div class="main-container sidebar-mini">
-			<div class="inbox-wrapper">
+							<div class="inbox-wrapper">
 				<div class="inbox-menu">
 					<div class="inbox-menu-sm clearfix">
 						<button type="button"
-							class="navbar-toggle pull-left sidebar-toggle" id="inboxCollapse">
+											class="navbar-toggle pull-left sidebar-toggle"
+											id="inboxCollapse">
 							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
-								class="icon-bar"></span>
+												class="icon-bar"></span>
 						</button>
 
 						<a class="btn btn-danger btn-sm m-top-sm m-right-sm pull-right">Compose</a>
@@ -174,20 +141,19 @@
 						<div class="inbox-menu-header">分类</div>
 
 						<ul>
-							<li><a
-								href="inbox.jsp?username=${ param.username }&userToken=${ param.userToken }">
-									<span class="badge badge-success m-right-xs">${ param.no_read }</span>
-									收件箱
+							<li class="active"><a
+												href="inbox.jsp?username=${ param.username }&userToken=${ param.userToken }"> <span
+													class="badge badge-success m-right-xs">${param.no_read}</span> 收件箱
 							</a></li>
-							<li class="active">
+							<li>
 								<!--  添加未读 --> <!-- span class="badge badge-warning m-right-xs" 1 /span   -->
 								<a
-								href="outbox.jsp?username=${ param.username }&userToken=${ param.userToken }&no_read=${ param.no_read }"><span
-									class="badge badge-success m-right-xs">2</span> 发件箱 </a>
+												href="outbox.jsp?username=${ param.username }&userToken=${ param.userToken }&no_read=${ param.no_read }"><span
+													class="badge badge-success m-right-xs">2</span> 发件箱 </a>
 							</li>
 							<li><a
-								href="trash.jsp?username=${ param.username }&userToken=${ param.userToken }&no_read=${ param.no_read }">
-									垃圾箱 </a></li>
+												href="trash.jsp?username=${ param.username }&userToken=${ param.userToken }&no_read=${ param.no_read }"> 垃圾箱
+							</a></li>
 						</ul>
 
 					</div>
@@ -200,96 +166,27 @@
 					<div class="row m-bottom-md">
 						<div class="col-sm-6 m-bottom-sm">
 							<h2 class="no-margin">
-								发件箱<span class="sub-header"> Outbox </span>
-							</h2>
-						</div>
-					</div>
-					<!-- .row -->
-
-					<div class="message-table table-responsive"
-						style="margin-bottom: 50px; border-style: none; background-color: #f5f5f5;">
-						<div class="smart-widget m-top-lg widget-black widget-dark">
-							<div class="smart-widget-header">
-								发送私信 <span class="smart-widget-option"> <span
-									class="refresh-icon-animated"> <i
-										class="fa fa-circle-o-notch fa-spin"></i>
-								</span> <a href="#" class="widget-toggle-hidden-option"> <i
-										class="fa fa-cog"></i>
-								</a> <a href="#" class="widget-collapse-option"
-									data-toggle="collapse"> <i class="fa fa-chevron-up"></i>
-								</a> <a href="#" class="widget-refresh-option"> <i
-										class="fa fa-refresh"></i>
-								</a>
-								</span>
-							</div>
-							<div class="smart-widget-inner">
-								<div class="smart-widget-hidden-section">
-									<ul class="widget-color-list clearfix">
-										<li style="background-color: #20232b;"
-											data-color="widget-dark"></li>
-										<li style="background-color: #4c5f70;"
-											data-color="widget-dark-blue"></li>
-										<li style="background-color: #23b7e5;"
-											data-color="widget-blue"></li>
-										<li style="background-color: #2baab1;"
-											data-color="widget-green"></li>
-										<li style="background-color: #edbc6c;"
-											data-color="widget-yellow"></li>
-										<li style="background-color: #fbc852;"
-											data-color="widget-orange"></li>
-										<li style="background-color: #e36159;" data-color="widget-red"></li>
-										<li style="background-color: #7266ba;"
-											data-color="widget-purple"></li>
-										<li style="background-color: #f5f5f5;"
-											data-color="widget-light-grey"></li>
-										<li style="background-color: #fff;" data-color="reset"></li>
-									</ul>
-								</div>
-								<!--  发私信  -->
-								<div class="smart-widget-body">
-									<form>
-										<div class="form-group">
-											<label for="exampleInputEmail1">收件用户</label> <input
-												type="text" class="form-control" name="username"
-												id="inputUsername" placeholder="username">
-										</div>
-										<!-- /form-group -->
-										<div class="form-group">
-											<label for="exampleInputPassword1">内容</label> <input
-												type="text" class="form-control" name="content"
-												id="inputContent" placeholder="content">
-										</div>
-										<!-- /form-group -->
-										<span id="msg_emotion" class="msg_emotion"></span>
-										<button type="submit" class="btn btn-success btn-sm">发送</button>
-										<button type="submit" class="btn btn-success btn-sm">存入草稿</button>
-									</form>
-								</div>
-							</div>
-							<!-- ./smart-widget-inner -->
-						</div>
-						<!-- ./smart-widget -->
-					</div>
-
-					<div class="row m-bottom-md">
-						<div class="col-sm-6 m-bottom-sm">
-							<h2 class="no-margin">
-								草稿箱<span class="sub-header"> Draft </span>
+								垃圾箱<span class="sub-header"> Trash </span>
 							</h2>
 						</div>
 						<!-- ./col -->
 						<div class="col-sm-6 text-right text-left-sm">
 							<div class="btn-group">
 								<button type="button" class="btn btn-default dropdown-toggle"
-									data-toggle="dropdown">
+													data-toggle="dropdown">
 									Move to <span class="caret"></span>
 								</button>
 								<ul class="dropdown-menu" role="menu">
+									<li><a href="#">Socials</a></li>
+									<li><a href="#">Promotions</a></li>
+									<li><a href="#">Forums</a></li>
+									<li class="divider"></li>
+									<li><a href="#">Spam</a></li>
 									<li><a href="#">Trash</a></li>
 								</ul>
 							</div>
 							<a href="#" class="btn btn-success hidden-xs">Report Spam</a> <a
-								href="#" class="btn btn-danger">Move to Trash</a>
+												href="#" class="btn btn-danger">Move to Trash</a>
 						</div>
 						<!-- ./col -->
 					</div>
@@ -306,12 +203,12 @@
 										</div>
 									</th>
 									<th></th>
-									<th>收件人</th>
-									<th>内容</th>
-									<th>日期</th>
+									<th>Author</th>
+									<th>Message</th>
+									<th>Date</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="cnt">
 								<tr>
 									<td class="text-center">
 										<div class="custom-checkbox">
@@ -349,11 +246,11 @@
 										</div>
 										<div class="author-name">
 											<strong class="block font-md">James Smith</strong> <a
-												href="#" class="text-muted">Friends</a>
+																href="#" class="text-muted">Friends</a>
 										</div>
 									</td>
 									<td><a href="#"> Curabitur bibendum ornare dolor. <small
-											class="block">Lorem ipsum dolor sit amet, consectetur
+															class="block">Lorem ipsum dolor sit amet, consectetur
 												adipiscing elit.</small>
 									</a></td>
 									<td>Yesterday, 3:12</td>
@@ -372,11 +269,11 @@
 										</div>
 										<div class="author-name">
 											<strong class="block font-md">Sarah Garcia</strong> <a
-												href="#" class="text-muted">Friends</a>
+																href="#" class="text-muted">Friends</a>
 										</div>
 									</td>
 									<td><a href="#"> Quis ullamcorper ligula sodales at. <small
-											class="block">Curabitur bibendum ornare dolor.</small>
+															class="block">Curabitur bibendum ornare dolor.</small>
 									</a></td>
 									<td>19 Jun, 7:55</td>
 								</tr>
@@ -394,7 +291,7 @@
 										</div>
 										<div class="author-name">
 											<strong class="block font-md">Christopher Brown</strong> <a
-												href="#" class="text-muted">Close Friends</a>
+																href="#" class="text-muted">Close Friends</a>
 										</div>
 									</td>
 									<td><a href="#"> Nulla tellus elit, varius non commodo
@@ -417,7 +314,7 @@
 										</div>
 										<div class="author-name">
 											<strong class="block font-md">Elizabeth Carter</strong> <a
-												href="#" class="text-muted">Family</a>
+																href="#" class="text-muted">Family</a>
 										</div>
 									</td>
 									<td><a href="#"> Lorem ipsum dolor sit amet,
@@ -462,11 +359,11 @@
 										</div>
 										<div class="author-name">
 											<strong class="block font-md">James Smith</strong> <a
-												href="#" class="text-muted">Friends</a>
+																href="#" class="text-muted">Friends</a>
 										</div>
 									</td>
 									<td><a href="#"> Quis ullamcorper ligula sodales at. <small
-											class="block">Curabitur bibendum ornare dolor.</small>
+															class="block">Curabitur bibendum ornare dolor.</small>
 									</a></td>
 									<td>18 Jun, 3:12</td>
 								</tr>
@@ -484,7 +381,7 @@
 										</div>
 										<div class="author-name">
 											<strong class="block font-md">Sarah Garcia</strong> <a
-												href="#" class="text-muted">Friends</a>
+																href="#" class="text-muted">Friends</a>
 										</div>
 									</td>
 									<td><a href="#"> Nulla tellus elit, varius non commodo
@@ -507,7 +404,7 @@
 										</div>
 										<div class="author-name">
 											<strong class="block font-md">Christopher Brown</strong> <a
-												href="#" class="text-muted">Close Friends</a>
+																href="#" class="text-muted">Close Friends</a>
 										</div>
 									</td>
 									<td><a href="#"> Lorem ipsum dolor sit amet,
@@ -530,7 +427,7 @@
 										</div>
 										<div class="author-name">
 											<strong class="block font-md">Elizabeth Carter</strong> <a
-												href="#" class="text-muted">Family</a>
+																href="#" class="text-muted">Family</a>
 										</div>
 									</td>
 									<td>Curabitur bibendum ornare dolor. <small class="block">Lorem
@@ -550,9 +447,9 @@
 								of 8</div>
 							<ul class="pagination vertical-middle">
 								<li class="disabled"><a href="#"><i
-										class="fa fa-step-backward"></i></a></li>
+														class="fa fa-step-backward"></i></a></li>
 								<li class="disabled"><a href="#"><i
-										class="fa fa-caret-left large"></i></a></li>
+														class="fa fa-caret-left large"></i></a></li>
 								<li><a href="#"><i class="fa fa-caret-right large"></i></a></li>
 								<li><a href="#"><i class="fa fa-step-forward"></i></a></li>
 							</ul>
@@ -565,8 +462,8 @@
 			<!-- ./inbox-wrapper -->
 		</div>
 		<!-- /main-container -->
-
-	</div>
+	
+					</div>
 	<!-- /wrapper -->
 
 	<a href="#" class="scroll-to-top hidden-print"><i
@@ -597,25 +494,13 @@
 	<!--  /ajax  -->
 	<script src="ajax/private_msg.js" type="text/javascript"></script>
 	
-	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
-
 	<!--  表情包  -->
 	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
-
+	
 	<script src="js/login.js" type="text/javascript"></script>
 
 	<script>
 		isLogin();
-
-		/////////////      表情包        /////////////////////////////////////////////////////////////
-		$(function() {
-			$('#msg_emotion').qqFace({
-				assign : '#inputContent', //给输入框赋值 
-				path : 'old/face/' //表情图片存放的路径 
-			});
-
-		});
-		//////////////////////////////////////////////////////////////////////////////////////////
 
 		$(function() {
 			$('.inbox-check').click(function() {
@@ -648,5 +533,6 @@
 			});
 		});
 	</script>
+
 </body>
 </html>

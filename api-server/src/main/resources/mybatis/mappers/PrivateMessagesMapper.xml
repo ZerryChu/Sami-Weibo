@@ -46,6 +46,7 @@
 			private_msg
 		WHERE
 			sdr_id = #{1} AND rcvr_id = #{0}
+			OR (sdr_id = #{0} AND rcvr_id = #{1})
 		ORDER BY
 			time DESC
 		LIMIT 0,

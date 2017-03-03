@@ -287,14 +287,6 @@ function showOwnmessages(userNickname, pageNumber, _flag) {
 
 											message += "</ul><div class=\"pagination-row clearfix m-bottom-md\" style=\"margin-top: 10px; margin-bottom: 0px;\"><div class=\"pull-right pull-left-sm\"><div class=\"inline-block vertical-middle m-right-xs\">Page 1 </div><ul class=\"pagination vertical-middle\" style=\"margin: 0px;\"><li class=\"disabled\"><a href=\"#\"><i class=\"fa fa-step-backward\"></i></a></li><li class=\"disabled\"><a href=\"#\"><i class=\"fa fa-caret-left large\"></i></a></li><li><a href=\"#\"><i class=\"fa fa-caret-right large\"></i></a></li><li><a href=\"#\"><i class=\"fa fa-step-forward\"></i></a></li></ul></div></div></div></div></div></div>";
 
-											// var textarea = ".comarea_"
-											// + data.returndata[i].id; 发表评论
-											// var emotion = '#cmt_emotion'
-											// + data.returndata[i].id;
-											// $(emotion).qqFace({
-											// assign : textarea, // 给输入框赋值
-											// path : 'face/' // 表情图片存放的路径
-											// });
 											$("#receive_msg").append(message);
 
 											// 显示第一页评论

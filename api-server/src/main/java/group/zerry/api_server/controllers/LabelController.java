@@ -50,4 +50,14 @@ public class LabelController {
 		regMsg.append("\"}");
 		return regMsg.toString();
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/show_label_byId", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public String showLabelNamedById(int id) {
+		String name = labelService.showLabelNameById(id);
+		StringBuilder regMsg = new StringBuilder("{\"name\": \"");
+		regMsg.append(name);
+		regMsg.append("\"}");
+		return regMsg.toString();
+	}
  }

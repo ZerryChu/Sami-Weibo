@@ -59,18 +59,17 @@ public class PrivateMsgServiceImpl implements PrivateMsgService {
 			boolean has_noRead = false;
 			int count = privateMsgDao.getMessagesCount(id, idList[i]).getNumber();
 			PrivateMsg hotMessage = privateMsgDao.getHotMsg(id, idList[i]);
-			if (hotMessage != null && hotMessage.isHas_read() == false)
+			if (hotMessage.isHas_read() == false)
 				has_noRead = true;
 			User target = userDao.selectUserById(idList[i]);
-			System.out.println(idList[i]);
 			PrivateMsgInfo privateMsgInfo = new PrivateMsgInfo();
 			privateMsgInfo.setTargetUsername(target.getUsername());
 			privateMsgInfo.setTargetId(idList[i]);
-			if (hotMessage != null)
-				privateMsgInfo.setTime(hotMessage.getTime());
+			privateMsgInfo.setTime(hotMessage.getTime());
 			privateMsgInfo.setTargetNickname(target.getNickname());
 			privateMsgInfo.setHas_noRead(has_noRead);
 			privateMsgInfo.setCount(count);
+			privateMsgInfo.setContent(hotMessage.getContent());
 			privateMsgInfoList.add(privateMsgInfo);
 		}
 		// 排序，未读的消息排前，其次，时间越近的消息排越前

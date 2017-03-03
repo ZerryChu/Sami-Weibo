@@ -15,6 +15,7 @@ public class PrivateMsgInfo {
 	private boolean has_noRead;// 是否有未读消息
 	private int     count;   // 私信总数
 	private String  time;    // 最后一条交流的时间
+	private String  content; // 首条消息
 	
 	public String getTargetUsername() {
 		return targetUsername;
@@ -52,4 +53,11 @@ public class PrivateMsgInfo {
 	public void setCount(int count) {
 		this.count = count;
 	}
+	public String getContent() {
+		return content;
+	}
+	public void setContent(String content) {
+		this.content = content;
+	}
+
 }

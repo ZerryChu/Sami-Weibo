@@ -10,6 +10,8 @@ public interface LabelDao {
 	
 	String searchLabelNameById(long id1);
 	
+	String showLabelNameById(int id);
+	
 	void updateLabelHeatById(int user_id, long id);
 	
 	void insertNewLabel(String name);

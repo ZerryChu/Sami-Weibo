@@ -56,4 +56,14 @@ public class LabelServiceImpl implements LabelService {
 			return false;	
 		}
 	}
+
+	@Override
+	public String showLabelNameById(int id) {
+		// TODO Auto-generated method stub
+		String url = httpTarget.getHostname() + httpTarget.getPath() + "label/show_label_byId";
+		Map<String, String> paramsMap = new HashMap<String, String>();
+		paramsMap.put("id", String.valueOf(id));
+		return fetchURLTool.doPost(url, paramsMap);
+	}
+	
 }

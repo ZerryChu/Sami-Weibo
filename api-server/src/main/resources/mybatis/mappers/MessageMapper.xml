@@ -54,7 +54,8 @@
 		id,
 		author,
 		content,
-		create_time
+		create_time,
+		pic
 		FROM
 		message_inf,
 		user_inf
@@ -99,7 +100,7 @@
 			repost_times,
 			comment_times,
 			support_times,
-			pic		
+			message_inf.pic		
 		FROM
 			message_inf,
 			msg_lbl_relation,
@@ -123,7 +124,7 @@
 			repost_times,
 			comment_times,
 			support_times,
-			pic,
+			message_inf.pic,
 			label_inf.name
 		FROM
 			msg_lbl_relation,
@@ -145,12 +146,16 @@
 			repost_times,
 			comment_times,
 			support_times,
-			pic,
+			message_inf.pic,
 			label_inf.name
 		FROM
-			message_inf
+			msg_lbl_relation,
+			message_inf,
+			label_inf
 		WHERE
-			content LIKE #{name}
+			message_inf.id = msg_lbl_relation.msg_id
+			AND label_inf.id = msg_lbl_relation.label_id
+			AND content LIKE #{name}
 			ORDER BY
 			create_time DESC
 	</select>

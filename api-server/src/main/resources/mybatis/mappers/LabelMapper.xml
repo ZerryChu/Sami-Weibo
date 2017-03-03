@@ -30,6 +30,15 @@
 			id = #{id}
  	</select>
  	
+ 	<select id="showLabelNameById" resultType="string">
+ 		SELECT
+			NAME
+		FROM
+			label_inf
+		WHERE
+			id = #{id}
+ 	</select>
+ 	
  	<select id="showSubscribedLabels" resultType="Label"> // 之前是labelmap 报错
  		SELECT
 			label_inf.id AS id,
