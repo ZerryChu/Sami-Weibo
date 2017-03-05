@@ -33,7 +33,7 @@ function load_allCookies() {
 function remove_cookies(name) {
 	var exp = new Date();
 	exp.setTime(exp.getTime() - 1);
-	var cval = getCookie(name);
+	var cval = load_cookiesByName(name);
 	if (cval != null)
 		document.cookie = name + "=" + cval + ";expires=" + exp.toGMTString();
 }

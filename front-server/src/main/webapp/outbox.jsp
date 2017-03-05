@@ -66,8 +66,9 @@
 			<div class="main-menu">
 				<ul class="accordion">
 					<li class="menu-header">Main Menu</li>
-					<li class="bg-palette1 active"><a href="index.jsp?username=${param.username}&userToken=${param.userToken}"> <span
-							class="menu-content block"> <span class="menu-icon"><i
+					<li class="bg-palette1 active"><a
+						href="index.jsp?username=${param.username}&userToken=${param.userToken}">
+							<span class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-home fa-lg"></i></span> <span
 								class="text m-left-sm">个人总览</span>
 						</span> <span class="menu-content-hover block"> Home </span>
@@ -125,12 +126,13 @@
 						<ul class="submenu">
 							<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
 							<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
-							<li><a href="lockscreen.jsp?username=${param.username}&userToken=${param.userToken}"><span
+							<li><a
+								href="lockscreen.jsp?username=${param.username}&userToken=${param.userToken}"><span
 									class="submenu-label">锁屏</span></a></li>
 						</ul></li>
 				</ul>
 			</div>
-			
+
 		</div>
 		</aside>
 		<div class="main-container sidebar-mini">
@@ -241,8 +243,9 @@
 										</div>
 										<!-- /form-group -->
 										<span id="msg_emotion" class="msg_emotion"></span>
-										<button type="submit" class="btn btn-success btn-sm">发送</button>
-										<button type="submit" class="btn btn-success btn-sm">存入草稿</button>
+										<button type="button" class="btn btn-success btn-sm">发送</button>
+										<button type="button" class="btn btn-success btn-sm"
+											onclick="save_draft();">存入草稿</button>
 									</form>
 								</div>
 							</div>
@@ -269,7 +272,7 @@
 								</ul>
 							</div>
 							<a href="#" class="btn btn-success hidden-xs">Report Spam</a> <a
-								href="#" class="btn btn-danger">Move to Trash</a>
+								href="#" class="btn btn-danger" onclick="moveToTrash();">Move to Trash</a>
 						</div>
 						<!-- ./col -->
 					</div>
@@ -291,7 +294,7 @@
 									<th>日期</th>
 								</tr>
 							</thead>
-							<tbody>
+							<tbody id="draft_list">
 								<tr>
 									<td class="text-center">
 										<div class="custom-checkbox">
@@ -577,18 +580,19 @@
 	<!-- Cookies -->
 	<script src='js/cookies.js'></script>
 
-	<!--  /ajax  -->
-	<script src="ajax/private_msg.js" type="text/javascript"></script>
-	
 	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
 
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+		
 	<!--  表情包  -->
 	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
 
 	<script src="js/login.js" type="text/javascript"></script>
 
-	<script>
+	<script type="text/javascript">
 		isLogin();
+		show_draft();
 
 		/////////////      表情包        /////////////////////////////////////////////////////////////
 		$(function() {
@@ -629,69 +633,141 @@
 					$('.inbox-menu ul').show();
 				}
 			});
-			
-			
-			var content;
-			var author;
-			var time;
-			var to_author;
+		});
 
-			function show_draft() {
-				var aCookie = document.cookie.split(";");
-				var re = '';
-				var index;
-				for (var i = 0; i < aCookie.length; i++) {
-					var keys = aCookie[i].split("=");
-					var name = keys[0].split(":");
-					if (name[1] == "author") {
-						index = name[0];
-						author = keys[1];
-						if (author != $.query.get("username")) {
-							i + 3;
-							continue;
-						}
+		var content;
+		var author;
+		var time;
+		var to_author;
+
+		function show_draft() {
+			$("#draft_list").empty();
+
+			var aCookie = document.cookie.split(";");
+			var index;
+			for (var i = 0; i < aCookie.length; i++) {
+				var keys = aCookie[i].split("=");
+				if (keys == "")
+					return; // no cookies!
+				var name = keys[0].split("-");
+				if (name[1] == "author") {
+					index = name[0];
+					author = keys[1];
+					if (author != $.query.get("username")) {
+						i + 3;
+						continue;
 					}
-					else if (name[1] == "time") {
-						if (name[0] != index) {
-							alert("error");
-							return;
-						}
-						time = keys[1];
-					}
-					else if (name[1] == "content") {
-						content = keys[1];
-						if (name[0] != index) {
-							alert("error");
-							return;
-						}
-					}
-					else {
-						to_author = keys[1];
-						if (name[0] != index) {
-							alert("error");
-							return;
-						}
-						show();
-					}
+				} else if (name[1] == "time") {
+					time = keys[1];
+					//if (name[0] != index) {
+					//return;
+					//}
+				} else if (name[1] == "content") {
+					content = keys[1];
+					//if (name[0] != index) {
+					//return;
+					//}
+				} else {
+					to_author = keys[1];
+					//if (name[0] != index) {
+					//return;
+					//}
+
+					// show	
+					var str = "<tr style=\"cursor: pointer;\" class=\"draft\"><td class=\"text-center\"><div class=\"custom-checkbox\"><input type=\"checkbox\" id=\""
+							+ index
+							+ "\" class=\"inbox-check\"><label for=\""
+							+ index
+							+ "\"></label></div></td><td></td><td><div class=\"author-avatar\"><img src=\"images/profile/"
+							+ to_author
+							+ ".jpg\" alt=\"\"></div><div class=\"author-name\"><strong class=\"block font-md draft_rcv\">"
+							+ to_author
+							+ "</strong> student </div></td><td class=\"draft_cnt\">"
+							+ content + "</td><td>" + time + "</td></tr>";
+					$("#draft_list").append(str);
 				}
 			}
+		}
 
-			/**
-			 * 私信存入草稿箱
-			 */
-			function save_draft() {
-				// shezhi id
-				// 随机生成id，去重
-			}
+		/**
+		 * 获取随机数
+		 */
+		function getRandomNum(Min, Max) {
+			var Range = Max - Min;
+			var Rand = Math.random();
+			return (Min + Math.round(Rand * Range));
+		}
 
-			/**
-			 * 
-			 * 草稿箱删除私信
-			 */
-			function remove_draft(id) {
-				
+		/**
+		 * 获取当前时间
+		 */
+		function getNowFormatDate() {
+			var date = new Date();
+			var seperator1 = "-";
+			var seperator2 = ":";
+			var month = date.getMonth() + 1;
+			var strDate = date.getDate();
+			if (month >= 1 && month <= 9) {
+				month = "0" + month;
 			}
+			if (strDate >= 0 && strDate <= 9) {
+				strDate = "0" + strDate;
+			}
+			var currentdate = date.getFullYear() + seperator1 + month
+					+ seperator1 + strDate + " " + date.getHours() + seperator2
+					+ date.getMinutes() + seperator2 + date.getSeconds();
+			return currentdate;
+		}
+
+		/**
+		 * 私信存入草稿箱
+		 */
+		function save_draft() {
+			var id = getRandomNum(100000, 1000000);
+			if ($("#inputContent").val() == "" || $("#inputUsername").val() == "")
+				return;
+			save_cookies(id + "-author", $.query.get("username"));
+			save_cookies(id + "-time", getNowFormatDate());
+			save_cookies(id + "-content", $("#inputContent").val());
+			save_cookies(id + "-to_author", $("#inputUsername").val());
+			window.location.reload(true);
+		}
+
+		/**
+		 * 
+		 * 草稿箱删除私信,移动至发件区
+		 */
+		$(".draft").live('click', function() {
+			// 点最后一个失效
+			var id = $(this).find(".inbox-check").attr("id");
+			$("#inputContent").val($(this).find(".draft_cnt").text());
+			$("#inputUsername").val($(this).find(".draft_rcv").text());
+			remove_draftById(id);
+			show_draft();
 		});
+
+		function remove_draftById(id) {
+			remove_cookies(id + "-author");
+			remove_cookies(id + "-time");
+			remove_cookies(id + "-content");
+			remove_cookies(id + "-to_author");
+		}
+		
+		function moveToTrash(id) {
+			var tr = $("#draft_list").find("tr");
+			tr.each(function(){
+				var item = $(this).find(".inbox-check");
+				if (item.attr("class") == "active") {
+					id = item.attr("id");
+					removeToTrashById(id);
+				}
+			});
+		}
+		
+		function removeToTrashById() {
+			
+		}
+		
 	</script>
 </body>
 </html>
