@@ -38,14 +38,14 @@ public class MessageController {
 	private MessageService messageService;
 
 	@Autowired
-	private LabelService   labelService;
-	
+	private LabelService labelService;
+
 	@Autowired
 	private CacheTools cacheTools; // 记录微博的热度
 
 	private static SimplePropertyPreFilter messageFilter = new SimplePropertyPreFilter(Message.class, "id", "type",
 			"author", "content", "create_time", "repost_times", "comment_times", "support_times", "pic", "isSupported",
-			"source_message"); 
+			"source_message");
 
 	private static Logger logger = Logger.getLogger(MessageController.class);
 
@@ -120,6 +120,25 @@ public class MessageController {
 
 	@AuthPass
 	@ResponseBody
+	@RequestMapping(value = "/showByHeat", produces = "text/html;charset=UTF-8")
+	public String show_messageByHeat(String username, String userToken, int page) {
+		// page--;
+		StringBuilder regMsg = new StringBuilder("{\"returndata\":");
+		Message[] messages;
+		try {
+			messages = messageService.show_messagesByHeat(username, page);
+		} catch (Exception e) {
+			regMsg.append(MessageStatusEnum.SMF);
+			regMsg.append("}");
+			return regMsg.toString();
+		}
+		regMsg.append(JSON.toJSONString(messages));
+		regMsg.append("}");
+		return regMsg.toString();
+	}
+
+	@AuthPass
+	@ResponseBody
 	@RequestMapping(value = "/show_by_label", produces = "text/html;charset=UTF-8")
 	public String show_messageByLabel(String username, String userToken, int label_id, int page) {
 		StringBuilder regMsg = new StringBuilder("{\"returndata\":");
@@ -136,13 +155,13 @@ public class MessageController {
 			return regMsg.toString();
 		}
 		regMsg.append(JSON.toJSONString(messages));
-		
+
 		// 捎带相似标签标签信息
 		if (rec_labels != null) {
 			regMsg.append(", \"rec\":");
 			regMsg.append(JSON.toJSON(rec_labels));
 		}
-		
+
 		regMsg.append("}");
 		// logger.error(regMsg.toString());
 		return regMsg.toString();

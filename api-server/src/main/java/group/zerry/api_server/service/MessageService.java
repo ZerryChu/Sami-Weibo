@@ -11,6 +11,8 @@ public interface MessageService {
 	
 	public Message[] show_messages(String username, int page);
 	
+	public Message[] show_messagesByHeat(String username, int page);
+	
 	public Message[] show_messagesByLabel(String username, int label_id, int page);
 	
 	public Message[] showMessagesByLabelAndHeat(String username, int label_id, int page);

@@ -57,7 +57,7 @@
 						<ul class="popular-blog-post">
 							<li class="clearfix">
 								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog3.jpg" alt="">
+									<img src="images/gallery/gallery1.jpg" alt="">
 								</div>
 								<div class="popular-blog-detail">
 									<a href="#" class="h5">How to increase your shop sales</a>
@@ -66,7 +66,7 @@
 							</li>
 							<li class="clearfix">
 								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog4.jpg" alt="">
+									<img src="images/gallery/gallery2.jpg" alt="">
 								</div>
 								<div class="popular-blog-detail">
 									<a href="#" class="h5">The Best Tools For Testing Your
@@ -76,7 +76,7 @@
 							</li>
 							<li class="clearfix">
 								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog1.jpg" alt="">
+									<img src="images/gallery/gallery3.jpg" alt="">
 								</div>
 								<div class="popular-blog-detail">
 									<a href="#" class="h5">The trends of Website Design in 2014</a>

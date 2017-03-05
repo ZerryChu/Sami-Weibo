@@ -90,6 +90,31 @@
 			create_time DESC
 	</select>
 	
+	<select id="getMessagesByHeat" resultMap="MessageMap">
+		SELECT
+			message_inf.id,
+			type,
+			author,
+			content,
+			create_time,
+			repost_times,
+			comment_times,
+			support_times,
+			pic,
+			<!--  热度算法  -->
+			DATE_FORMAT(now(),'%Y%m%d') - DATE_FORMAT(create_time,'%Y%m%d') - comment_times - support_times * 2 as heat
+		FROM
+			message_inf
+		WHERE
+			<foreach collection="array" item="friend" index="index" open=" "
+				close=" " separator=" or ">
+				author=#{friend}
+			</foreach>
+			AND create_time &lt; now()
+		    ORDER BY
+				heat
+	</select>
+	
 	<select id="getMessagesAndHotByLabel" resultMap="MessageMap">
 		SELECT
 			message_inf.id,

@@ -18,6 +18,8 @@ public interface MessageService {
 	
 	public String show_messages(String username, String userToken, int page);
 	
+	public String show_messagesByHeat(String username, String userToken, int page);
+	
 	public String show_messagesByLabel(String username, String userToken, int label_id, int page);
 	
 	public String show_messagesByLabelAndHeat(String username, String userToken, int label_id, int page);

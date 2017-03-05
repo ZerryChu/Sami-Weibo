@@ -25,7 +25,7 @@
 				</a>
 					<ul class="submenu">
 						<li><a
-							href="message.jsp?username=${param.username}&userToken=${param.userToken}"><span
+							href="message.jsp?username=${param.username}&userToken=${param.userToken}&flag=1"><span
 								class="submenu-label">朋友圈</span></a></li>
 						<li><a
 							href="ownmessage.jsp?username=${param.username}&userToken=${param.userToken}"><span
@@ -68,7 +68,7 @@
 					<ul class="submenu">
 						<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
 						<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
-						<li><a href="lockscreen.html"><span class="submenu-label">锁屏</span></a></li>
+						<li><a href="lockscreen.jsp?username=${param.username}&userToken=${param.userToken}"><span class="submenu-label">锁屏</span></a></li>
 					</ul></li>
 			</ul>
 		</div>

@@ -279,4 +279,17 @@ public class MessageServiceImpl implements MessageService {
 			return false;
 	}
 
+	@Override
+	public String show_messagesByHeat(String username, String userToken, int page) {
+		// TODO Auto-generated method stub
+				String url = httpTarget.getHostname() + httpTarget.getPath() + "message/showByHeat";
+				Map<String, String> paramsMap = new HashMap<String, String>();
+				paramsMap.put("username", username);
+				paramsMap.put("userToken", userToken);
+				paramsMap.put("page", String.valueOf(page));
+				// List<Message> messages = JSON.parseArray(fetchURLTool.doPost(url,
+				// paramsMap), Message.class);
+				return fetchURLTool.doPost(url, paramsMap);
+	}
+
 }

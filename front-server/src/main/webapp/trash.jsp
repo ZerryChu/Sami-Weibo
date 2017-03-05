@@ -45,7 +45,7 @@
 				</a>
 					<ul class="submenu">
 						<li><a
-								href="message.jsp?username=${param.username}&userToken=${param.userToken}"><span
+								href="message.jsp?username=${param.username}&userToken=${param.userToken}&flag=1"><span
 									class="submenu-label">朋友圈</span></a></li>
 						<li><a
 								href="ownmessage.jsp?username=${param.username}&userToken=${param.userToken}"><span
@@ -92,31 +92,11 @@
 					<ul class="submenu">
 						<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
 						<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
-						<li><a href="lockscreen.html"><span class="submenu-label">锁屏</span></a></li>
+						<li><a href="lockscreen.jsp?username=${param.username}&userToken=${param.userToken}"><span class="submenu-label">锁屏</span></a></li>
 					</ul></li>
 			</ul>
 		</div>
-		<div class="sidebar-fix-bottom clearfix">
-			<div class="user-dropdown dropup pull-left">
-				<a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i
-						class="ion-person-add"></i> </a>
-				<ul class="dropdown-menu">
-					<li><a href="inbox.html"> Inbox <span
-								class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
-					</a></li>
-					<li><a href="#"> Notification <span
-								class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
-					</a></li>
-					<li><a href="#" class="sidebarRight-toggle"> Message <span
-								class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
-					</a></li>
-					<li class="divider"></li>
-					<li><a href="#">Setting</a></li>
-				</ul>
-			</div>
-			<a href="lockscreen.html" class="pull-right font-18"><i
-					class="ion-log-out"></i></a>
-		</div>
+		
 	</div>
 	</aside>
 		<div class="main-container sidebar-mini">
@@ -141,7 +121,7 @@
 						<div class="inbox-menu-header">分类</div>
 
 						<ul>
-							<li class="active"><a
+							<li><a
 												href="inbox.jsp?username=${ param.username }&userToken=${ param.userToken }"> <span
 													class="badge badge-success m-right-xs">${param.no_read}</span> 收件箱
 							</a></li>
@@ -151,7 +131,7 @@
 												href="outbox.jsp?username=${ param.username }&userToken=${ param.userToken }&no_read=${ param.no_read }"><span
 													class="badge badge-success m-right-xs">2</span> 发件箱 </a>
 							</li>
-							<li><a
+							<li class="active"><a
 												href="trash.jsp?username=${ param.username }&userToken=${ param.userToken }&no_read=${ param.no_read }"> 垃圾箱
 							</a></li>
 						</ul>

@@ -80,7 +80,7 @@
 					</a>
 						<ul class="submenu">
 							<li><a
-								href="message.jsp?username=${param.username}&userToken=${param.userToken}"><span
+								href="message.jsp?username=${param.username}&userToken=${param.userToken}&flag=1"><span
 									class="submenu-label">朋友圈</span></a></li>
 							<li><a
 								href="ownmessage.jsp?username=${param.username}&userToken=${param.userToken}"><span
@@ -125,32 +125,12 @@
 						<ul class="submenu">
 							<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
 							<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
-							<li><a href="lockscreen.html"><span
+							<li><a href="lockscreen.jsp?username=${param.username}&userToken=${param.userToken}"><span
 									class="submenu-label">锁屏</span></a></li>
 						</ul></li>
 				</ul>
 			</div>
-			<div class="sidebar-fix-bottom clearfix">
-				<div class="user-dropdown dropup pull-left">
-					<a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i
-						class="ion-person-add"></i> </a>
-					<ul class="dropdown-menu">
-						<li><a href="inbox.html"> Inbox <span
-								class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
-						</a></li>
-						<li><a href="#"> Notification <span
-								class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
-						</a></li>
-						<li><a href="#" class="sidebarRight-toggle"> Message <span
-								class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Setting</a></li>
-					</ul>
-				</div>
-				<a href="lockscreen.html" class="pull-right font-18"><i
-					class="ion-log-out"></i></a>
-			</div>
+			
 		</div>
 		</aside>
 		<div class="main-container sidebar-mini">
@@ -594,6 +574,9 @@
 	<!-- Simplify -->
 	<script src="js/simplify/simplify.js"></script>
 
+	<!-- Cookies -->
+	<script src='js/cookies.js'></script>
+
 	<!--  /ajax  -->
 	<script src="ajax/private_msg.js" type="text/javascript"></script>
 	
@@ -646,6 +629,68 @@
 					$('.inbox-menu ul').show();
 				}
 			});
+			
+			
+			var content;
+			var author;
+			var time;
+			var to_author;
+
+			function show_draft() {
+				var aCookie = document.cookie.split(";");
+				var re = '';
+				var index;
+				for (var i = 0; i < aCookie.length; i++) {
+					var keys = aCookie[i].split("=");
+					var name = keys[0].split(":");
+					if (name[1] == "author") {
+						index = name[0];
+						author = keys[1];
+						if (author != $.query.get("username")) {
+							i + 3;
+							continue;
+						}
+					}
+					else if (name[1] == "time") {
+						if (name[0] != index) {
+							alert("error");
+							return;
+						}
+						time = keys[1];
+					}
+					else if (name[1] == "content") {
+						content = keys[1];
+						if (name[0] != index) {
+							alert("error");
+							return;
+						}
+					}
+					else {
+						to_author = keys[1];
+						if (name[0] != index) {
+							alert("error");
+							return;
+						}
+						show();
+					}
+				}
+			}
+
+			/**
+			 * 私信存入草稿箱
+			 */
+			function save_draft() {
+				// shezhi id
+				// 随机生成id，去重
+			}
+
+			/**
+			 * 
+			 * 草稿箱删除私信
+			 */
+			function remove_draft(id) {
+				
+			}
 		});
 	</script>
 </body>

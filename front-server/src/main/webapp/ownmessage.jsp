@@ -70,7 +70,7 @@
 				</h2>
 
 				<div class="row">
-					<div class="col-md-10">
+					<div style="margin-left: 8%;" class="col-md-10">
 						<div class="timeline-wrapper clearfix">
 							<!--  改  -->
 							<div class="timeline-year"></div>

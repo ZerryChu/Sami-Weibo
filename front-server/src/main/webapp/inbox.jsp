@@ -32,8 +32,9 @@
 			<div class="main-menu">
 				<ul class="accordion">
 					<li class="menu-header">Main Menu</li>
-					<li class="bg-palette1 active"><a href="index.jsp?username=${param.username}&userToken=${param.userToken}"> <span
-							class="menu-content block"> <span class="menu-icon"><i
+					<li class="bg-palette1 active"><a
+						href="index.jsp?username=${param.username}&userToken=${param.userToken}">
+							<span class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-home fa-lg"></i></span> <span
 								class="text m-left-sm">个人总览</span>
 						</span> <span class="menu-content-hover block"> Home </span>
@@ -46,7 +47,7 @@
 					</a>
 						<ul class="submenu">
 							<li><a
-								href="message.jsp?username=${param.username}&userToken=${param.userToken}"><span
+								href="message.jsp?username=${param.username}&userToken=${param.userToken}&flag=1"><span
 									class="submenu-label">朋友圈</span></a></li>
 							<li><a
 								href="ownmessage.jsp?username=${param.username}&userToken=${param.userToken}"><span
@@ -91,32 +92,12 @@
 						<ul class="submenu">
 							<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
 							<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
-							<li><a href="lockscreen.html"><span
+							<li><a href="lockscreen.jsp?username=${param.username}&userToken=${param.userToken}"><span
 									class="submenu-label">锁屏</span></a></li>
 						</ul></li>
 				</ul>
 			</div>
-			<div class="sidebar-fix-bottom clearfix">
-				<div class="user-dropdown dropup pull-left">
-					<a href="#" class="dropdwon-toggle font-18" data-toggle="dropdown"><i
-						class="ion-person-add"></i> </a>
-					<ul class="dropdown-menu">
-						<li><a href="inbox.html"> Inbox <span
-								class="badge badge-danger bounceIn animation-delay2 pull-right">1</span>
-						</a></li>
-						<li><a href="#"> Notification <span
-								class="badge badge-purple bounceIn animation-delay3 pull-right">2</span>
-						</a></li>
-						<li><a href="#" class="sidebarRight-toggle"> Message <span
-								class="badge badge-success bounceIn animation-delay4 pull-right">7</span>
-						</a></li>
-						<li class="divider"></li>
-						<li><a href="#">Setting</a></li>
-					</ul>
-				</div>
-				<a href="lockscreen.html" class="pull-right font-18"><i
-					class="ion-log-out"></i></a>
-			</div>
+			
 		</div>
 		</aside>
 		<div class="main-container sidebar-mini">
@@ -205,7 +186,7 @@
 								</tr>
 							</thead>
 							<tbody class="user_list" id="cnt">
-								
+
 							</tbody>
 						</table>
 					</div>
@@ -264,9 +245,12 @@
 	<script src="js/simplify/simplify.js"></script>
 
 	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
-	
+
 	<!--  表情包  -->
 	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
+
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
 
 	<script src="js/login.js" type="text/javascript"></script>
 
@@ -297,7 +281,7 @@
 								var str = "";
 								var return_content = replace_em(data.returndata[i].content);
 
-								str += "<tr><td class=\"text-center\"><div class=\"custom-checkbox\"><input type=\"checkbox\" id=\"chk"
+								str += "<tr style=\"cursor: pointer;\" class=\"pvt_msg_list\"><td class=\"text-center\"><div class=\"custom-checkbox\"><input type=\"checkbox\" id=\"chk"
 							+  index
 							+  "\" class=\"inbox-check\"><label for=\"chk"
 							+  index
@@ -310,21 +294,13 @@
 							+  data.returndata[i].targetUsername
 							+  ".jpg\" alt=\"\"></div><div class=\"author-name\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
 								+ data.returndata[i].targetUsername
-										+ "\"><strong class=\"block font-md\">"
+										+ "\"><strong class=\"targetNickname block font-md\">"
 										+ data.returndata[i].targetNickname
 										+ "</strong></a> <a href=\"#\" class=\"text-muted\">"
 										/*  职位 +  data.returndata[i].job  */
-										+ "student</a></div></td></a></div></td><td><a href=\"privateMsgInfo.jsp?username="
-										+ $.query.get("username")
-										+ "&userToken="
-										+ $.query.get("userToken")
-										+ "&targetUsername="
-										+ data.returndata[i].targetUsername
-										+ "&targetNickname="
-										+ data.returndata[i].targetNickname
-										+ "\"> "
+										+ "student</a></div></td></a></div></td><td>"
 										+ return_content
-										+ "</a></td><td><time class=\"timeago\"></time></td></tr>";
+										+ "</td><td><time class=\"timeago\"></time></td></tr>";
 								if (data.returndata[i].has_noRead == true) {
 									num++;
 								}
@@ -389,6 +365,17 @@
 				}
 			});
 		});
+		
+		$(".pvt_msg_list").live('click', function() {
+				var targetNickname = $(this).find(".targetNickname").text();
+				var forward = "window.location='privateMsgInfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&targetUsername="
+				+ targetNickname
+				+ "&targetNickname="
+				+ targetNickname
+				+ "'";
+		 		setTimeout(forward, 0);
+		})
+		
 	</script>
 
 </body>

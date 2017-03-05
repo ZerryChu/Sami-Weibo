@@ -260,4 +260,27 @@ public class MessageController {
 			return "{\"msg\" : 0}";
 	}
 	
+	@AuthPass
+	@ResponseBody
+	@RequestMapping(value="/showByHeat", produces="text/html;charset=UTF-8")
+	public String show_messagesByHeat(HttpServletRequest request, HttpServletResponse response, String username,
+			String userToken, int page, int flag) throws UnsupportedEncodingException {
+		if (flag == 0) {
+			Cookie cookie;
+			if (null == (cookie = cookiesData.getCookie(request, "messages"))) {
+				String returnMsg = messageService.show_messagesByHeat(username, userToken, page);
+				cookiesData.save(request, response, "messages", URLEncoder.encode(returnMsg, "UTF-8"));
+				return returnMsg;
+			} else {
+				String returnMsg = cookie.getValue();
+				returnMsg = URLDecoder.decode(returnMsg, "UTF-8");
+				return returnMsg;
+			}
+		} // 无cookies更新查询
+		else {
+			String returnMsg = messageService.show_messagesByHeat(username, userToken, page);
+			return returnMsg;
+		}
+	}
+	
 }

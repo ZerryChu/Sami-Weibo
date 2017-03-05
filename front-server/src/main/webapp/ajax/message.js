@@ -3,15 +3,19 @@
  */
 // flag ：0 缓存show 1 非缓存show
 function show_messages(pageNumber, _flag) {
+	var myUrl = "message/show";
+	if (_flag == 0) {
+		myUrl = "message/showByHeat";
+	}
 	$
 			.ajax({
 				type : "post",
-				url : "message/show",
+				url : myUrl,
 				data : {
 					username : $.query.get("username"),
 					userToken : $.query.get("userToken"),
 					page : pageNumber,
-					flag : _flag
+					flag : 1
 				},
 				dataType : "json",
 				success : function(data) {

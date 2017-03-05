@@ -437,4 +437,29 @@ public class MessageServiceImpl implements MessageService {
 		}
 	}
 
+	@Override
+	public Message[] show_messagesByHeat(String username, int page) {
+		// TODO Auto-generated method stub
+		int pageSize = 5;
+		Message[] message = null;
+		try {
+			String[] friend = null;
+			friend = userDao.selectFriendsNicknameByUsername(username);
+			if (null == friend || 0 == friend.length) {
+				return null;
+			}
+			PageHelperInterceptor.startPage(page, pageSize);
+			message = messageDao.getMessagesByHeat(friend);
+			Page<Message> myPage = PageHelperInterceptor.endPage();
+			List<Message> list = myPage.getResult();
+			message = (Message[]) list.toArray(new Message[list.size()]);
+			messageCompletion(message, username);
+		} catch (Exception e) {
+			e.printStackTrace();
+			logger.error(e.getMessage());
+			return null;
+		}
+		return message;
+	}
+
 }
