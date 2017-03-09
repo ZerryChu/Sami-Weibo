@@ -119,7 +119,7 @@
 			type,
 			author,
 			content,
-			create_time,
+			message_inf.create_time,
 			repost_times,
 			comment_times,
 			support_times,
@@ -129,11 +129,9 @@
 			message_inf,
 			msg_lbl_relation,
 			label_inf
-			INNER JOIN weibo_heat
 		WHERE
 			message_inf.id = msg_lbl_relation.msg_id
 			AND label_inf.id = msg_lbl_relation.label_id
-			<!-- AND weibo_heat.id = message_inf.id -->
 			AND label_inf.id = #{label_id}
 			order by heat
 	</select>
@@ -158,7 +156,7 @@
 			label_inf.id = #{label_id}
 		AND message_inf.id = msg_lbl_relation.msg_id
 		AND label_inf.id = msg_lbl_relation.label_id
-		order by create_times desc
+		order by create_time desc
 	</select>
 
 	<select id="selectWeiboByTopicName" resultMap="MessageMap">
@@ -277,4 +275,9 @@
 		AND message_inf.id = #{msg_id}
 	</select>
 
+	<insert id="addLabel">
+		INSERT INTO msg_lbl_relation
+		VALUES
+			(#{0}, #{1})
+	</insert>
 </mapper>

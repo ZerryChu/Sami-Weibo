@@ -14,6 +14,8 @@ public interface LabelService {
 	
 	public Label[] showSimilarLabels(int label_id);
 	
+	public Label[] showRelatedLabels(int label_id);
+	
 	public int     showLabelIdByName(String label_name);
 	
 	public String  showLabelNameById(int id);

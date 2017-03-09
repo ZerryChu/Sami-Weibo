@@ -60,4 +60,14 @@ public class LabelController {
 		regMsg.append("\"}");
 		return regMsg.toString();
 	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/show_related_labels", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public String showRelatedLabels(int id) {
+		Label[] labels = labelService.showRelatedLabels(id);
+		StringBuilder regMsg = new StringBuilder("{\"returndata\":");
+		regMsg.append(JSON.toJSONString(labels));
+		regMsg.append("}");
+		return regMsg.toString();
+	}
  }

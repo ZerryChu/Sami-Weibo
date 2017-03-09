@@ -18,7 +18,7 @@ import group.zerry.api_server.entity.User;
 import group.zerry.api_server.enumtypes.LabelStatusEnum;
 import group.zerry.api_server.service.LabelService;
 import group.zerry.api_server.utils.LabelHeat;
-import group.zerry.api_server.utils.LabelManageTools;
+// import group.zerry.api_server.utils.LabelManageTools;
 import group.zerry.api_server.utils.Recommender;
 
 @Service(value = "LabelService")
@@ -36,8 +36,8 @@ public class LabelServiceImpl implements LabelService {
 	@Autowired
 	private Recommender recommender;
 	
-	@Autowired
-	private LabelManageTools labelManageTools;
+	// @Autowired
+	// private LabelManageTools labelManageTools;
 	
 	@Autowired
 	private static Logger logger = Logger.getLogger(LabelServiceImpl.class); 
@@ -116,10 +116,11 @@ public class LabelServiceImpl implements LabelService {
 		}
 	}
 
+	// 改进
 	@Override
 	public Label[] showSimilarLabels(int label_id) {
 		// TODO Auto-generated method stub
-		String label = labelDao.searchLabelNameById(label_id);
+		/*String label = labelDao.searchLabelNameById(label_id);
 		List<String> labelNameList = labelManageTools.recommentLabel(label);
 		if (labelNameList == null)
 			return null;
@@ -130,7 +131,8 @@ public class LabelServiceImpl implements LabelService {
 			labels[i].setName(label_name[i]);
 			labels[i].setId(labelDao.searchLabelIdByName(label_name[i]));
 		}
-		return labels;
+		return labels;*/
+		return null;
 	}
 
 	@Override
@@ -156,5 +158,11 @@ public class LabelServiceImpl implements LabelService {
 	public String showLabelNameById(int id) {
 		// TODO Auto-generated method stub
 		return labelDao.showLabelNameById(id);
+	}
+
+	@Override
+	public Label[] showRelatedLabels(int label_id) {
+		// TODO Auto-generated method stub
+		return labelDao.showRelatedLabels(label_id);
 	}
 }

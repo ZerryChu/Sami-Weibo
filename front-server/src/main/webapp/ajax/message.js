@@ -60,22 +60,19 @@ function show_messages(pageNumber, _flag) {
 
 											var j = 0;
 											while (data.returndata[i].labels[j] != undefined) {
-												message += "<a style=\"text-decoration:none;\" href=\"label.jsp?username="
+												message += "<a style=\"text-decoration:none;\" href=\"labelinfo.jsp?username="
 														+ $.query
 																.get("username")
 														+ "&userToken="
 														+ $.query
 																.get("userToken")
-														+ "&label="
+														+ "&id="
 														+ data.returndata[i].labels[j].id
-														+ "&content="
-														+ data.returndata[i].labels[j].name
-														+ "\">"
+														+ "&flag=1\">"
 														+ data.returndata[i].labels[j].name
 														+ "</a>&nbsp;&nbsp;";
 												j++;
 											}
-
 											message += "</small></div><div class=\"social-reply-section clearfix\"><img src=\"images/profile/"
 													+ $.query.get("username")
 													+ ".jpg\" alt=\"\"><div class=\"input-wrapper\"><input type=\"text\" id=\"comarea_"
@@ -261,7 +258,7 @@ function showOwnmessages(userNickname, pageNumber, _flag) {
 
 											var j = 0;
 											while (data.returndata[i].labels[j] != undefined) {
-												message += "<a style=\"text-decoration:none;\" href=\"label.jsp?username="
+												message += "<a style=\"text-decoration:none;\" href=\"labelinfo.jsp?username="
 														+ $.query
 																.get("username")
 														+ "&userToken="
@@ -269,9 +266,7 @@ function showOwnmessages(userNickname, pageNumber, _flag) {
 																.get("userToken")
 														+ "&label="
 														+ data.returndata[i].labels[j].id
-														+ "&content="
-														+ data.returndata[i].labels[j].name
-														+ "\">"
+														+ "&flag=1\">"
 														+ data.returndata[i].labels[j].name
 														+ "</a>&nbsp;&nbsp;";
 												j++;

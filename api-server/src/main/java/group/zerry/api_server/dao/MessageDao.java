@@ -15,7 +15,7 @@ public interface MessageDao {
 	
 	public Message[] getMessagesByHeat(String[] friend);
 	
-	public Message[] getMessagesAndHotByLabel(int label_id);
+	public Message[] getMessagesAndHeatByLabel(int label_id);
 	
 	public Message[] getMessagesByLabel(int label_id);
 	
@@ -28,6 +28,8 @@ public interface MessageDao {
 	public Message[] selectWeiboByTopicName(String name);
 
 	public String[]  findLabel(int msg_id);
+	
+	public void addLabel(int msg_id, int label_id);
 	
 	public void deleteMessageById(int id);
 	

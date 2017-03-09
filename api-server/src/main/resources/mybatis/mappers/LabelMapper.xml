@@ -71,6 +71,33 @@
 			name = #{name}
  	</select>
  	
+ 	<!--  有条件算法改成按照每时段标签关系变化而定  -->
+ 	<select id="showRelatedLabels" resultType="Label">
+	 	SELECT
+			label_id as id,
+			count(label_id) AS c,
+			label_inf. NAME
+		FROM
+			msg_lbl_relation,
+			label_inf
+		WHERE
+			msg_id IN (
+				SELECT
+					msg_id
+				FROM
+					msg_lbl_relation
+				WHERE
+					label_id = #{id}
+			)
+		AND label_id != #{id}
+		AND label_inf.id = label_id
+		GROUP BY
+			label_id
+		ORDER BY
+			c DESC
+		limit 0, 5
+ 	</select>
+ 	
  	<insert id="addLabel">
  		INSERT INTO msg_lbl_relation
  		VALUES

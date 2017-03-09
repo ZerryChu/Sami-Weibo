@@ -261,8 +261,10 @@
 											</div>
 											<div class="popular-blog-detail">
 												<a href="#" class="h5">How to increase your shop sales</a>
-												<div class="text-muted m-top-sm"><span>July 27, 2014</span>
-												<button>关注</button></div>
+												<div class="text-muted m-top-sm">
+													<span>July 27, 2014</span>
+													<button>关注</button>
+												</div>
 											</div>
 										</li>
 										<li class="clearfix">
@@ -304,12 +306,12 @@
 							-->
 
 									<h4>相关标签</h4>
-
-									<a class="blog-tag" href="#">Website</a> <a class="blog-tag"
-										href="#">Wordpress</a> <a class="blog-tag" href="#">Modern</a>
-									<a class="blog-tag" href="#">Flat</a> <a class="blog-tag"
-										href="#">Design</a> <a class="blog-tag" href="#">Responsive</a>
-
+									<div class="related_labels">
+										<a class="blog-tag" href="#">Website</a> <a class="blog-tag"
+											href="#">Wordpress</a> <a class="blog-tag" href="#">Modern</a>
+										<a class="blog-tag" href="#">Flat</a> <a class="blog-tag"
+											href="#">Design</a> <a class="blog-tag" href="#">Responsive</a>
+									</div>
 									<hr />
 									<!--
 							<h4>Archives</h4>
@@ -374,7 +376,8 @@
 
 	<script type="text/javascript">
 		isLogin();
-
+		showRelatedLabels();
+		
 		$.ajax({
 			type : "post",
 			url : "label/show_label_byId",
@@ -383,7 +386,7 @@
 			},
 			dataType : "json",
 			success : function(data) {
-				$(".lbl_form").attr("placeholder", data.name);
+				$(".lbl_form").attr("value", data.name);
 			}
 		});
 
@@ -467,22 +470,19 @@
 
 													var j = 0;
 													while (data.returndata[i].labels[j] != undefined) {
-														message += "<a style=\"text-decoration:none;\" href=\"label.jsp?username="
+														message += "<a style=\"text-decoration:none;\" href=\"labelinfo.jsp?username="
 																+ $.query
 																		.get("username")
 																+ "&userToken="
 																+ $.query
 																		.get("userToken")
-																+ "&label="
+																+ "&id="
 																+ data.returndata[i].labels[j].id
-																+ "&content="
-																+ data.returndata[i].labels[j].name
-																+ "\">"
+																+ "&flag=1\">"
 																+ data.returndata[i].labels[j].name
 																+ "</a>&nbsp;&nbsp;";
 														j++;
 													}
-
 													message += "</small></div><div class=\"social-reply-section clearfix\"><img src=\"images/profile/"
 															+ $.query
 																	.get("username")
@@ -554,6 +554,31 @@
 							}
 						}
 					});
+		}
+
+		function showRelatedLabels() {
+			$.ajax({
+				type : "post",
+				// async : false,
+				url : "label/show_related_labels",
+				data : {
+					id : $.query.get("id")
+				},
+				dataType : "json",
+				success : function(data) {
+					$(".related_labels").empty();
+					var i = 0;
+					while (data.returndata[i] != undefined) {
+						var str = "<a class=\"blog-tag\" href=\"labelinfo.jsp?username=${param.username}&userToken=${param.userToken}&id="
+								+ data.returndata[i].id
+								+ "&flag=1\">"
+								+ data.returndata[i].name
+								+ "</a>";
+						$(".related_labels").append(str);
+						i++;
+					}
+				}
+			});
 		}
 	</script>
 </body>

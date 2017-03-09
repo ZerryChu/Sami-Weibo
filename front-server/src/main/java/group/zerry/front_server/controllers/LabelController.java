@@ -52,4 +52,10 @@ public class LabelController {
 		return labelService.showLabelNameById(id);
 	}
 	
+	@ResponseBody
+	@RequestMapping(value = "/show_related_labels", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public String showRelatedLabels(int id) {
+		return labelService.showRelatedLabels(id);
+	}
+	
 }

@@ -26,7 +26,7 @@ import group.zerry.api_server.interceptors.PageHelperInterceptor.Page;
 import group.zerry.api_server.service.LabelService;
 import group.zerry.api_server.service.MessageService;
 import group.zerry.api_server.utils.BatchHandlerForLabelHeat;
-import group.zerry.api_server.utils.LabelManageTools;
+// import group.zerry.api_server.utils.LabelManageTools;
 
 /**
  * @author ZerryChu
@@ -54,8 +54,8 @@ public class MessageServiceImpl implements MessageService {
 	@Autowired
 	TopicDao         topicDao;
 
-	@Autowired
-	LabelManageTools labelManageTools;
+	// @Autowired
+	// LabelManageTools labelManageTools;
 	
 	@Autowired
 	private BatchHandlerForLabelHeat batchHandleWrapperForLabel;
@@ -77,22 +77,32 @@ public class MessageServiceImpl implements MessageService {
 		message.setContent(content);
 		message.setType(type);
 		/*
-		if (label != null) {
-			Count count = labelDao.judgeIfLabelExists(label);
-			int id;
-			if (count.getNumber() == 0) {
-				labelDao.insertNewLabel(label);
-			}
-			id = labelDao.searchLabelIdByName(label);
-			labelDao.updateLabelHeatById(user.getId(), id);
-		}
-		*/
-		try {
-			messageDao.addMessage(message);
+		    messageDao.addMessage(message);
 			// 标签识别
 			Message lastMessage = messageDao.getLastMessage(user.getNickname());
 			List<String> labels = labelManageTools.extractLabel(content);
 			labelService.addLabels(lastMessage.getId(), labels);
+		
+		*/
+		try {
+			messageDao.addMessage(message);
+			if (label != null) {
+				Message lastMessage = messageDao.getLastMessage(user.getNickname());
+				int msg_id = lastMessage.getId();
+				int user_id = user.getId();
+				// 标签可多个
+				String[] labels = label.split("#");
+				for (int i = 0;i < labels.length; i++) {
+					Count count = labelDao.judgeIfLabelExists(labels[i]);
+					if (count.getNumber() == 0) {
+						System.out.println("create new label: " + labels[i]);
+						labelDao.insertNewLabel(labels[i]);
+					}
+					int id = labelDao.searchLabelIdByName(labels[i]);
+					messageDao.addLabel(msg_id, id);
+					labelDao.updateLabelHeatById(user_id, id);
+				}
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return MessageStatusEnum.AMF;
@@ -283,7 +293,6 @@ public class MessageServiceImpl implements MessageService {
 		return message;
 	}
 
-	// chuli
 	@Override
 	public Message[] show_messagesByLabel(String username, int label_id, int page) {
 		// TODO Auto-generated method stub
@@ -318,7 +327,7 @@ public class MessageServiceImpl implements MessageService {
 			
 			
 			PageHelperInterceptor.startPage(page, pageSize);
-			message = messageDao.getMessagesAndHotByLabel(label_id);
+			message = messageDao.getMessagesAndHeatByLabel(label_id);
 			Page<Message> myPage = PageHelperInterceptor.endPage();
 			List<Message> list = myPage.getResult();
 			message = (Message[]) list.toArray(new Message[list.size()]);

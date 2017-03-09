@@ -25,4 +25,7 @@ public interface LabelDao {
 	void deleteUsrLblRelation(String username, int label_id);
 	
 	Label[] showSubscribedLabels(String username);
+	
+	Label[] showRelatedLabels(int id);
+	
 }
