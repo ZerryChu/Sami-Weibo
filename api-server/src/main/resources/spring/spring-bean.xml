@@ -15,7 +15,7 @@
 	<bean id="cacheTools" class="group.zerry.api_server.utils.RedisUtils"
 		init-method="init" />
 
-	<bean id="batchHandleForLabel" class="group.zerry.api_server.utils.BatchHandleWrapperForLabel" />
+	<bean id="batchHandlerForLabelHeat" class="group.zerry.api_server.utils.BatchHandlerForLabelHeat" />
 
 	<bean id="labelHeat" class="group.zerry.api_server.utils.LabelHeat"
 		init-method="init" />

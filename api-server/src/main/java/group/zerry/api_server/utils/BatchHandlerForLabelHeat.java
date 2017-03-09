@@ -17,7 +17,7 @@ import java.util.concurrent.TimeUnit;
  * @author zhuzirui
  *
  */
-public final class BatchHandleWrapperForLabel {
+public final class BatchHandlerForLabelHeat {
 
 	private LinkedBlockingQueue<Object> usr_queue;
 	private LinkedBlockingQueue<Object> lbl_queue;
@@ -30,7 +30,7 @@ public final class BatchHandleWrapperForLabel {
 	private BatchHandler<Object> batchHandler;
 	private EnqueueHandler<Object> enqueueHandler;
 
-	public BatchHandleWrapperForLabel() throws Exception {
+	public BatchHandlerForLabelHeat() throws Exception {
 		BatchHandler<Object> batchHandler = new BatchHandler<Object>() {
 			@Override
 			public void handle(List<Object> list_usrId, List<Object> list_lblId, Runnable task) {
@@ -60,40 +60,40 @@ public final class BatchHandleWrapperForLabel {
 		start();
 	}
 
-	public BatchHandleWrapperForLabel batchSize(int size) {
+	public BatchHandlerForLabelHeat batchSize(int size) {
 		if (size > 0) {
 			this.batchSize = size;
 		}
 		return this;
 	}
 
-	public BatchHandleWrapperForLabel queueSize(int size) {
+	public BatchHandlerForLabelHeat queueSize(int size) {
 		if (size > 0) {
 			this.queueSize = size;
 		}
 		return this;
 	}
 
-	public BatchHandleWrapperForLabel timeout(int timeout, TimeUnit unit) {
+	public BatchHandlerForLabelHeat timeout(int timeout, TimeUnit unit) {
 		if (timeout > 0) {
 			this.timeout = (int) unit.toMillis(timeout);
 		}
 		return this;
 	}
 
-	public BatchHandleWrapperForLabel taskCount(int count) {
+	public BatchHandlerForLabelHeat taskCount(int count) {
 		if (count > 0) {
 			this.taskCount = count;
 		}
 		return this;
 	}
 
-	public BatchHandleWrapperForLabel enqueueHandler(EnqueueHandler<Object> enqueueHandler) {
+	public BatchHandlerForLabelHeat enqueueHandler(EnqueueHandler<Object> enqueueHandler) {
 		this.enqueueHandler = enqueueHandler;
 		return this;
 	}
 
-	public BatchHandleWrapperForLabel start() {
+	public BatchHandlerForLabelHeat start() {
 		check();
 		usr_queue = new LinkedBlockingQueue<Object>(queueSize);
 		lbl_queue = new LinkedBlockingQueue<Object>(queueSize);
@@ -111,7 +111,7 @@ public final class BatchHandleWrapperForLabel {
 		}
 	}
 
-	private BatchHandleWrapperForLabel(BatchHandler<Object> batchHandler) {
+	private BatchHandlerForLabelHeat(BatchHandler<Object> batchHandler) {
 		this.batchHandler = batchHandler;
 		check();
 	}
@@ -128,7 +128,7 @@ public final class BatchHandleWrapperForLabel {
 	 * @param taskCount
 	 *            处理线程数量
 	 */
-	public BatchHandleWrapperForLabel(BatchHandler<Object> batchHandler, int batchSize, int timeoutMs, int taskCount) {
+	public BatchHandlerForLabelHeat(BatchHandler<Object> batchHandler, int batchSize, int timeoutMs, int taskCount) {
 		this(batchHandler, Integer.MAX_VALUE, batchSize, timeoutMs, taskCount);
 	}
 
@@ -146,7 +146,7 @@ public final class BatchHandleWrapperForLabel {
 	 * @param taskCount
 	 *            处理线程数量
 	 */
-	public BatchHandleWrapperForLabel(BatchHandler<Object> batchHandler, int queueSize, int batchSize, int timeoutMs,
+	public BatchHandlerForLabelHeat(BatchHandler<Object> batchHandler, int queueSize, int batchSize, int timeoutMs,
 			int taskCount) {
 		this(batchHandler, queueSize, batchSize, timeoutMs, taskCount, null);
 	}
@@ -167,7 +167,7 @@ public final class BatchHandleWrapperForLabel {
 	 * @param enqueueHandler
 	 *            入队处理器
 	 */
-	public BatchHandleWrapperForLabel(BatchHandler<Object> batchHandler, int queueSize, int batchSize, int timeoutMs,
+	public BatchHandlerForLabelHeat(BatchHandler<Object> batchHandler, int queueSize, int batchSize, int timeoutMs,
 			int taskCount, EnqueueHandler<Object> enqueueHandler) {
 		if (batchHandler == null || batchSize < 1 || timeoutMs < 0 || taskCount < 0) {
 			throw new RuntimeException("参数错误：BatchHandler不能为null，batchSize必须大于0，timeout必须大于0，taskCount必须大于0");
@@ -217,7 +217,7 @@ public final class BatchHandleWrapperForLabel {
 	}
 
 	/**
-	 * @author lzy 批量处理器
+	 *  批量处理器
 	 */
 	public static interface BatchHandler<E> {
 		/**
@@ -232,7 +232,7 @@ public final class BatchHandleWrapperForLabel {
 	}
 
 	/**
-	 * @author lzy 数据入队处理器
+	 *  数据入队处理器
 	 */
 	public static interface EnqueueHandler<E> {
 		/**
@@ -250,7 +250,7 @@ public final class BatchHandleWrapperForLabel {
 	}
 
 	/**
-	 * @author lzy 批量处理任务
+	 *  批量处理任务
 	 */
 	private class BatchTask implements Runnable {
 

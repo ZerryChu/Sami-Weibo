@@ -20,7 +20,7 @@ import group.zerry.api_server.enumtypes.MessageStatusEnum;
 import group.zerry.api_server.enumtypes.TopicStatusEnum;
 import group.zerry.api_server.service.LabelService;
 import group.zerry.api_server.service.MessageService;
-import group.zerry.api_server.utils.BatchHandleWrapperForLabel;
+import group.zerry.api_server.utils.BatchHandlerForLabelHeat;
 import group.zerry.api_server.utils.CacheTools;
 import group.zerry.api_server.utils.LabelHeat;
 

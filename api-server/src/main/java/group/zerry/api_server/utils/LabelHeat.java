@@ -11,7 +11,7 @@ import com.mysql.jdbc.Statement;
 
 /**
  * @author zhuzirui
- * 每1小时获取一次最新的标签的热度
+ * 每1分钟 获取一次最新的标签的热度
  * 热度计算算法待设计
  */
 public class LabelHeat implements Runnable {
@@ -56,7 +56,7 @@ public class LabelHeat implements Runnable {
 		try {
 			while(true) {
 				executeSQL();
-				Thread.sleep(3600000);
+				Thread.sleep(60000); // 1 min
 			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

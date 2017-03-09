@@ -25,7 +25,7 @@ import group.zerry.api_server.interceptors.PageHelperInterceptor;
 import group.zerry.api_server.interceptors.PageHelperInterceptor.Page;
 import group.zerry.api_server.service.LabelService;
 import group.zerry.api_server.service.MessageService;
-import group.zerry.api_server.utils.BatchHandleWrapperForLabel;
+import group.zerry.api_server.utils.BatchHandlerForLabelHeat;
 import group.zerry.api_server.utils.LabelManageTools;
 
 /**
@@ -58,7 +58,7 @@ public class MessageServiceImpl implements MessageService {
 	LabelManageTools labelManageTools;
 	
 	@Autowired
-	private BatchHandleWrapperForLabel batchHandleWrapperForLabel;
+	private BatchHandlerForLabelHeat batchHandleWrapperForLabel;
 
 	private Logger logger = Logger.getLogger(MessageServiceImpl.class);
 

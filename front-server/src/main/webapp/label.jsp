@@ -36,8 +36,9 @@
 				<div class="row">
 					<div class="col-md-8">
 						<div id="lbl_list" class="gallery-list js-masonry m-top-md">
-							
-						</div><!-- ./gallery-list -->
+
+						</div>
+						<!-- ./gallery-list -->
 					</div>
 					<!-- ./col -->
 					<div class="col-md-4">
@@ -86,6 +87,42 @@
 						</ul>
 
 						<hr />
+
+						<h4>相似用户</h4>
+						<ul class="ppl_user popular-blog-post">
+							<li class="clearfix">
+								<div class="img-wrapper clearfix">
+									<img src="images/blog/blog3.jpg" alt="">
+								</div>
+								<div class="popular-blog-detail">
+									<a href="#" class="h5">How to increase your shop sales</a>
+									<div class="text-muted m-top-sm">
+										<span>July 27, 2014</span>
+										<button>关注</button>
+									</div>
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="img-wrapper clearfix">
+									<img src="images/blog/blog4.jpg" alt="">
+								</div>
+								<div class="popular-blog-detail">
+									<a href="#" class="h5">The Best Tools For Testing Your
+										Designs</a>
+									<div class="text-muted m-top-sm">July 26, 2014</div>
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="img-wrapper clearfix">
+									<img src="images/blog/blog1.jpg" alt="">
+								</div>
+								<div class="popular-blog-detail">
+									<a href="#" class="h5">The trends of Website Design in 2014</a>
+									<div class="text-muted m-top-sm">July 25, 2014</div>
+								</div>
+							</li>
+						</ul>
+
 						<!--
 							<h4>Categories</h4>
 
@@ -152,7 +189,7 @@
 
 	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
 		type="text/javascript"></script>
-		
+
 	<script src="old/plugins/timeago.js" type="text/javascript"></script>
 
 	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
@@ -204,9 +241,39 @@
 		$(".gallery-item").live('click', function() {
 		 	var id = $(this).attr("id").substr(3);
 		 	var name = $(this).find(".gallery-title").text();
-		 	var forward = "window.location='labelinfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&id=" + id + "'";
+		 	var forward = "window.location='labelinfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&id=" + id + "&flag=1'";
 	 		setTimeout(forward, 0);
 		});
+		
+		function show_SimilarUsers(_label_id) {
+			$
+					.ajax({
+						type : "post",
+						// async : false,
+						url : "user/show_rec_users",
+						data : {
+							label_id : _label_id,
+							num : 4
+						},
+						dataType : "json",
+						success : function(data) {
+							if (data.returndata != undefined) {
+								$(".ppl_user").empty();
+								for (var i = 0; i < 4; i++)
+									if (data.returndata[i] != undefined) {
+										var str = "<li class=\"clearfix\"><div class=\"img-wrapper clearfix\"><img src=\"images/profile/"
+										+ data.returndata[i].username
+										+ ".jpg\" alt=\"\"></div><div class=\"popular-blog-detail\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
+												+ data.returndata[i].username
+												+ "\" class=\"h5\">"
+												+ data.returndata[i].nickname
+												+ "</a><div class=\"text-muted m-top-sm\"> user </div></div></li>";
+										$(".ppl_user").append(str);
+									}
+							}
+						}
+					});
+		}
 	</script>
 </body>
 </html>

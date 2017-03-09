@@ -177,6 +177,7 @@ public class UserServiceImpl implements UserService {
 			if (user_num >= 3)
 				break;
 		}
+	
 		return users;
 			
 	}
@@ -194,7 +195,6 @@ public class UserServiceImpl implements UserService {
 		return user;
 	}
 
-	// 算法待做
 	@Override
 	public User[] getMastersByLabelId(int label_id, int num) {
 		// TODO Auto-generated method stub

@@ -50,21 +50,19 @@
 
 	<select id="getAnnouncements" resultMap="MessageMap">
 		SELECT
-		message_inf.id as
-		id,
-		author,
-		content,
-		create_time,
-		pic
+			message_inf.id as id,
+			author,
+			content,
+			create_time,
+			pic
 		FROM
-		message_inf,
-		user_inf
+			message_inf,
+			user_inf
 		WHERE
-		user_inf.type = 2
-		AND author = nickname
-		ORDER BY
-		create_time
-		DESC
+			user_inf.type = 2
+				AND author = nickname
+			ORDER BY
+				create_time DESC
 	</select>
 
 	<select id="getMessages" resultMap="MessageMap">
@@ -101,8 +99,8 @@
 			comment_times,
 			support_times,
 			pic,
-			<!--  热度算法  -->
-			DATE_FORMAT(now(),'%Y%m%d') - DATE_FORMAT(create_time,'%Y%m%d') - comment_times - support_times * 2 as heat
+			<!--  热度算法  --><!--  转发数待加入  --><!-- 时间变化设计为指数变化 -->
+			(DATE_FORMAT(now(),'%Y%m%d') - DATE_FORMAT(create_time,'%Y%m%d')) * 5 - comment_times * 3 - support_times as heat
 		FROM
 			message_inf
 		WHERE
@@ -115,7 +113,7 @@
 				heat
 	</select>
 	
-	<select id="getMessagesAndHotByLabel" resultMap="MessageMap">
+	<select id="getMessagesAndHeatByLabel" resultMap="MessageMap">
 		SELECT
 			message_inf.id,
 			type,
@@ -125,7 +123,8 @@
 			repost_times,
 			comment_times,
 			support_times,
-			message_inf.pic		
+			message_inf.pic,
+			(DATE_FORMAT(now(),'%Y%m%d') - DATE_FORMAT(create_time,'%Y%m%d')) * 5 - comment_times * 3 - support_times as heat	
 		FROM
 			message_inf,
 			msg_lbl_relation,
@@ -134,9 +133,9 @@
 		WHERE
 			message_inf.id = msg_lbl_relation.msg_id
 			AND label_inf.id = msg_lbl_relation.label_id
-			AND weibo_heat.id = message_inf.id
+			<!-- AND weibo_heat.id = message_inf.id -->
 			AND label_inf.id = #{label_id}
-			order by hot desc
+			order by heat
 	</select>
 	
 	<select id="getMessagesByLabel" resultMap="MessageMap">
@@ -159,6 +158,7 @@
 			label_inf.id = #{label_id}
 		AND message_inf.id = msg_lbl_relation.msg_id
 		AND label_inf.id = msg_lbl_relation.label_id
+		order by create_times desc
 	</select>
 
 	<select id="selectWeiboByTopicName" resultMap="MessageMap">

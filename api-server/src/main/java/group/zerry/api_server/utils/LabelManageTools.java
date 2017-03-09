@@ -4,14 +4,11 @@ import java.io.File;
 import java.util.ArrayList;
 import java.util.List;
 
-import org.apache.commons.digester.plugins.strategies.FinderSetProperties;
 import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.junit.Test;
 
-import com.sun.tools.internal.xjc.reader.gbind.ElementSets;
 
 class Node {
 	public String name;

@@ -61,124 +61,234 @@
 	<div class="wrapper preload">
 		<%@include file="user-frame.jsp"%>
 
-		<%@include file="navi-frame.jsp"%>
+		<aside class="sidebar-menu sidebar-mini">
+		<div class="sidebar-inner scrollable-sidebar">
+			<div class="main-menu">
+				<ul class="accordion">
+					<li class="menu-header">Main Menu</li>
+					<li class="bg-palette1 active"><a
+						href="index.jsp?username=${param.username}&userToken=${param.userToken}">
+							<span class="menu-content block"> <span class="menu-icon"><i
+									class="block fa fa-home fa-lg"></i></span> <span
+								class="text m-left-sm">个人总览</span>
+						</span> <span class="menu-content-hover block"> Home </span>
+					</a>
+					<li class="openable bg-palette3"><a href="#"> <span
+							class="menu-content block"> <span class="menu-icon"><i
+									class="block fa fa-list fa-lg"></i></span><span class="text m-left-sm">微博</span>
+								<span class="submenu-icon"></span></span><span
+							class="menu-content-hover block"> Messages </span>
+					</a>
+						<ul class="submenu">
+							<li><a
+								href="message.jsp?username=${param.username}&userToken=${param.userToken}"><span
+									class="submenu-label">朋友圈</span></a></li>
+							<li><a
+								href="ownmessage.jsp?username=${param.username}&userToken=${param.userToken}"><span
+									class="submenu-label">自己的微博</span></a></li>
+						</ul></li>
+					<li class="bg-palette4"><a
+						href="label.jsp?username=${param.username}&userToken=${param.userToken}">
+							<span class="menu-content block"> <span class="menu-icon"><i
+									class="block fa fa-tags fa-lg"></i></span> <span
+								class="text m-left-sm">标签</span></span> <span
+							class="menu-content-hover block"> Labaels </span>
+					</a></li>
+					<li class="bg-palette3"><a
+						href="topic.jsp?username=${param.username}&userToken=${param.userToken}">
+							<span class="menu-content block"> <span class="menu-icon"><i
+									class="block fa fa-gift fa-lg"></i></span> <span
+								class="text m-left-sm">话题</span></span> <span
+							class="menu-content-hover block"> Topics </span>
+					</a></li>
+					<li class="bg-palette1"><a
+						href="inbox.jsp?username=${param.username}&userToken=${param.userToken}">
+							<span class="menu-content block"> <span class="menu-icon"><i
+									class="block fa fa-envelope fa-lg"></i></span> <span
+								class="text m-left-sm">私信</span> <small
+								class="badge badge-danger badge-square bounceIn animation-delay5 m-left-xs">5</small>
+						</span> <span class="menu-content-hover block"> Pvt_msg </span>
+					</a></li>
+					<li class="bg-palette2"><a
+						href="notice.jsp?username=${param.username}&userToken=${param.userToken}">
+							<span class="menu-content block"> <span class="menu-icon"><i
+									class="block fa fa-bell fa-lg"></i></span> <span
+								class="text m-left-sm">公告</span> <small
+								class="badge badge-warning badge-square bounceIn animation-delay6 m-left-xs pull-right">7</small>
+						</span> <span class="menu-content-hover block"> Notice </span>
+					</a></li>
+					<li class="openable bg-palette4"><a href="#"> <span
+							class="menu-content block"> <span class="menu-icon"><i
+									class="block fa fa-list fa-lg"></i></span> <span
+								class="text m-left-sm">辅助功能</span> <span class="submenu-icon"></span>
+						</span> <span class="menu-content-hover block"> Additions </span>
+					</a>
+						<ul class="submenu">
+							<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
+							<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
+							<li><a href="lockscreen.html"><span
+									class="submenu-label">锁屏</span></a></li>
+						</ul></li>
+				</ul>
+			</div>
 
-		<div class="main-container">
-			<div class="padding-md">
-				<h3 class="header-text m-top-lg">Welcome To Sami Weibo</h3>
+		</div>
+		</aside>
+		<div class="main-container sidebar-mini">
+			<div class="inbox-wrapper">
+				<div style="width: 150px;" class="inbox-menu">
+					<div class="inbox-menu-sm clearfix">
+						<button type="button"
+							class="navbar-toggle pull-left sidebar-toggle" id="inboxCollapse">
+							<span class="icon-bar"></span> <span class="icon-bar"></span> <span
+								class="icon-bar"></span>
+						</button>
 
-				<div class="row">
-					<div class="col-md-8">
-						<div class="timeline-wrapper clearfix">
-							<!--  改  -->
-							<div class="timeline-year"></div>
-
-							<div class="timeline-row clearfix alt">
-								<div class="timeline-item">
-									<div class="timeline-icon bg-info">
-										<i class="fa fa-pencil"></i>
-									</div>
-									<!-- ./timeline-icon -->
-									<div class="timeline-item-inner">
-										<div class="timeline-body">
-											<div class="timeline-avatar">
-												<img src="images/profile/${ param.username }.jpg" alt=""
-													class="img-circle">
-											</div>
-											<div class="timeline-content" style="margin-left: 10px;">
-												<div class="input-wrapper">
-													<form id="MsgForm" action="message/send?type=1"
-														method="post" enctype="multipart/form-data">
-														<input type="text" id="content" name="content"
-															class="form-control" placeholder="发送微博..."> <input
-															type="hidden" name="username" value="${param.username}">
-														<input type="hidden" name="userToken"
-															value="${param.userToken}">
-														<div class="input-icon-link">
-															<i style="cursor: pointer;" id="cmr"
-																class="fa fa-camera fa-lg"></i> <input
-																class="fileOnLoad" type="file" id="t_file" name="pic"
-																style="display: none"
-																onchange="pic_name.value=this.value">
-														</div>
-														<div style="margin-top: 10px;">
-															<span>已选择的图片: </span><input type="text"
-																style="width: 200px;" readonly="readonly" id="pic_name">
-														</div>
-														<div style="margin-top: 10px;">
-															<input style="display: inline; width: 60%;" type="text"
-																name="label" class="lbl_form form-control"
-																placeholder="标签...多个标签用#隔开"> <span
-																id="msg_emotion" class="msg_emotion"></span> <input
-																style="display: inline; width: 20%;" type="submit"
-																value="提交" class="form-control">
-														</div>
-													</form>
-												</div>
-											</div>
-										</div>
-										<!-- ./timeline-body -->
-									</div>
-									<!-- ./timeline-item-inner -->
-								</div>
-								<!-- ./timeline-item -->
-							</div>
-							<!-- ./timeline-row -->
-
-
-							<div class="timeline-year bg-purple"></div>
-							<div id="receive_msg">
-							
-							</div>
-						</div>
-						<!-- ./timeline-wrapper -->
+						<a class="btn btn-danger btn-sm m-top-sm m-right-sm pull-right">Compose</a>
 					</div>
-					<!-- ./col -->
 
-					<div class="col-md-4">
-						<form>
-							<div class="form-group">
-								<h4>搜索标签</h4>
-								<input type="text" class="form-control input-sm">
-							</div>
-						</form>
+					<div class="padding-md text-center visible-lg visible-md">
+						<a class="btn btn-danger">Compose</a>
+					</div>
 
-						<hr />
+					<div class="inbox-menu-inner">
+						<div class="inbox-menu-header">分类</div>
 
-						<h4>资深推手</h4>
-						<ul class="popular-blog-post">
-							<li class="clearfix">
-								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog3.jpg" alt="">
-								</div>
-								<div class="popular-blog-detail">
-									<a href="#" class="h5">How to increase your shop sales</a>
-									<div class="text-muted m-top-sm">July 27, 2014</div>
-								</div>
-							</li>
-							<li class="clearfix">
-								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog4.jpg" alt="">
-								</div>
-								<div class="popular-blog-detail">
-									<a href="#" class="h5">The Best Tools For Testing Your
-										Designs</a>
-									<div class="text-muted m-top-sm">July 26, 2014</div>
-								</div>
-							</li>
-							<li class="clearfix">
-								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog1.jpg" alt="">
-								</div>
-								<div class="popular-blog-detail">
-									<a href="#" class="h5">The trends of Website Design in 2014</a>
-									<div class="text-muted m-top-sm">July 25, 2014</div>
-								</div>
-							</li>
+						<ul class="sort_list">
+							<li id="list1"><a id="inbox_a"
+								href="labelinfo.jsp?username=${param.username}&userToken=${param.userToken}&id=${param.id}&flag=0">
+									最近</a></li>
+							<li id="list2"><a id="outbox_a"
+								href="labelinfo.jsp?username=${param.username}&userToken=${param.userToken}&id=${param.id}&flag=1">最热
+							</a></li>
 						</ul>
 
-						<hr />
-						<!--
+					</div>
+					<!-- ./inbox-menu-inner -->
+					<!--</div>-->
+				</div>
+				<!-- ./inbox-menu -->
+
+				<div class="inbox-body padding-md">
+					<div class="row m-bottom-md">
+						<div class="padding-md">
+							<h3 class="header-text m-top-lg">Welcome To Sami Weibo</h3>
+
+							<div class="row">
+								<div class="col-md-8">
+									<div class="timeline-wrapper clearfix">
+										<!--  改  -->
+										<div class="timeline-year"></div>
+
+										<div class="timeline-row clearfix alt">
+											<div class="timeline-item">
+												<div class="timeline-icon bg-info">
+													<i class="fa fa-pencil"></i>
+												</div>
+												<!-- ./timeline-icon -->
+												<div class="timeline-item-inner">
+													<div class="timeline-body">
+														<div class="timeline-avatar">
+															<img src="images/profile/${ param.username }.jpg" alt=""
+																class="img-circle">
+														</div>
+														<div class="timeline-content" style="margin-left: 10px;">
+															<div class="input-wrapper">
+																<form id="MsgForm" action="message/send?type=1"
+																	method="post" enctype="multipart/form-data">
+																	<input type="text" id="content" name="content"
+																		class="form-control" placeholder="发送微博..."> <input
+																		type="hidden" name="username"
+																		value="${param.username}"> <input
+																		type="hidden" name="userToken"
+																		value="${param.userToken}">
+																	<div class="input-icon-link">
+																		<i style="cursor: pointer;" id="cmr"
+																			class="fa fa-camera fa-lg"></i> <input
+																			class="fileOnLoad" type="file" id="t_file" name="pic"
+																			style="display: none"
+																			onchange="pic_name.value=this.value">
+																	</div>
+																	<div style="margin-top: 10px;">
+																		<span>已选择的图片: </span><input type="text"
+																			style="width: 200px;" readonly="readonly"
+																			id="pic_name">
+																	</div>
+																	<div style="margin-top: 10px;">
+																		<input style="display: inline; width: 60%;"
+																			type="text" name="label"
+																			class="lbl_form form-control"
+																			placeholder="标签...多个标签用#隔开"> <span
+																			id="msg_emotion" class="msg_emotion"></span> <input
+																			style="display: inline; width: 20%;" type="submit"
+																			value="提交" class="form-control">
+																	</div>
+																</form>
+															</div>
+														</div>
+													</div>
+													<!-- ./timeline-body -->
+												</div>
+												<!-- ./timeline-item-inner -->
+											</div>
+											<!-- ./timeline-item -->
+										</div>
+										<!-- ./timeline-row -->
+
+
+										<div class="timeline-year bg-purple"></div>
+										<div id="receive_msg"></div>
+									</div>
+									<!-- ./timeline-wrapper -->
+								</div>
+								<!-- ./col -->
+
+								<div class="col-md-4">
+									<form>
+										<div class="form-group">
+											<h4>搜索标签</h4>
+											<input type="text" class="form-control input-sm">
+										</div>
+									</form>
+
+									<hr />
+
+									<h4>领域达人</h4>
+									<ul class="ppl_user popular-blog-post">
+										<li class="clearfix">
+											<div class="img-wrapper clearfix">
+												<img src="images/blog/blog3.jpg" alt="">
+											</div>
+											<div class="popular-blog-detail">
+												<a href="#" class="h5">How to increase your shop sales</a>
+												<div class="text-muted m-top-sm"><span>July 27, 2014</span>
+												<button>关注</button></div>
+											</div>
+										</li>
+										<li class="clearfix">
+											<div class="img-wrapper clearfix">
+												<img src="images/blog/blog4.jpg" alt="">
+											</div>
+											<div class="popular-blog-detail">
+												<a href="#" class="h5">The Best Tools For Testing Your
+													Designs</a>
+												<div class="text-muted m-top-sm">July 26, 2014</div>
+											</div>
+										</li>
+										<li class="clearfix">
+											<div class="img-wrapper clearfix">
+												<img src="images/blog/blog1.jpg" alt="">
+											</div>
+											<div class="popular-blog-detail">
+												<a href="#" class="h5">The trends of Website Design in
+													2014</a>
+												<div class="text-muted m-top-sm">July 25, 2014</div>
+											</div>
+										</li>
+									</ul>
+
+									<hr />
+									<!--
 							<h4>Categories</h4>
 
 							<ul class="blog-sidebar-list">
@@ -193,15 +303,15 @@
 							<hr/>
 							-->
 
-						<h4>相关标签</h4>
+									<h4>相关标签</h4>
 
-						<a class="blog-tag" href="#">Website</a> <a class="blog-tag"
-							href="#">Wordpress</a> <a class="blog-tag" href="#">Modern</a> <a
-							class="blog-tag" href="#">Flat</a> <a class="blog-tag" href="#">Design</a>
-						<a class="blog-tag" href="#">Responsive</a>
+									<a class="blog-tag" href="#">Website</a> <a class="blog-tag"
+										href="#">Wordpress</a> <a class="blog-tag" href="#">Modern</a>
+									<a class="blog-tag" href="#">Flat</a> <a class="blog-tag"
+										href="#">Design</a> <a class="blog-tag" href="#">Responsive</a>
 
-						<hr />
-						<!--
+									<hr />
+									<!--
 							<h4>Archives</h4>
 
 							<ul class="blog-sidebar-list">
@@ -212,13 +322,17 @@
 								<li><a href="#">March 2014</a></li>
 							</ul>
 							-->
+								</div>
+								<!-- ./col -->
+							</div>
+						</div>
+						<!-- ./padding-md -->
 					</div>
-					<!-- ./col -->
 				</div>
 			</div>
-			<!-- ./padding-md -->
 		</div>
 		<!-- /main-container -->
+
 	</div>
 	<!-- /wrapper -->
 
@@ -260,9 +374,8 @@
 
 	<script type="text/javascript">
 		isLogin();
-		
-		$
-		.ajax({
+
+		$.ajax({
 			type : "post",
 			url : "label/show_label_byId",
 			data : {
@@ -273,7 +386,7 @@
 				$(".lbl_form").attr("placeholder", data.name);
 			}
 		});
-			
+
 		/////////////      表情包        /////////////////////////////////////////////////////////////
 		$(function() {
 			$('#msg_emotion').qqFace({
@@ -288,7 +401,13 @@
 			$("#t_file").click();
 		});
 
-		show_msgByLabel($.query.get("id"), 1, 1);
+		if ($.query.get("flag") == 1) {
+			$("#list2").attr("class", "active");
+			show_msgByLabel($.query.get("id"), 1, 1);
+		} else {
+			$("#list1").attr("class", "active");
+			show_msgByLabel($.query.get("id"), 1, 0);
+		}
 
 		function show_msgByLabel(id, pageNumber, flag) {
 			var myUrl = "message/show_by_labelAndHeat";
@@ -408,7 +527,33 @@
 		}
 
 		function show_masterUsers(_label_id) {
-
+			$
+					.ajax({
+						type : "post",
+						// async : false,
+						url : "user/show_masters",
+						data : {
+							label_id : _label_id,
+							num : 4
+						},
+						dataType : "json",
+						success : function(data) {
+							if (data.returndata != undefined) {
+								$(".ppl_user").empty();
+								for (var i = 0; i < 4; i++)
+									if (data.returndata[i] != undefined) {
+										var str = "<li class=\"clearfix\"><div class=\"img-wrapper clearfix\"><img src=\"images/profile/"
+										+ data.returndata[i].username
+										+ ".jpg\" alt=\"\"></div><div class=\"popular-blog-detail\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
+												+ data.returndata[i].username
+												+ "\" class=\"h5\">"
+												+ data.returndata[i].nickname
+												+ "</a><div class=\"text-muted m-top-sm\"> user </div></div></li>";
+										$(".ppl_user").append(str);
+									}
+							}
+						}
+					});
 		}
 	</script>
 </body>

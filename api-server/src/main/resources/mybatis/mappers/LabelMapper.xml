@@ -39,7 +39,7 @@
 			id = #{id}
  	</select>
  	
- 	<select id="showSubscribedLabels" resultType="Label"> // 之前是labelmap 报错
+ 	<select id="showSubscribedLabels" resultType="Label">
  		SELECT
 			label_inf.id AS id,
 			label_inf. NAME AS NAME
