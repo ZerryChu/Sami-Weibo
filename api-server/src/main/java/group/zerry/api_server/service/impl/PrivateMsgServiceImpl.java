@@ -59,7 +59,7 @@ public class PrivateMsgServiceImpl implements PrivateMsgService {
 			boolean has_noRead = false;
 			int count = privateMsgDao.getMessagesCount(id, idList[i]).getNumber();
 			PrivateMsg hotMessage = privateMsgDao.getHotMsg(id, idList[i]);
-			if (hotMessage.isHas_read() == false)
+			if (hotMessage.isHas_read() == true)
 				has_noRead = true;
 			User target = userDao.selectUserById(idList[i]);
 			PrivateMsgInfo privateMsgInfo = new PrivateMsgInfo();
@@ -114,6 +114,8 @@ public class PrivateMsgServiceImpl implements PrivateMsgService {
 		// TODO Auto-generated method stub
 		User user = userDao.selectUserByUsername(username);
 		User target = userDao.selectUserByUsername(targetUsername);
+		// 最后一条消息设置为已读
+		privateMsgDao.readPrivateMsg(user.getId(), target.getId());		
 		PrivateMsg[] msg = privateMsgDao.getMsg(user.getId(), target.getId());
 		for(int i = 0;i < msg.length; i++) {
 			if (msg[i].getSdr_id() == target.getId()) {

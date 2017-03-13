@@ -92,12 +92,13 @@
 						<ul class="submenu">
 							<li><a href="signin.html"><span class="submenu-label">登录</span></a></li>
 							<li><a href="signup.html"><span class="submenu-label">注册</span></a></li>
-							<li><a href="lockscreen.jsp?username=${param.username}&userToken=${param.userToken}"><span
+							<li><a
+								href="lockscreen.jsp?username=${param.username}&userToken=${param.userToken}"><span
 									class="submenu-label">锁屏</span></a></li>
 						</ul></li>
 				</ul>
 			</div>
-			
+
 		</div>
 		</aside>
 		<div class="main-container sidebar-mini">
@@ -262,6 +263,7 @@
 
 		function showMsgInfoList() {
 			// qq expression!
+			
 			$
 					.ajax({
 						type : "post",
@@ -293,7 +295,7 @@
 								str += "</td><td><div class=\"author-avatar\"><img src=\"images/profile/"
 							+  data.returndata[i].targetUsername
 							+  ".jpg\" alt=\"\"></div><div class=\"author-name\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
-								+ data.returndata[i].targetUsername
+										+ data.returndata[i].targetUsername
 										+ "\"><strong class=\"targetNickname block font-md\">"
 										+ data.returndata[i].targetNickname
 										+ "</strong></a> <a href=\"#\" class=\"text-muted\">"
@@ -365,17 +367,22 @@
 				}
 			});
 		});
-		
-		$(".pvt_msg_list").live('click', function() {
-				var targetNickname = $(this).find(".targetNickname").text();
-				var forward = "window.location='privateMsgInfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&targetUsername="
-				+ targetNickname
-				+ "&targetNickname="
-				+ targetNickname
-				+ "'";
-		 		setTimeout(forward, 0);
-		})
-		
+
+		$(".pvt_msg_list")
+				.live(
+						'click',
+						function() {
+							var targetNickname = $(this)
+									.find(".targetNickname").text();
+							var forward = "window.location='privateMsgInfo.jsp?username="
+									+ $.query.get("username")
+									+ "&userToken="
+									+ $.query.get("userToken")
+									+ "&targetUsername="
+									+ targetNickname
+									+ "&targetNickname=" + targetNickname + "'";
+							setTimeout(forward, 0);
+						})
 	</script>
 
 </body>

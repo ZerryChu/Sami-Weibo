@@ -67,10 +67,13 @@
 	
 	<update id="readPrivateMsg" parameterType="int">
 		UPDATE private_msg
-		SET has_read = 1
+		SET has_read = 0
 		WHERE
 			sdr_id = #{1}
 		AND rcvr_id = #{0}
+		OR (sdr_id = #{0} 
+			AND rcvr_id = #{1})
+
 	</update>
 	
 	<insert id="insertPrivateMessage" 

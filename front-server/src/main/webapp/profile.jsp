@@ -4,7 +4,7 @@
 <html lang="en">
 <head>
 <meta charset="utf-8">
-<title>Simplify Admin</title>
+<title>Sami Weibo</title>
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <meta name="description" content="">
 <meta name="author" content="">
@@ -74,7 +74,7 @@
 								</div>
 
 								<div class="m-top-sm text-centers">
-									<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>发送私信</a>
+									<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>编写私信</a>
 								</div>
 
 								<!--  加入一段描述 -->
@@ -739,8 +739,11 @@
 										+ data.returndata[i].friend_num
 										+ " 收听: "
 										+ data.returndata[i].focus_num
-										+ "</span></small><div class=\"m-top-sm\"><button type=\"button\" class=\"btn btn-primary btn-sm marginTB-xs\" data-toggle=\"modal\"";
-
+										+ "</span></small><div class=\"m-top-sm\"><button type=\"button\" id=\"bt"
+										+ i
+										+ "\" class=\"btn btn-primary btn-sm marginTB-xs\" data-toggle=\"modal\"";
+								
+								var _targetUsername = data.returndata[i].username;
 								$
 										.ajax({
 											async : false,
@@ -749,15 +752,23 @@
 											data : {
 												username : $.query
 														.get("username"),
-												targetUsername : data.returndata[i].username,
+												targetUsername : _targetUsername,
 												flag : 1
 											},
 											dataType : "json",
 											success : function(data) {
 												if (1 == data)
-													message += " style=\"background-color: gray;\" onclick=\"\">unfollow";
+													message += " style=\"background-color: gray;\" onclick=\"deleteFriend("
+															+ i
+															+ ", '"
+															+ _targetUsername
+															+ "');\">unfollow";
 												else {
-													message += " style=\"\" onclick=\"\">follow";
+													message += " style=\"\" onclick=\"addFriend("
+															+ i
+															+ ", '"
+															+ _targetUsername
+															+ "');\">follow";
 												}
 											}
 										});
@@ -776,11 +787,7 @@
 					});
 		}
 
-		function judgeIfFocus(_targetUsername) {
-
-		}
-
-		function addFriend(targetUsername) {
+		function addFriend(id, targetUsername) {
 			$.ajax({
 				type : "post",
 				url : "user/addfriend",
@@ -794,8 +801,9 @@
 				success : function(data) {
 					$.each(data, function() {
 						if (data.msg == 1) {
-
-							//
+							$("#bt" + id).attr("onclick", "deleteFriend(" + id + ", '" + targetUsername + "');");
+							$("#bt" + id).attr("style", "background-color: gray");
+							$("#bt" + id).text("unfollow");
 							// 更新数据
 						} else {
 							//...tell fail
@@ -806,7 +814,7 @@
 			});
 		} //关注
 
-		function deleteFriend(targetUsername) {
+		function deleteFriend(id, targetUsername) {
 
 			$.ajax({
 				type : "post",
@@ -820,8 +828,9 @@
 				success : function(data) {
 					$.each(data, function() {
 						if (data.msg == 1) {
-
-							//
+							$("#bt" + id).attr("onclick", "addFriend(" + id + ", '" + targetUsername + "');");
+							$("#bt" + id).attr("style", "background-color: #3f8ac9");
+							$("#bt" + id).text("follow");
 							// 更新数据
 						} else {
 							//...tell fail

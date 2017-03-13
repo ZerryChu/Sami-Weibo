@@ -282,9 +282,38 @@
 												<img src="images/blog/blog1.jpg" alt="">
 											</div>
 											<div class="popular-blog-detail">
-												<a href="#" class="h5">The trends of Website Design in
-													2014</a>
-												<div class="text-muted m-top-sm">July 25, 2014</div>
+												<div class="panel panel-default clearfix">
+													<div class="panel-body">
+														<div class="user-wrapper">
+															<div class="user-avatar">
+																<img class="small-img img-circle img-thumbnail"
+																	src="images/profile/profile5.jpg" alt="">
+															</div>
+															<div class="user-detail small-img">
+																<div class="font-16">Elizabeth Carter</div>
+																<small class="block text-muted font-12">@Elizabeth</small>
+																<small> <small class="freelancer-rating">
+																		<i class="fa fa-star text-warning"></i> <i
+																		class="fa fa-star text-warning"></i> <i
+																		class="fa fa-star text-warning"></i> <i
+																		class="fa fa-star text-warning"></i> <i
+																		class="fa fa-star text-warning"></i>
+																</small>
+																</small>
+
+																<div class="m-top-sm">
+																	<button type="button"
+																		class="btn btn-primary btn-sm marginTB-xs"
+																		data-toggle="modal">follow</button>
+																	<button type="button"
+																		class="btn btn-success btn-sm marginTB-xs"
+																		data-toggle="modal">View Profile</button>
+																</div>
+															</div>
+														</div>
+														<!-- ./user-wrapper -->
+													</div>
+												</div>
 											</div>
 										</li>
 									</ul>
