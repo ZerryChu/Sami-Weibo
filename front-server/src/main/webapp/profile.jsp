@@ -126,34 +126,34 @@
 											<div class="row">
 												<div class="col-sm-3 col-sm-6s">
 													<div class="m-bottom-md">
-														<div class="text-center">HTML5</div>
-														<div
+														<div id="text1" class="text-center"></div>
+														<div id="chart1"
 															class="chart profile-skill chart-skill-red center-block"
-															data-percent="73">73%</div>
+															data-percent=""></div>
 													</div>
 												</div>
 												<div class="col-sm-3 col-sm-6s">
 													<div class="m-bottom-md">
-														<div class="text-center">CSS</div>
-														<div
+														<div id="text2" class="text-center"></div>
+														<div id="chart2"
 															class="chart profile-skill chart-skill-blue center-block"
-															data-percent="54">54%</div>
+															data-percent=""></div>
 													</div>
 												</div>
 												<div class="col-sm-3 col-sms-6">
 													<div class="m-bottom-md">
-														<div class="text-center">Jquery</div>
-														<div
+														<div id="text3" class="text-center"></div>
+														<div id="chart3"
 															class="chart profile-skill chart-skill-green center-block"
-															data-percent="89">89%</div>
+															data-percent=""></div>
 													</div>
 												</div>
 												<div class="col-sm-3 col-sm-6s">
 													<div class="m-bottom-md">
-														<div class="text-center">PHP</div>
-														<div
+														<div id="text4" class="text-center"></div>
+														<div id="chart4"
 															class="chart profile-skill chart-skill-purple center-block"
-															data-percent="92">92%</div>
+															data-percent=""></div>
 													</div>
 												</div>
 											</div>
@@ -686,28 +686,7 @@
 		isLogin();
 		showUserInfo();
 		getfollowers(1);
-
-		$(function() {
-			$('.chart-skill-red').easyPieChart({
-				barColor : '#fc8675',
-				lineWidth : '5'
-			});
-
-			$('.chart-skill-blue').easyPieChart({
-				barColor : '#65C3DF',
-				lineWidth : '5'
-			});
-
-			$('.chart-skill-green').easyPieChart({
-				barColor : '#1dc499',
-				lineWidth : '5'
-			});
-
-			$('.chart-skill-purple').easyPieChart({
-				barColor : '#a48ad4',
-				lineWidth : '5'
-			});
-		});
+		getLabelHeat();
 
 		function getfollowers(_page) {
 			var targetName = $.query.get("targetUsername");
@@ -742,7 +721,7 @@
 										+ "</span></small><div class=\"m-top-sm\"><button type=\"button\" id=\"bt"
 										+ i
 										+ "\" class=\"btn btn-primary btn-sm marginTB-xs\" data-toggle=\"modal\"";
-								
+
 								var _targetUsername = data.returndata[i].username;
 								$
 										.ajax({
@@ -801,8 +780,12 @@
 				success : function(data) {
 					$.each(data, function() {
 						if (data.msg == 1) {
-							$("#bt" + id).attr("onclick", "deleteFriend(" + id + ", '" + targetUsername + "');");
-							$("#bt" + id).attr("style", "background-color: gray");
+							$("#bt" + id).attr(
+									"onclick",
+									"deleteFriend(" + id + ", '"
+											+ targetUsername + "');");
+							$("#bt" + id).attr("style",
+									"background-color: gray");
 							$("#bt" + id).text("unfollow");
 							// 更新数据
 						} else {
@@ -828,8 +811,12 @@
 				success : function(data) {
 					$.each(data, function() {
 						if (data.msg == 1) {
-							$("#bt" + id).attr("onclick", "addFriend(" + id + ", '" + targetUsername + "');");
-							$("#bt" + id).attr("style", "background-color: #3f8ac9");
+							$("#bt" + id).attr(
+									"onclick",
+									"addFriend(" + id + ", '" + targetUsername
+											+ "');");
+							$("#bt" + id).attr("style",
+									"background-color: #3f8ac9");
 							$("#bt" + id).text("follow");
 							// 更新数据
 						} else {
@@ -840,6 +827,52 @@
 				}
 			});
 		} //取消关注
+
+		function getLabelHeat() {
+			$.ajax({
+				type : "post",
+				url : "label/show_labelheat",
+				data : {
+					username : $.query.get("username")
+				},
+				dataType : "json",
+				success : function(data) {
+					var i = 0;
+					var sum = data.returndata.sum;
+					while (data.returndata.labelheats[i] != undefined) {
+						if (i > 3) {
+							$('.chart-skill-red').easyPieChart({
+								barColor : '#fc8675',
+								lineWidth : '5'
+							});
+
+							$('.chart-skill-blue').easyPieChart({
+								barColor : '#65C3DF',
+								lineWidth : '5'
+							});
+
+							$('.chart-skill-green').easyPieChart({
+								barColor : '#1dc499',
+								lineWidth : '5'
+							});
+
+							$('.chart-skill-purple').easyPieChart({
+								barColor : '#a48ad4',
+								lineWidth : '5'
+							});
+							return;
+						}
+						var text = "#text" + i;
+						var chart = "#chart" + i;
+						var val = parseInt(data.returndata.labelheats[i].times, 10) / sum * 100;
+						$(text).text(data.returndata.labelheats[i].name);
+						$(chart).attr("data-percent", val.toFixed(2));
+						$(chart).text(val.toFixed(2) + "%");
+						i++;
+					}
+				}
+			});
+		}
 	</script>
 
 </body>

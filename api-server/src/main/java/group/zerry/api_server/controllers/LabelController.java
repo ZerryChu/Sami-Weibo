@@ -10,8 +10,10 @@ import com.alibaba.fastjson.JSON;
 
 import group.zerry.api_server.annotation.AuthPass;
 import group.zerry.api_server.entity.Label;
+import group.zerry.api_server.entity.LabelHeat;
 import group.zerry.api_server.enumtypes.LabelStatusEnum;
 import group.zerry.api_server.service.LabelService;
+import group.zerry.api_server.service.UserService;
 
 @Controller
 @RequestMapping(value = "/label")
@@ -68,6 +70,20 @@ public class LabelController {
 		StringBuilder regMsg = new StringBuilder("{\"returndata\":");
 		regMsg.append(JSON.toJSONString(labels));
 		regMsg.append("}");
+		return regMsg.toString();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/show_labelheat", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public String showLabelHeat(String username) {
+		LabelHeat[] labelHeats = labelService.showLabelHeat(username);
+		int sum = labelService.showTotalLabelHeat(username);
+		StringBuilder regMsg = new StringBuilder("{\"returndata\":{\"labelheats\":");
+		regMsg.append(JSON.toJSONString(labelHeats));
+		regMsg.append(",\"sum\":");
+		regMsg.append(JSON.toJSON(sum));
+		regMsg.append("}}");
+		System.out.println(regMsg.toString());
 		return regMsg.toString();
 	}
  }

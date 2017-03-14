@@ -19,6 +19,7 @@
 		<typeAlias alias="PrivateMsg" type="group.zerry.api_server.entity.PrivateMsg" />		
 		<typeAlias alias="PrivateMsgInfo" type="group.zerry.api_server.entity.PrivateMsgInfo" />		
 		<typeAlias alias="Label" type="group.zerry.api_server.entity.Label" />
+		<typeAlias alias="LabelHeat" type="group.zerry.api_server.entity.LabelHeat" />
 
 	</typeAliases>
 

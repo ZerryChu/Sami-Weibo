@@ -12,6 +12,11 @@
 		<result property="name" column="name" />
 	</resultMap>
 	
+	<resultMap id="LabelHeatMap" type="LabelHeat">
+		<result property="label_id" column="id" />
+		<result property="times" column="times" />
+	</resultMap>
+	
  	<select id="judgeIfLabelExists" resultType="Count">
  		SELECT
 			count(id) as number
@@ -69,6 +74,28 @@
 			label_inf
 		WHERE
 			name = #{name}
+ 	</select>
+ 	
+ 	<select id="selectLabelHeat" resultType="LabelHeat">
+	 	SELECT
+			label_id,
+			times,
+			name
+		FROM
+			label_heat,
+			label_inf
+		WHERE
+			user_id = #{id}
+			AND label_id = id
+ 	</select>
+ 	
+ 	<select id="selectTotalLabelHeat" resultType="int">
+ 		SELECT
+			sum(times)
+		FROM
+			label_heat
+		WHERE
+			user_id = #{id}
  	</select>
  	
  	<!--  有条件算法改成按照每时段标签关系变化而定  -->

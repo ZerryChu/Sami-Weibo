@@ -6,6 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.alibaba.fastjson.JSON;
+
 import group.zerry.front_server.annotation.AuthPass;
 import group.zerry.front_server.service.LabelService;
 
@@ -56,6 +58,12 @@ public class LabelController {
 	@RequestMapping(value = "/show_related_labels", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
 	public String showRelatedLabels(int id) {
 		return labelService.showRelatedLabels(id);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/show_labelheat", method = RequestMethod.POST, produces = "text/html;charset=UTF-8")
+	public String showLabelHeat(String username) {
+		return labelService.showLabelHeat(username);
 	}
 	
 }

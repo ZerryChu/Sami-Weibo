@@ -165,4 +165,18 @@ public class LabelServiceImpl implements LabelService {
 		// TODO Auto-generated method stub
 		return labelDao.showRelatedLabels(label_id);
 	}
+
+	@Override
+	public group.zerry.api_server.entity.LabelHeat[] showLabelHeat(String username) {
+		// TODO Auto-generated method stub
+		int user_id = userDao.selectUserByUsername(username).getId();
+		return labelDao.selectLabelHeat(user_id);
+	}
+
+	@Override
+	public int showTotalLabelHeat(String username) {
+		// TODO Auto-generated method stub
+		int user_id = userDao.selectUserByUsername(username).getId();
+		return labelDao.selectTotalLabelHeat(user_id);
+	}
 }

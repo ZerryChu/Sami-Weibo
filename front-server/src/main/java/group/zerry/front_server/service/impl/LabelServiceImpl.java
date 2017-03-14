@@ -73,5 +73,14 @@ public class LabelServiceImpl implements LabelService {
 		Map<String, String> paramsMap = new HashMap<String, String>();
 		paramsMap.put("id", String.valueOf(label_id));
 		return fetchURLTool.doPost(url, paramsMap);	}
+
+	@Override
+	public String showLabelHeat(String username) {
+		// TODO Auto-generated method stub
+		String url = httpTarget.getHostname() + httpTarget.getPath() + "label/show_labelheat";
+		Map<String, String> paramsMap = new HashMap<String, String>();
+		paramsMap.put("username", String.valueOf(username));
+		return fetchURLTool.doPost(url, paramsMap);
+	}
 	
 }

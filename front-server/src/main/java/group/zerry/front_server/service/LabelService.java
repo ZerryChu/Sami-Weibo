@@ -12,4 +12,6 @@ public interface LabelService {
 	//public String showSimilarLabel(int label_id);
 	
 	public boolean subscribeLabel(String username, String userToken, int label_id);
+	
+	public String showLabelHeat(String username);
 }
