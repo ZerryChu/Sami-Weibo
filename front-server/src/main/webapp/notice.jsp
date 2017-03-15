@@ -161,7 +161,7 @@
 						<ul class="popular-blog-post">
 							<li class="clearfix">
 								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog3.jpg" alt="">
+									<img src="message/maintain.jpg" alt="">
 								</div>
 								<div class="popular-blog-detail">
 									<a href="#" class="h5">How to increase your shop sales</a>
@@ -170,7 +170,7 @@
 							</li>
 							<li class="clearfix">
 								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog4.jpg" alt="">
+									<img src="message/maintain.jpg" alt="">
 								</div>
 								<div class="popular-blog-detail">
 									<a href="#" class="h5">The Best Tools For Testing Your
@@ -180,7 +180,7 @@
 							</li>
 							<li class="clearfix">
 								<div class="img-wrapper clearfix">
-									<img src="images/blog/blog1.jpg" alt="">
+									<img src="message/maintain.jpg" alt="">
 								</div>
 								<div class="popular-blog-detail">
 									<a href="#" class="h5">The trends of Website Design in 2014</a>
@@ -251,6 +251,8 @@
 
 	<script src="old/plugins/timeago.js" type="text/javascript"></script>
 
+	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
+   
 	<script src="js/login.js" type="text/javascript"></script>
 	
 	<script type="text/javascript">
@@ -279,11 +281,11 @@
 									/* + data.returndata[i].type 公 告 类 别 */
 									+ "系统维护公告</div><div class=\"text-muted font-12\">By <a href=\"#\">"
 									+ data.returndata[i].author.nickname
-									+ "</a> in <a href=\"#\">System Security</a> <span class=\"m-left-xs m-right-xs\">|</span><span><i class=\"fa fa-comments\"></i> 0 comments</span></div></div></div><img src=\"message/"
-									+ data.returndata[i].pic // 增加pic获取
-									+ ".jpg\" alt=\"\"><p class=\"m-top-lg\">"
+									+ "</a> in <a href=\"#\">System Security</a> <span class=\"m-left-xs m-right-xs\">|</span><span><i class=\"fa fa-comments\"></i> 0 comments</span></div></div></div><p class=\"m-top-lg\">"
 									+ data.returndata[i].content
-									+ "</p><div class=\"m-top-md\"><a href=\"#\" class=\"btn btn-danger text-upper\">Read More</a></div></div>";
+									+ "</p><img src=\"message/"
+									+ data.returndata[i].pic // 增加pic获取
+									+ ".jpg\" alt=\"\"><div class=\"m-top-md\"><a href=\"#\" class=\"btn btn-danger text-upper\">Read More</a></div></div>";
 						$("#noticelist").append(message);
 						i++;
 					}

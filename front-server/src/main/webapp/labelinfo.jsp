@@ -54,6 +54,38 @@
 .qqFace table td img:hover {
 	border: 1px #0066cc solid;
 }
+
+#msg_page li a {
+	border: 0px;
+	background-color: #f5f5f5;
+	margin-left: 30px;
+}
+
+.popular-blog-post li {
+	margin-bottom: 0px;
+}
+
+.popular-blog-post li .popular-blog-detail {
+	margin-top: 15px;
+}
+
+.task-widget {
+	text-align: left;
+}
+
+.popular-blog-post li .img-wrapper {
+	margin-left: 15px;
+}
+
+.task-widget .task-widget-body {
+	padding: 5px 10px;
+	width: 95%;
+}
+
+.popular-blog-post li .popular-blog-detail {
+    margin-left: 100px;
+}
+
 </style>
 </head>
 
@@ -257,7 +289,8 @@
 									<ul class="ppl_user popular-blog-post">
 										<li class="clearfix">
 											<div class="img-wrapper clearfix">
-												<img src="images/blog/blog3.jpg" alt="">
+												<img class="small-img img-circle img-thumbnail"
+													src="images/profile/profile5.jpg" alt="">
 											</div>
 											<div class="popular-blog-detail">
 												<a href="#" class="h5">How to increase your shop sales</a>
@@ -268,54 +301,43 @@
 											</div>
 										</li>
 										<li class="clearfix">
-											<div class="img-wrapper clearfix">
-												<img src="images/blog/blog4.jpg" alt="">
-											</div>
-											<div class="popular-blog-detail">
-												<a href="#" class="h5">The Best Tools For Testing Your
-													Designs</a>
-												<div class="text-muted m-top-sm">July 26, 2014</div>
-											</div>
-										</li>
-										<li class="clearfix">
-											<div class="img-wrapper clearfix">
-												<img src="images/blog/blog1.jpg" alt="">
-											</div>
-											<div class="popular-blog-detail">
-												<div class="panel panel-default clearfix">
-													<div class="panel-body">
-														<div class="user-wrapper">
-															<div class="user-avatar">
-																<img class="small-img img-circle img-thumbnail"
-																	src="images/profile/profile5.jpg" alt="">
-															</div>
-															<div class="user-detail small-img">
-																<div class="font-16">Elizabeth Carter</div>
-																<small class="block text-muted font-12">@Elizabeth</small>
-																<small> <small class="freelancer-rating">
-																		<i class="fa fa-star text-warning"></i> <i
-																		class="fa fa-star text-warning"></i> <i
-																		class="fa fa-star text-warning"></i> <i
-																		class="fa fa-star text-warning"></i> <i
-																		class="fa fa-star text-warning"></i>
-																</small>
-																</small>
-
-																<div class="m-top-sm">
-																	<button type="button"
-																		class="btn btn-primary btn-sm marginTB-xs"
-																		data-toggle="modal">follow</button>
-																	<button type="button"
-																		class="btn btn-success btn-sm marginTB-xs"
-																		data-toggle="modal">View Profile</button>
-																</div>
+											<div class="task-widget">
+												<div class="task-widget-body clearfix">
+													<div class="pie-chart-wrapper">
+														<div class="img-wrapper clearfix">
+															<img class="small-img img-circle img-thumbnail"
+																src="images/profile/zerry.jpg" alt="">
+														</div>
+														<div class="popular-blog-detail">
+															<a href="profile.jsp" style="font-size: 20px;" class="h5">zerry</a>
+															<div class="text-muted m-top-sm">
+																<span>user</span>
 															</div>
 														</div>
-														<!-- ./user-wrapper -->
+													</div>
+													<div style="float: right; margin-left: 50px; margin-top: 22px;">
+														<small class="text-upper text-muted block font-sm">heat</small>
+														<h1 style="font-size: 25px; color: #fc5050;" class="no-margin">4312</h1>
 													</div>
 												</div>
-											</div>
+												<!-- ./task-widget-body -->
+												<div class="task-widget-statatistic">
+													<ul class="clearfix">
+														<li class="bg-grey border-success">
+															<div class="text-muted text-upper font-sm">评论</div> 231
+														</li>
+														<li class="bg-grey border-danger">
+															<div class="text-muted text-upper font-sm">转发</div> 321
+														</li>
+														<li class="bg-grey border-purple">
+															<div class="text-muted text-upper font-sm">点赞</div> 171
+														</li>
+													</ul>
+													<!-- ./row -->
+												</div>
+											</div> <!-- ./task-widget -->
 										</li>
+
 									</ul>
 
 									<hr />
@@ -356,6 +378,17 @@
 								</div>
 								<!-- ./col -->
 							</div>
+							<div style="margin-left: 22%; background-color: #f5f5f5;">
+								<ul id="msg_page" class="pagination vertical-middle">
+									<li class="disabled"><a href="#"><i
+											class="fa fa-step-backward"></i></a></li>
+									<li class="disabled"><a href="#"><i
+											class="fa fa-caret-left large"></i></a></li>
+									<li><a href="#"><i class="fa fa-caret-right large"></i></a></li>
+									<li><a href="#"><i class="fa fa-step-forward"></i></a></li>
+								</ul>
+							</div>
+							<!-- ./pagination-row -->
 						</div>
 						<!-- ./padding-md -->
 					</div>
@@ -405,8 +438,9 @@
 
 	<script type="text/javascript">
 		isLogin();
+		show_masterUsers($.query.get("id"));
 		showRelatedLabels();
-		
+
 		$.ajax({
 			type : "post",
 			url : "label/show_label_byId",
@@ -571,14 +605,20 @@
 								$(".ppl_user").empty();
 								for (var i = 0; i < 4; i++)
 									if (data.returndata[i] != undefined) {
-										var str = "<li class=\"clearfix\"><div class=\"img-wrapper clearfix\"><img src=\"images/profile/"
-										+ data.returndata[i].username
-										+ ".jpg\" alt=\"\"></div><div class=\"popular-blog-detail\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
+										var str = "<li class=\"clearfix\"><div class=\"task-widget\"><div class=\"task-widget-body clearfix\"><div class=\"pie-chart-wrapper\"><div class=\"img-wrapper clearfix\"><img class=\"small-img img-circle img-thumbnail\" src=\"images/profile/"
 												+ data.returndata[i].username
-												+ "\" class=\"h5\">"
+												+ ".jpg\" alt=\"\"></div><div class=\"popular-blog-detail\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}\" style=\"font-size: 20px;\" class=\"h5\">"
 												+ data.returndata[i].nickname
-												+ "</a><div class=\"text-muted m-top-sm\"> user </div></div></li>";
-										$(".ppl_user").append(str);
+												+ "</a><div class=\"text-muted m-top-sm\"><span>user</span></div></div></div><div style=\"float: right; margin-top: 22px;\"><small class=\"text-upper text-muted block font-sm\">heat</small><h1 style=\"font-size: 25px; color: #fc5050;\" class=\"no-margin\">"
+												// 热度、职位
+												+ "4312</h1></div></div><div class=\"task-widget-statatistic\"><ul class=\"clearfix\"><li class=\"bg-grey border-success\"><div class=\"text-muted text-upper font-sm\">关注</div> "
+												+ data.returndata[i].focus_num
+												+ "</li><li class=\"bg-grey border-danger\"><div class=\"text-muted text-upper font-sm\">粉丝</div> "
+												+ data.returndata[i].friend_num
+												// 浏览量
+												+ "</li><li class=\"bg-grey border-purple\"><div class=\"text-muted text-upper font-sm\">浏览</div> 2176"
+												+ "</li></ul></div></div></li>";	
+									$(".ppl_user").append(str);			
 									}
 							}
 						}
@@ -586,28 +626,28 @@
 		}
 
 		function showRelatedLabels() {
-			$.ajax({
-				type : "post",
-				// async : false,
-				url : "label/show_related_labels",
-				data : {
-					id : $.query.get("id")
-				},
-				dataType : "json",
-				success : function(data) {
-					$(".related_labels").empty();
-					var i = 0;
-					while (data.returndata[i] != undefined) {
-						var str = "<a class=\"blog-tag\" href=\"labelinfo.jsp?username=${param.username}&userToken=${param.userToken}&id="
-								+ data.returndata[i].id
-								+ "&flag=1\">"
-								+ data.returndata[i].name
-								+ "</a>";
-						$(".related_labels").append(str);
-						i++;
-					}
-				}
-			});
+			$
+					.ajax({
+						type : "post",
+						// async : false,
+						url : "label/show_related_labels",
+						data : {
+							id : $.query.get("id")
+						},
+						dataType : "json",
+						success : function(data) {
+							$(".related_labels").empty();
+							var i = 0;
+							while (data.returndata[i] != undefined) {
+								var str = "<a class=\"blog-tag\" href=\"labelinfo.jsp?username=${param.username}&userToken=${param.userToken}&id="
+										+ data.returndata[i].id
+										+ "&flag=1\">"
+										+ data.returndata[i].name + "</a>";
+								$(".related_labels").append(str);
+								i++;
+							}
+						}
+					});
 		}
 	</script>
 </body>

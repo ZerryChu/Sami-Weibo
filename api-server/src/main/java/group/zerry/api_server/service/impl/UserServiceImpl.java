@@ -19,25 +19,26 @@ import group.zerry.api_server.enumtypes.UserStatusEnum;
 import group.zerry.api_server.service.UserService;
 import group.zerry.api_server.utils.EncodeTools;
 import group.zerry.api_server.utils.Recommender;
+
 /**
  * @author ZerryChu
- * @since  2015.10.3
+ * @since 2015.10.3
  *
  */
 @Service(value = "UserService")
 public class UserServiceImpl implements UserService {
 
 	@Autowired
-	private UserDao               userDao;
+	private UserDao userDao;
 
 	@Autowired
-	private FriendDao             friendDao;
-	
+	private FriendDao friendDao;
+
 	@Autowired
-	private Recommender           recommender;
-	
-	private static Logger         logger = Logger.getLogger(UserServiceImpl.class);
-	
+	private Recommender recommender;
+
+	private static Logger logger = Logger.getLogger(UserServiceImpl.class);
+
 	@Override
 	public UserStatusEnum login(String username, String password) {
 		// TODO Auto-generated method stub
@@ -48,10 +49,10 @@ public class UserServiceImpl implements UserService {
 		if (username == "" || password == "")
 			return UserStatusEnum.UNV;
 		User user = userDao.selectUserByUsername(username);
-		if(user != null && user.getPassword().equals(EncodeTools.encoder(password, user.getPassword().substring(0, 4)))) {
+		if (user != null
+				&& user.getPassword().equals(EncodeTools.encoder(password, user.getPassword().substring(0, 4)))) {
 			return UserStatusEnum.LS;
-		}
-		else
+		} else
 			return UserStatusEnum.PI;
 	}
 
@@ -63,10 +64,10 @@ public class UserServiceImpl implements UserService {
 		else {
 			try {
 				User temp = userDao.selectUserByUsername(user.getUsername());
-				if(temp != null) {
+				if (temp != null) {
 					return UserStatusEnum.UE;
 				}
-				user.setPassword(EncodeTools.encoder(user.getPassword(),EncodeTools.giveMeSalt()));
+				user.setPassword(EncodeTools.encoder(user.getPassword(), EncodeTools.giveMeSalt()));
 				userDao.addUser(user);
 				return UserStatusEnum.RS;
 			} catch (Exception e) {
@@ -86,7 +87,7 @@ public class UserServiceImpl implements UserService {
 		else {
 			try {
 				userDao.addFriend(user1.getId(), user2.getId(), group);
-				//userDao.addFriend(user2.getId(), user1.getId(), group);
+				// userDao.addFriend(user2.getId(), user1.getId(), group);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				return UserStatusEnum.AFE;
@@ -146,7 +147,7 @@ public class UserServiceImpl implements UserService {
 		else {
 			try {
 				userDao.deleteFriend(user1.getId(), user2.getId());
-				//userDao.addFriend(user2.getId(), user1.getId(), group);
+				// userDao.addFriend(user2.getId(), user1.getId(), group);
 			} catch (Exception e) {
 				System.out.println(e.getMessage());
 				return UserStatusEnum.DFE;
@@ -163,23 +164,23 @@ public class UserServiceImpl implements UserService {
 		int user_num = 0;
 		Count count = null;
 		User item = null;
-		for (int i = 0;i < recs.length; i++) {
-			item = userDao.selectUserById((int)recs[i]);
+		for (int i = 0; i < recs.length; i++) {
+			item = userDao.selectUserById((int) recs[i]);
 			count = friendDao.judgeIfFocusOrNot(user.getId(), item.getId());
-			
+
 			// 已关注的不推荐
 			if (count.getNumber() > 0) {
 				continue;
 			}
 			users[user_num++] = item;
-			
+
 			// 推荐3人
 			if (user_num >= 3)
 				break;
 		}
-	
+
 		return users;
-			
+
 	}
 
 	@Override
@@ -199,6 +200,13 @@ public class UserServiceImpl implements UserService {
 	public User[] getMastersByLabelId(int label_id, int num) {
 		// TODO Auto-generated method stub
 		User[] users = userDao.getMasterByLabelId(label_id, num);
+		for (int i = 0; i < users.length; i++) {
+			User user = users[i];
+			Integer integer = userDao.getUserFansNumById(user.getId());
+			user.setFriend_num(integer);
+			integer = userDao.getUserFocusNumById(user.getId());
+			user.setFocus_num(integer);
+		}
 		return users;
 	}
 

@@ -54,6 +54,12 @@
 .qqFace table td img:hover {
 	border: 1px #0066cc solid;
 }
+
+#msg_page li a{
+	border: 0px;
+	background-color: #f5f5f5;
+	margin-left: 30px;
+}
 </style>
 </head>
 
@@ -61,13 +67,14 @@
 	<div class="wrapper preload">
 		<%@include file="user-frame.jsp"%>
 
-<aside class="sidebar-menu sidebar-mini">
+		<aside class="sidebar-menu sidebar-mini">
 		<div class="sidebar-inner scrollable-sidebar">
 			<div class="main-menu">
 				<ul class="accordion">
 					<li class="menu-header">Main Menu</li>
-					<li class="bg-palette1 active"><a href="index.jsp?username=${param.username}&userToken=${param.userToken}"> <span
-							class="menu-content block"> <span class="menu-icon"><i
+					<li class="bg-palette1 active"><a
+						href="index.jsp?username=${param.username}&userToken=${param.userToken}">
+							<span class="menu-content block"> <span class="menu-icon"><i
 									class="block fa fa-home fa-lg"></i></span> <span
 								class="text m-left-sm">个人总览</span>
 						</span> <span class="menu-content-hover block"> Home </span>
@@ -130,7 +137,7 @@
 						</ul></li>
 				</ul>
 			</div>
-	
+
 		</div>
 		</aside>
 		<div class="main-container sidebar-mini">
@@ -154,8 +161,12 @@
 						<div class="inbox-menu-header">分类</div>
 
 						<ul class="sort_list">
-							<li id="list1"><a id="inbox_a" href="message.jsp?username=${param.username}&userToken=${param.userToken}&flag=1"> 最近</a></li>
-							<li id="list2"><a id="outbox_a" href="message.jsp?username=${param.username}&userToken=${param.userToken}&flag=0">最热 </a></li>
+							<li id="list1"><a id="inbox_a"
+								href="message.jsp?username=${param.username}&userToken=${param.userToken}&flag=1">
+									最近</a></li>
+							<li id="list2"><a id="outbox_a"
+								href="message.jsp?username=${param.username}&userToken=${param.userToken}&flag=0">最热
+							</a></li>
 						</ul>
 
 					</div>
@@ -240,6 +251,17 @@
 								<!-- ./col -->
 							</div>
 							<!-- ./row -->
+							<div style="margin-left: 38%; background-color: #f5f5f5;">
+								<ul id="msg_page" class="pagination vertical-middle">
+									<li class="disabled"><a href="#"><i
+											class="fa fa-step-backward"></i></a></li>
+									<li class="disabled"><a href="#"><i
+											class="fa fa-caret-left large"></i></a></li>
+									<li><a href="#"><i class="fa fa-caret-right large"></i></a></li>
+									<li><a href="#"><i class="fa fa-step-forward"></i></a></li>
+								</ul>
+							</div>
+							<!-- ./pagination-row -->
 						</div>
 						<!-- ./padding-md -->
 					</div>
@@ -305,11 +327,10 @@
 						$("#list2").attr('class', 'active');
 						show_messages(1, 0);
 					}
-					
+
 					$("#cmr").click(function() {
 						$("#t_file").click();
 					});
-
 
 					//////////////分页...
 				</script>

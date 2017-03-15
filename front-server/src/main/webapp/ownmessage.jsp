@@ -54,6 +54,12 @@
 .qqFace table td img:hover {
 	border: 1px #0066cc solid;
 }
+
+#msg_page li a{
+	border: 0px;
+	background-color: #f5f5f5;
+	margin-left: 30px;
+}
 </style>
 </head>
 
@@ -129,15 +135,24 @@
 
 
 							<div class="timeline-year bg-purple"></div>
-							<div id="receive_msg">
-
-							</div>
+							<div id="receive_msg"></div>
 						</div>
 						<!-- ./timeline-wrapper -->
 					</div>
 					<!-- ./col -->
 				</div>
 				<!-- ./row -->
+				<div style="margin-left: 38%; background-color: #f5f5f5;">
+					<ul id="msg_page" class="pagination vertical-middle">
+						<li class="disabled"><a href="#"><i
+								class="fa fa-step-backward"></i></a></li>
+						<li class="disabled"><a href="#"><i
+								class="fa fa-caret-left large"></i></a></li>
+						<li><a href="#"><i class="fa fa-caret-right large"></i></a></li>
+						<li><a href="#"><i class="fa fa-step-forward"></i></a></li>
+					</ul>
+				</div>
+				<!-- ./pagination-row -->
 			</div>
 			<!-- ./padding-md -->
 		</div>

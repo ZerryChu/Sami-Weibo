@@ -97,9 +97,16 @@
 			)
 	</select>
 
-	<!--  算法待修改  -->
 	<select id="getMasterByLabelId" parameterType="int" resultType="User">
-		<!--  做user在label上的统计 -->
+		SELECT
+			*
+		FROM
+			label_heat,
+			user_inf
+		WHERE
+			user_id = id
+		AND label_id = #{0}
+		LIMIT 0, #{1}
 	</select>
 
 	<insert id="addUser" useGeneratedKeys="true" keyProperty="id">

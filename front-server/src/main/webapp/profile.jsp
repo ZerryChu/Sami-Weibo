@@ -829,11 +829,15 @@
 		} //取消关注
 
 		function getLabelHeat() {
+			var targetName = $.query.get("targetUsername");
+			if (targetName == undefined || targetName == "")
+				targetName = $.query.get("username");
+			
 			$.ajax({
 				type : "post",
 				url : "label/show_labelheat",
 				data : {
-					username : $.query.get("username")
+					username : targetName
 				},
 				dataType : "json",
 				success : function(data) {
