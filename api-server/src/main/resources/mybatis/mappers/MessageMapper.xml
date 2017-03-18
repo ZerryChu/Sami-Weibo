@@ -6,6 +6,9 @@
 
 	<resultMap id="MessageMap" type="Message">
 		<result property="id" column="id" />
+		<result property="author.id" column="authorId" />
+		<result property="author.username" column="authorUsername" />
+		<!--  -->
 		<result property="author.nickname" column="author" />
 		<result property="type" column="type" />
 		<result property="content" column="content" />
@@ -21,20 +24,35 @@
 	</resultMap>
 
 	<select id="getMessageById" resultMap="MessageMap">
-		select
-		*
-		from message_inf
-		where id = #{id}
+		SELECT
+			message_inf.id as id,
+			message_inf.type as type,
+			content,
+			create_time,
+			repost_times,
+			comment_times,
+			support_times,
+			pic,
+			user_inf.id AS authorId,
+			nickname AS author,
+			username AS authorUsername
+		FROM
+			message_inf,
+			user_inf
+		WHERE
+			message_inf.id = #{id}
+		AND user_inf.nickname = message_inf.author
 	</select>
 
 	<select id="getOwnMessages" parameterType="string" resultMap="MessageMap">
 		select
-		*
+			*
 		from message_inf
-		where author = #{nickname}
+		where 
+			author = #{nickname}
 		ORDER BY
-		create_time
-		DESC
+			create_time
+			DESC
 	</select>
 	
 	<select id="getLastMessage" parameterType="string" resultMap="MessageMap">

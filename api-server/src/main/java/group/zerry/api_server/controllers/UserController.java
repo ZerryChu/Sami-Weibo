@@ -16,6 +16,7 @@ import group.zerry.api_server.entity.Friend;
 import group.zerry.api_server.entity.User;
 import group.zerry.api_server.enumtypes.MessageStatusEnum;
 import group.zerry.api_server.enumtypes.UserStatusEnum;
+import group.zerry.api_server.service.LabelService;
 import group.zerry.api_server.service.UserService;
 import group.zerry.api_server.utils.CacheTools;
 import redis.clients.jedis.Jedis;
@@ -26,6 +27,9 @@ public class UserController {
 	
 	@Autowired
 	UserService                            userService;
+	
+	@Autowired
+	LabelService						   labelService;
 	
 	@Autowired
 	CacheTools                             cacheTools;
@@ -155,13 +159,24 @@ public class UserController {
 	@ResponseBody
 	@RequestMapping(value = "/show_masters", produces = "text/html;charset=UTF-8")
 	public String getMasters(int label_id, int num) {
-		StringBuilder regMsg = new StringBuilder("{\"returndata\":");
+		StringBuilder regMsg = new StringBuilder("{\"returndata\": ");
 		User[] users;
 		if(null == (users = userService.getMastersByLabelId(label_id, num))) {
 			regMsg.append(UserStatusEnum.UNV.getValue());
 		}
 		else {
-			regMsg.append(JSON.toJSONString(users, userFilter));
+			regMsg.append("{\"user\": " + JSON.toJSONString(users, userFilter));
+			regMsg.append(", \"heat\": [");
+			for (int i = 0; i < users.length; i++) {
+				// 拼消息
+				int heat = labelService.getUserLabelHeat(users[i].getId(), label_id).getTimes();
+				regMsg.append(heat);
+				if (i == users.length - 1) {
+					regMsg.append("]}");
+				} else {
+					regMsg.append(", ");
+				}
+			}
 		}
 		regMsg.append("}");
         logger.error(regMsg.toString());

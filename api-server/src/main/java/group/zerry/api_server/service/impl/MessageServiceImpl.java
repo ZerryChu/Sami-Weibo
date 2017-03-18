@@ -10,6 +10,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import group.zerry.api_server.dao.CommentDao;
 import group.zerry.api_server.dao.LabelDao;
+import group.zerry.api_server.dao.LabelHeatDao;
 import group.zerry.api_server.dao.MessageDao;
 import group.zerry.api_server.dao.TopicDao;
 import group.zerry.api_server.dao.UserDao;
@@ -54,12 +55,15 @@ public class MessageServiceImpl implements MessageService {
 	@Autowired
 	TopicDao         topicDao;
 
+	@Autowired
+	LabelHeatDao     labelHeatDao;
+	
 	// @Autowired
 	// LabelManageTools labelManageTools;
 	
 	@Autowired
 	private BatchHandlerForLabelHeat batchHandleWrapperForLabel;
-
+	
 	private Logger logger = Logger.getLogger(MessageServiceImpl.class);
 
 	@Override
@@ -100,7 +104,7 @@ public class MessageServiceImpl implements MessageService {
 					}
 					int id = labelDao.searchLabelIdByName(labels[i]);
 					messageDao.addLabel(msg_id, id);
-					labelDao.updateLabelHeatById(user_id, id);
+					labelHeatDao.updateLabelHeatById(user_id, id, 5);
 				}
 			}
 		} catch (Exception e) {
@@ -157,6 +161,9 @@ public class MessageServiceImpl implements MessageService {
 		try {
 			User user = userDao.selectUserByUsername(username);
 			Message message = messageDao.getMessageById(id);
+			// 获取原作者id
+			int _author_id = message.getAuthor().getId();
+			
 			message.setAuthor(user);
 			if (message.getType() == 1) {
 				message.setContent(_content + ";" + id);
@@ -167,6 +174,14 @@ public class MessageServiceImpl implements MessageService {
 			}
 			messageDao.addMessage(message);
 			messageDao.addRepostTimes(id);
+			
+			Label[] labels = null;
+			if ((labels = message.getLabels()) != null) {
+				for (int i = 0;i < labels.length; i++) {
+					// update_labelHeat
+					labelHeatDao.updateLabelHeatById(_author_id, labels[i].getId(), 3);
+				}
+			}
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 			return MessageStatusEnum.OF;
@@ -187,6 +202,16 @@ public class MessageServiceImpl implements MessageService {
 			comment.setContent(content);
 			comment.setMessage_id(id);
 			commentDao.addComment(comment);
+			
+			Integer[] label_ids = labelDao.searchLabelIDByMsgId(id);
+			if (label_ids.length > 0) {
+				int _author_id = messageDao.getMessageById(id).getAuthor().getId();
+
+				for (int i = 0;i < label_ids.length; i++) {
+					// update_labelHeat
+					labelHeatDao.updateLabelHeatById(_author_id, label_ids[i], 2);
+				}
+			}
 			// messageDao.addCommentTimes(id);
 		} catch (Exception e) {
 			return MessageStatusEnum.OF;
@@ -204,6 +229,17 @@ public class MessageServiceImpl implements MessageService {
 			} else if (num == 1)
 				return MessageStatusEnum.HAS;
 			messageDao.addSupportInfo(id, username);
+					
+			Integer[] label_ids = labelDao.searchLabelIDByMsgId(id);
+
+			if (label_ids.length > 0) {
+				int _author_id = messageDao.getMessageById(id).getAuthor().getId();
+				
+				for (int i = 0;i < label_ids.length; i++) {
+					// update_labelHeat
+					labelHeatDao.updateLabelHeatById(_author_id, label_ids[i], 1);
+				}
+			}
 			// messageDao.addSupportTimes(id);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
@@ -224,6 +260,16 @@ public class MessageServiceImpl implements MessageService {
 			if (num > 1 || num < 0)
 				return MessageStatusEnum.OF;
 			messageDao.decreaseSupportInfo(id, username);
+			
+			Integer[] label_ids = labelDao.searchLabelIDByMsgId(id);
+			if (label_ids.length > 0) {
+				int _author_id = messageDao.getMessageById(id).getAuthor().getId();
+				
+				for (int i = 0;i < label_ids.length; i++) {
+					// update_labelHeat
+					labelHeatDao.updateLabelHeatById(_author_id, label_ids[i], -1);
+				}
+			}
 			// messageDao.decreaseSupportTimes(id);
 		} catch (Exception e) {
 			System.out.println(e.getMessage());

@@ -17,6 +17,8 @@ public interface LabelService {
 	
 	public Label[] showRelatedLabels(int label_id);
 	
+	public LabelHeat   getUserLabelHeat(int user_id, int label_id);
+
 	public LabelHeat[] showLabelHeat(String username);
 	
 	public int     showTotalLabelHeat(String username);

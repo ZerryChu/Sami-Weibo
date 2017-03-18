@@ -28,11 +28,15 @@
  	
  	<select id="searchLabelIDByMsgId" resultType="int">
  		SELECT
-			label_id
+			label_inf.id
 		FROM
-			message_inf
+			message_inf,
+			label_inf,
+			msg_lbl_relation
 		WHERE
-			id = #{id}
+			message_inf.id = msg_lbl_relation.msg_id
+		AND label_inf.id = msg_lbl_relation.label_id
+		AND message_inf.id = #{id}
  	</select>
  	
  	<select id="showLabelNameById" resultType="string">
@@ -74,28 +78,6 @@
 			label_inf
 		WHERE
 			name = #{name}
- 	</select>
- 	
- 	<select id="selectLabelHeat" resultType="LabelHeat">
-	 	SELECT
-			label_id,
-			times,
-			name
-		FROM
-			label_heat,
-			label_inf
-		WHERE
-			user_id = #{id}
-			AND label_id = id
- 	</select>
- 	
- 	<select id="selectTotalLabelHeat" resultType="int">
- 		SELECT
-			sum(times)
-		FROM
-			label_heat
-		WHERE
-			user_id = #{id}
  	</select>
  	
  	<!--  有条件算法改成按照每时段标签关系变化而定  -->
@@ -162,12 +144,6 @@
 			)
 		AND lbl_id = #{1}
  	</delete>
- 	
- 	<update id="updateLabelHeatById">
- 		INSERT INTO label_heat
-		VALUES
-			(#{0}, #{1}, 1) ON DUPLICATE KEY UPDATE times = times + 1	
- 	</update>
  	
  	<insert id="insertNewLabel">
  		INSERT INTO label_inf (NAME)

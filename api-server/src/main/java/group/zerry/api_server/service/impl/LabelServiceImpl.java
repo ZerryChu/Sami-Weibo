@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import group.zerry.api_server.dao.LabelDao;
+import group.zerry.api_server.dao.LabelHeatDao;
 import group.zerry.api_server.dao.UserDao;
 import group.zerry.api_server.entity.Label;
 import group.zerry.api_server.entity.User;
@@ -29,6 +30,9 @@ public class LabelServiceImpl implements LabelService {
 	
 	@Autowired
 	private LabelDao  labelDao;
+	
+	@Autowired
+	private LabelHeatDao labelHeatDao;
 	
 	@Autowired
 	private UserDao   userDao;
@@ -170,13 +174,20 @@ public class LabelServiceImpl implements LabelService {
 	public group.zerry.api_server.entity.LabelHeat[] showLabelHeat(String username) {
 		// TODO Auto-generated method stub
 		int user_id = userDao.selectUserByUsername(username).getId();
-		return labelDao.selectLabelHeat(user_id);
+		return labelHeatDao.selectLabelHeat(user_id);
 	}
 
 	@Override
 	public int showTotalLabelHeat(String username) {
 		// TODO Auto-generated method stub
 		int user_id = userDao.selectUserByUsername(username).getId();
-		return labelDao.selectTotalLabelHeat(user_id);
+		return labelHeatDao.selectTotalLabelHeat(user_id);
 	}
+
+	@Override
+	public group.zerry.api_server.entity.LabelHeat getUserLabelHeat(int user_id, int label_id) {
+		// TODO Auto-generated method stub
+		return labelHeatDao.selectUserLabelHeat(user_id, label_id);
+	}
+
 }

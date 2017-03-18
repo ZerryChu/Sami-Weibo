@@ -7,15 +7,11 @@ import group.zerry.api_server.entity.LabelHeat;
 public interface LabelDao {
 	int searchLabelIdByName(String name);
 
-	int searchLabelIDByMsgId(Long id);
-	
-	int selectTotalLabelHeat(int id);
+	Integer[] searchLabelIDByMsgId(int id);
 	
 	String searchLabelNameById(long id1);
 	
 	String showLabelNameById(int id);
-	
-	void updateLabelHeatById(int user_id, long id);
 	
 	void insertNewLabel(String name);
 	
@@ -30,7 +26,5 @@ public interface LabelDao {
 	Label[] showSubscribedLabels(String username);
 	
 	Label[] showRelatedLabels(int id);
-	
-	LabelHeat[] selectLabelHeat(int id);
-	
+		
 }

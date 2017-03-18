@@ -253,12 +253,12 @@
 							<!-- ./row -->
 							<div style="margin-left: 38%; background-color: #f5f5f5;">
 								<ul id="msg_page" class="pagination vertical-middle">
-									<li class="disabled"><a href="#"><i
+									<li id="opt1"><a href="#"><i
 											class="fa fa-step-backward"></i></a></li>
-									<li class="disabled"><a href="#"><i
+									<li id="opt2"><a href="#"><i
 											class="fa fa-caret-left large"></i></a></li>
-									<li><a href="#"><i class="fa fa-caret-right large"></i></a></li>
-									<li><a href="#"><i class="fa fa-step-forward"></i></a></li>
+									<li id="opt3"><a href="#"><i class="fa fa-caret-right large"></i></a></li>
+									<li id="opt4" class="disabled"><a href="#"><i class="fa fa-step-forward"></i></a></li>
 								</ul>
 							</div>
 							<!-- ./pagination-row -->
@@ -320,12 +320,36 @@
 					});
 					//////////////////////////////////////////////////////////////////////////////////////////
 
+					
+		
+					// pageNum
+					var pageNum = $.query.get("page");
+
+					if (pageNum == undefined || pageNum == "") {
+						pageNum = 1;
+						$("#opt1").attr("class", "disabled");
+						$("#opt2").attr("class", "disabled");
+					}
+					
+					$("#opt2 a").attr(
+							"href",
+							"message.jsp?username=" + $.query.get("username")
+									+ "&userToken=" + $.query.get("userToken")
+									+ "&flag=" + $.query.get("flag")
+									+ "&page=" + (parseInt(pageNum, 10) - 1));
+					$("#opt3 a").attr(
+							"href",
+							"message.jsp?username=" + $.query.get("username")
+									+ "&userToken=" + $.query.get("userToken")
+									+ "&flag=" + $.query.get("flag")
+									+ "&page=" + (parseInt(pageNum, 10) + 1));
+
 					if ($.query.get("flag") == 1) {
 						$("#list1").attr('class', 'active');
-						show_messages(1, 1);
+						show_messages(pageNum, 1);
 					} else {
 						$("#list2").attr('class', 'active');
-						show_messages(1, 0);
+						show_messages(pageNum, 0);
 					}
 
 					$("#cmr").click(function() {
