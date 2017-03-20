@@ -227,10 +227,10 @@
 	<script type="text/javascript">
 		isLogin();
 		
-		show_recommendedlabel();
+		show_topics();
 		
 		// 获取推荐标签
-		function show_recommendedlabel() {
+		function show_topics() {
 			$.ajax({
 				type : "post",
 				// async : false,
@@ -272,45 +272,7 @@
 		 	var forward = "window.location='labelinfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&id=" + id + "&flag=1'";
 	 		setTimeout(forward, 0);
 		});
-		
-		function show_SimilarUsers(_label_id) {
-			$
-					.ajax({
-						type : "post",
-						// async : false,
-						url : "user/show_rec_users",
-						data : {
-							label_id : _label_id,
-							num : 4
-						},
-						dataType : "json",
-						success : function(data) {
-							if (data.returndata != undefined) {
-								$(".ppl_user").empty();
-								for (var i = 0; i < 3; i++)
-									if (data.returndata.user[i] != undefined) {
-										var str = "<li class=\"clearfix\"><div class=\"task-widget\"><div class=\"task-widget-body clearfix\"><div class=\"pie-chart-wrapper\"><div class=\"img-wrapper clearfix\"><img class=\"small-img img-circle img-thumbnail\" src=\"images/profile/"
-												+ data.returndata.user[i].username
-												+ ".jpg\" alt=\"\"></div><div class=\"popular-blog-detail\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
-														+ data.returndata.user[i].username
-														+ "\" style=\"font-size: 20px;\" class=\"h5\">"
-												+ data.returndata.user[i].nickname
-												+ "</a><div class=\"text-muted m-top-sm\"><span>user</span></div></div></div><div style=\"float: right; margin-top: 22px;\"><small class=\"text-upper text-muted block font-sm\">heat</small><h1 style=\"font-size: 25px; color: #fc5050;\" class=\"no-margin\">"
-												+ data.returndata.heat[i]
-												+ "</h1></div></div><div class=\"task-widget-statatistic\"><ul class=\"clearfix\"><li class=\"bg-grey border-success\"><div class=\"text-muted text-upper font-sm\">关注</div> "
-												+ data.returndata.user[i].focus_num
-												+ "</li><li class=\"bg-grey border-danger\"><div class=\"text-muted text-upper font-sm\">粉丝</div> "
-												+ data.returndata.user[i].friend_num
-												// 浏览量
-												+ "</li><li class=\"bg-grey border-purple\"><div class=\"text-muted text-upper font-sm\">浏览</div> 2176"
-												+ "</li></ul></div></div></li>";	
-									$(".ppl_user").append(str);			
-									}
-							}
-								
-						}
-					});
-		}
+				
 	</script>
 </body>
 </html>

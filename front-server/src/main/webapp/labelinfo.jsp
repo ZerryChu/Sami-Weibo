@@ -288,19 +288,6 @@
 									<h4>领域达人</h4>
 									<ul class="ppl_user popular-blog-post">
 										<li class="clearfix">
-											<div class="img-wrapper clearfix">
-												<img class="small-img img-circle img-thumbnail"
-													src="images/profile/profile5.jpg" alt="">
-											</div>
-											<div class="popular-blog-detail">
-												<a href="#" class="h5">How to increase your shop sales</a>
-												<div class="text-muted m-top-sm">
-													<span>July 27, 2014</span>
-													<button>关注</button>
-												</div>
-											</div>
-										</li>
-										<li class="clearfix">
 											<div class="task-widget">
 												<div class="task-widget-body clearfix">
 													<div class="pie-chart-wrapper">

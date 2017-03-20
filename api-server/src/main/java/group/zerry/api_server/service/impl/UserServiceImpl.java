@@ -173,7 +173,11 @@ public class UserServiceImpl implements UserService {
 				continue;
 			}
 			users[user_num++] = item;
-
+			Integer integer = userDao.getUserFansNumById(item.getId());
+			item.setFriend_num(integer);
+			integer = userDao.getUserFocusNumById(item.getId());
+			item.setFocus_num(integer);
+			
 			// 推荐3人
 			if (user_num >= 3)
 				break;
