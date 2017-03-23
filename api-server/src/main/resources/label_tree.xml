@@ -1,45 +1,155 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
-	<!-- 标签关系的决策树 -->
-	<label id="">
-		<name>体育</name>
+	<!-- 话题关系的决策树 -->
+	<label id="1">
+		<name>运动</name>
 		<value>1</value>
 		<label id="">
-			<name>篮球</name>
-			<value>0.4</value>
-
-		</label>
-		<label id="">
 			<name>足球</name>
-			<value>0.4</value>
+			<value></value>
+			<label id="110">
+				<name>国足</name>
+				<value></value>
+			
+			</label>
+			<label id="111">
+				<name>中超</name>
+				<value></value>
+			
+			</label>
+			<label id="112">
+				<name>转会</name>
+				<value></value>
+			
+			</label>
+			<label id="113">
+				<name>世界杯</name>
+				<value></value>
+			</label>
 
 		</label>
 		<label id="">
 			<name>健身</name>
-			<value>0.2</value>
+			<value></value>
+			
+		</label>
+		<label id="">
+			<name>篮球</name>
+			<value></value>
+			
+			<label id="120">
+				<name>NBA</name>
+				<value></value>
+			</label>
+			<label id="121">
+				<name>中国男篮</name>
+				<value></value>
+			</label>
+			<label id="122">
+				<name>转会</name>
+				<value></value>
+			</label>
+			<label id="123">
+				<name>欧文</name>
+				<value></value>
+			</label>
+			<label id="124">
+				<!--  科比退役前后加入此关键字   -->
+				<name>科比</name>
+				<value></value>
+			</label>
 		</label>
 	</label>
 
-	<label id="">
-		<name>艺术</name>
+	<label id="2">
+		<name>军事</name>
 		<value>1</value>
 		<label id="">
-			<name>摄影</name>
-			<value>0.5</value>
+			<name></name>
+			<value></value>
 		</label>
+
+	</label>
+
+	<label id="3">
+		<name>国际</name>
+		<value>1</value>
 		<label id="">
-			<name>绘画</name>
-			<value>0.5</value>
-			<label id="">
-				<name>素描</name>
-				<value>0.6</value>
-			</label>
-			<label id="">
-				<name>涂鸦</name>
-				<value>0.4</value>
-			</label>
+			<name></name>
+			<value></value>
+		</label>
+
+	</label>
+
+	<label id="4">
+		<name>社会</name>
+		<value>1</value>
+		<label id="">
+			<name></name>
+			<value></value>
+		</label>
+
+	</label>
+
+	<label id="5">
+		<name>旅游</name>
+		<value>1</value>
+		<label id="">
+			<name></name>
+			<value></value>
+		</label>
+
+	</label>
+
+	<label id="6">
+		<name>娱乐</name>
+		<value>1</value>
+		<label id="">
+			<name></name>
+			<value></value>
+		</label>
+
+	</label>
+
+	<label id="7">
+		<name>科技</name>
+		<value>1</value>
+		<label id="">
+			<name></name>
+			<value></value>
+		</label>
+
+	</label>
+
+	<label id="8">
+		<name>艺术</name>
+		<value>1</value>
+		<label id="100">
+			<name>赵雷</name>
+			<value></value>
+		</label>
+		<label id="101">
+			<name>马丁吉他</name>
+			<value></value>
+		</label>
+		<label id="102">
+			<name>指弹</name>
+			<value></value>
+		</label>
+		<label id="103">
+			<name>沙画</name>
+			<value></value>
 		</label>
 	</label>
 
+	<label id="9">
+		<name>宠物</name>
+		<value>1</value>
+		<label id="">
+			<name></name>
+			<value></value>
+		</label>
+
+	</label>
 </root>
 <!-- 待做决策树内存中的拓展。。。决策树的写入文件 -->

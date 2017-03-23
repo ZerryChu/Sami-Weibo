@@ -70,7 +70,7 @@
 					<div class="col-md-4">
 						<form>
 							<div class="form-group">
-								<h4>搜索标签</h4>
+								<h4>搜索话题</h4>
 								<input type="text" class="form-control input-sm">
 							</div>
 						</form>
@@ -78,7 +78,7 @@
 						<hr />
 
 						<h4>
-							搜索历史<a href="#"
+							今日热点<a href="#"
 								style="font-size: 10px; color: #218388; margin-left: 20px;">remove</a>
 						</h4>
 						<ul class="popular-blog-post">
@@ -110,46 +110,28 @@
 									<div class="text-muted m-top-sm">July 25, 2014</div>
 								</div>
 							</li>
+							<li class="clearfix">
+								<div class="img-wrapper clearfix">
+									<img src="images/gallery/gallery1.jpg" alt="">
+								</div>
+								<div class="popular-blog-detail">
+									<a href="#" class="h5">How to increase your shop sales</a>
+									<div class="text-muted m-top-sm">July 27, 2014</div>
+								</div>
+							</li>
+							<li class="clearfix">
+								<div class="img-wrapper clearfix">
+									<img src="images/gallery/gallery2.jpg" alt="">
+								</div>
+								<div class="popular-blog-detail">
+									<a href="#" class="h5">The Best Tools For Testing Your
+										Designs</a>
+									<div class="text-muted m-top-sm">July 26, 2014</div>
+								</div>
+							</li>
 						</ul>
 
 						<hr />
-
-						<h4>相似用户</h4>
-						<ul class="ppl_user popular-blog-post">
-							<li class="clearfix">
-								<div class="task-widget">
-									<div class="task-widget-body clearfix">
-										<div class="pie-chart-wrapper">
-											<div class="img-wrapper clearfix">
-												<img class="small-img img-circle img-thumbnail"
-													src="images/profile/zerry.jpg" alt="">
-											</div>
-											<div class="popular-blog-detail">
-												<a href="profile.jsp" style="font-size: 20px;" class="h5">zerry</a>
-												<div class="text-muted m-top-sm">
-													<span>user</span>
-												</div>
-											</div>
-										</div>
-									</div>
-									<!-- ./task-widget-body -->
-									<div class="task-widget-statatistic">
-										<ul class="clearfix">
-											<li class="bg-grey border-success">
-												<div class="text-muted text-upper font-sm">评论</div> 231
-											</li>
-											<li class="bg-grey border-danger">
-												<div class="text-muted text-upper font-sm">转发</div> 321
-											</li>
-											<li class="bg-grey border-purple">
-												<div class="text-muted text-upper font-sm">点赞</div> 171
-											</li>
-										</ul>
-										<!-- ./row -->
-									</div>
-								</div> <!-- ./task-widget -->
-							</li>
-						</ul>
 
 						<!--
 							<h4>Categories</h4>
@@ -234,10 +216,8 @@
 			$.ajax({
 				type : "post",
 				// async : false,
-				url : "label/show_rec",
-				data : {
-					username : $.query.get("username")
-				},
+				url : "topic/show",
+				data : {},
 				dataType : "json",
 				success : function(data) {
 					if (data.returndata != undefined) {
@@ -247,12 +227,12 @@
 							var str = "";
 							str += "<div class=\"gallery-item\" id=\"lbl"
 								+  data.returndata[i].id
-								+  "\"><div class=\"gallery-wrapper\"><a class=\"gallery-remove\"><i class=\"fa fa-times\"></i></a> <img class=\"lbl_img\" src=\"images/gallery/"
-								+  "gallery" + (i+1)//	+  data.returndata[i].img
+								+  "\"><div class=\"gallery-wrapper\"><a class=\"gallery-remove\"><i class=\"fa fa-times\"></i></a> <img class=\"lbl_img\" src=\"images/topic/"
+								+  data.returndata[i].id //	+  data.returndata[i].img
 								+  ".jpg\" alt=\"\"><div class=\"gallery-title\">"
 								+  data.returndata[i].name
-								+  "</div><div class=\"gallery-overlay\"><a href=\"images/gallery/"
-								+  "gallery" + (i+1)//	+  data.returndata[i].img
+								+  "</div><div class=\"gallery-overlay\"><a href=\"images/topic/"
+								+  data.returndata[i].id//	+  data.returndata[i].img
 								+  ".jpg\" class=\"gallery-action enlarged-photo\"><i class=\"fa fa-search-plus fa-lg\"></i></a></div></div></div>";
 							i++;
 							$("#lbl_list").append(str);
@@ -269,7 +249,7 @@
 		$(".gallery-item").live('click', function() {
 		 	var id = $(this).attr("id").substr(3);
 		 	var name = $(this).find(".gallery-title").text();
-		 	var forward = "window.location='labelinfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&id=" + id + "&flag=1'";
+		 	var forward = "window.location='topicinfo_" + id + ".jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&id=" + id + "'";
 	 		setTimeout(forward, 0);
 		});
 				

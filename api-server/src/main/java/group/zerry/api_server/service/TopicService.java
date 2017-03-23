@@ -4,7 +4,7 @@ import group.zerry.api_server.entity.Topic;
 import group.zerry.api_server.entity.TopicComment;
 
 public interface TopicService {
-	public Topic[] showTopicsByType(int id, int page);
+	public Topic[] showTopicsByType();
 	
 	public Topic showTopicById(int id);
 	

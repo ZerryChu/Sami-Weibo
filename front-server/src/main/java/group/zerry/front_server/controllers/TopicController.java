@@ -16,8 +16,8 @@ public class TopicController {
 	
 	@ResponseBody
 	@RequestMapping(value="/show", produces = "text/html;charset=UTF-8")
-	public String showTopicsByType(int id, int page) {
-		return topicService.showTopicsByType(id, page);
+	public String showTopicsByType() {
+		return topicService.showTopicsByType();
 	}
 	
 	@ResponseBody

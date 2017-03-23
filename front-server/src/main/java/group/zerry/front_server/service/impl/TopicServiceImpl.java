@@ -20,12 +20,10 @@ public class TopicServiceImpl implements TopicService {
 	FetchUrlTools fetchURlTool;
 	
 	@Override
-	public String showTopicsByType(int id, int page) {
+	public String showTopicsByType() {
 		// TODO Auto-generated method stub
 		String url = httpTarget.getHostname() + httpTarget.getPath() + "topic/show";
 		Map<String, String> paramsMap = new HashMap<String, String>();
-		paramsMap.put("id", String.valueOf(id));
-		paramsMap.put("page", String.valueOf(page));
 		return fetchURlTool.doPost(url, paramsMap);
 	}
 

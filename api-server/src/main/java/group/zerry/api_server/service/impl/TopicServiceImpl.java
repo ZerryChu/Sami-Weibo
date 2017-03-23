@@ -19,14 +19,14 @@ public class TopicServiceImpl implements TopicService {
 	TopicDao topicDao;
 	
 	@Override
-	public Topic[] showTopicsByType(int id, int page) {
+	public Topic[] showTopicsByType() {
 		// TODO Auto-generated method stub
-		int pageSize = 10;
-		PageHelperInterceptor.startPage(page, pageSize);
-		Topic[] topics = topicDao.selectTopicsByType(id);
-		Page<Topic> myPage = PageHelperInterceptor.endPage();
-		List<Topic> list = myPage.getResult();
-		topics = (Topic[]) list.toArray(new Topic[list.size()]);
+		//int pageSize = 10;
+		//PageHelperInterceptor.startPage(page, pageSize);
+		Topic[] topics = topicDao.selectTopicsByType();
+		//Page<Topic> myPage = PageHelperInterceptor.endPage();
+		//List<Topic> list = myPage.getResult();
+		//topics = (Topic[]) list.toArray(new Topic[list.size()]);
 		return topics;
 	}
 

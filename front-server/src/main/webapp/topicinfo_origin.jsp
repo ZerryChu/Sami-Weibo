@@ -50,7 +50,7 @@
 .sub_pic_div img {
 	width: 182px;
 	height: 100px;
-	margin-left: 28px;
+	margin-left: 8px;
 	margin-top: 12px;
 }
 
@@ -126,6 +126,44 @@
 	font-weight: 700;
 	background: #f60;
 }
+
+.small_sub {
+	display: inline-block;
+	margin-left: 30px;
+	margin-bottom: 20px;
+	padding-right: 30px;
+	border-right: 2px solid gray;
+}
+
+.sub_tpc {
+	display: inline-block;
+	margin-left: 60px;
+	width: 610px;
+}
+
+.sub_tpc ul {
+	display: inline-block;
+	list-style: none;
+	width: 300px;
+	height: 110px;
+	margin-top: 22px;
+}
+
+.sub_tpc ul li {
+	margin-bottom: 5px;
+}
+
+.sub_pic {
+	display: inline-block;
+}
+
+.sub_pic img {
+	display: block;
+	width: 227px;
+	height: 100px;
+	margin-top: 20px;
+}
+
 </style>
 </head>
 
@@ -139,7 +177,9 @@
 			<div class="padding-md">
 				<h3 class="header-text m-top-lg">Welcome To Sami Weibo</h3>
 
-				<div class="row">
+				<div
+					style="margin-left: 40px; border-bottom: 3px solid red; padding-bottom: 30px; margin-right: 40px;"
+					class="row">
 					<div class="col-md-8">
 						<div id="box_ad">
 							<div class="list">
@@ -155,7 +195,7 @@
 								</ul>
 							</div>
 						</div>
-						<div class="sub_pic_div">
+						<div style="width: 600px;" class="sub_pic_div">
 							<img src="topic/${param.id}/pic5.jpg" /><img
 								src="topic/${param.id}/pic6.jpg" /><img
 								src="topic/${param.id}/pic7.jpg" /><img
@@ -165,29 +205,71 @@
 						</div>
 					</div>
 					<!-- ./col -->
-					<div style="margin-left: -25px;" class="col-md-4">
+					<div class="col-md-4">
 						<div>
 							<ul class="tpc">
 								<li class="imt_tpc">topic_content1</li>
 								<li>topic_content4</li>
 								<li>topic_content5</li>
-								
+
 								<li class="imt_tpc">topic_content2</li>
 								<li>topic_content6</li>
 								<li>topic_content7</li>
-								
+
 								<li class="imt_tpc">topic_content3</li>
 								<li>topic_content8</li>
 								<li>topic_content9</li>
-								
+
 								<li style="margin-top: 15px;">topic_content10</li>
 								<li>topic_content11</li>
 								<li>topic_content12</li>
 								<li>topic_content13</li>
 							</ul>
 						</div>
-						<img style="margin-top: 5px; width: 300px; height: 184px;" src="topic/${param.id}/pic11.jpg" />
+						<img
+							style="margin-top: 5px; width: 300px; height: 184px; margin-left: -45px;"
+							src="topic/${param.id}/pic11.jpg" />
 					</div>
+				</div>
+				<!--  line -->
+				<div style="margin-left: 60px; margin-top: 10px;" class="sub_ttl">
+					<span style="font-size: 30px;" class="big_sub">大标题</span> <span
+						class="small_sub">小标题</span><span class="small_sub">小标题</span><span
+						class="small_sub">小标题</span><span style="margin-left: 30px;">小标题</span>
+				</div>
+				<!--  文字框 -->
+				<div class="sub_tpc">
+					<ul>
+						<li>topic_content14</li>
+						<li>topic_content15</li>
+						<li>topic_content16</li>
+						<li>topic_content17</li>
+						<li>topic_content18</li>
+					</ul>
+					<ul>
+						<li>topic_content19</li>
+						<li>topic_content20</li>
+						<li>topic_content21</li>
+						<li>topic_content22</li>
+						<li>topic_content23</li>
+					</ul>
+					<ul>
+						<li>topic_content24</li>
+						<li>topic_content25</li>
+						<li>topic_content26</li>
+						<li>topic_content27</li>
+						<li>topic_content28</li>
+					</ul>
+					<ul>
+						<li>topic_content29</li>
+						<li>topic_content30</li>
+						<li>topic_content31</li>
+						<li>topic_content32</li>
+						<li>topic_content33</li>
+					</ul>
+				</div>
+				<div class="sub_pic">
+					<img src="topic/${param.id}/pic12.jpg"/><img src="topic/${param.id}/pic13.jpg"/>
 				</div>
 			</div>
 			<!-- ./padding-md -->
@@ -245,10 +327,8 @@
 					.ajax({
 						type : "post",
 						// async : false,
-						url : "label/show_rec",
-						data : {
-							username : $.query.get("username")
-						},
+						url : "topic/show",
+						data : {},
 						dataType : "json",
 						success : function(data) {
 							if (data.returndata != undefined) {

@@ -24,9 +24,9 @@ public class TopicController {
 	
 	@ResponseBody
 	@RequestMapping(value = "/show", produces = "text/html;charset=UTF-8")
-	public String showTopicsByType(int id, int page) {
+	public String showTopicsByType() {
 		StringBuilder regMsg = new StringBuilder("{\"returndata\": ");
-		Topic[] topics = topicService.showTopicsByType(id, page);
+		Topic[] topics = topicService.showTopicsByType();
 		if (null == topics) {
 			regMsg.append(TopicStatusEnum.TNE.getValue());
 			regMsg.append("}");
