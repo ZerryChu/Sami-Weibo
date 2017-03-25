@@ -209,8 +209,6 @@
 							<div class="row">
 								<div class="col-md-8">
 									<div class="timeline-wrapper clearfix">
-										<!--  改  -->
-										<div class="timeline-year"></div>
 
 										<div class="timeline-row clearfix alt">
 											<div class="timeline-item">

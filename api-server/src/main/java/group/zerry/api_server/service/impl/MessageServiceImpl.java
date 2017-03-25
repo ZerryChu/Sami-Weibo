@@ -28,6 +28,7 @@ import group.zerry.api_server.service.LabelService;
 import group.zerry.api_server.service.MessageService;
 import group.zerry.api_server.utils.BatchHandlerForLabelHeat;
 // import group.zerry.api_server.utils.LabelManageTools;
+import group.zerry.api_server.utils.LabelManageTools;
 
 /**
  * @author ZerryChu
@@ -58,8 +59,8 @@ public class MessageServiceImpl implements MessageService {
 	@Autowired
 	LabelHeatDao     labelHeatDao;
 	
-	// @Autowired
-	// LabelManageTools labelManageTools;
+	@Autowired
+	LabelManageTools labelManageTools;
 	
 	@Autowired
 	private BatchHandlerForLabelHeat batchHandleWrapperForLabel;
@@ -80,20 +81,17 @@ public class MessageServiceImpl implements MessageService {
 		}
 		message.setContent(content);
 		message.setType(type);
-		/*
-		    messageDao.addMessage(message);
-			// 标签识别
-			Message lastMessage = messageDao.getLastMessage(user.getNickname());
-			List<String> labels = labelManageTools.extractLabel(content);
-			labelService.addLabels(lastMessage.getId(), labels);
 		
-		*/
 		try {
 			messageDao.addMessage(message);
 			if (label != null) {
 				Message lastMessage = messageDao.getLastMessage(user.getNickname());
 				int msg_id = lastMessage.getId();
 				int user_id = user.getId();
+				
+				List<String> topics = labelManageTools.extractLabel(content);
+				labelService.addLabels(msg_id, topics);
+				
 				// 标签可多个
 				String[] labels = label.split("#");
 				for (int i = 0;i < labels.length; i++) {

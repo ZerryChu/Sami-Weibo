@@ -50,12 +50,12 @@
 				<value></value>
 			</label>
 			<label id="123">
-				<name>欧文</name>
+				<name>哈登</name>
 				<value></value>
 			</label>
 			<label id="124">
 				<!--  科比退役前后加入此关键字   -->
-				<name>科比</name>
+				<name>科比退役</name>
 				<value></value>
 			</label>
 		</label>

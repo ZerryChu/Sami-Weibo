@@ -8,7 +8,6 @@ import org.dom4j.Document;
 import org.dom4j.DocumentException;
 import org.dom4j.Element;
 import org.dom4j.io.SAXReader;
-import org.junit.Test;
 
 /**
  * content: 读取配置文件label_tree 通过关键词确定标签
@@ -62,7 +61,9 @@ public class LabelManageTools {
 		node.next[pos] = new Node();
 		node.next[pos].name = childElements.get(0).getText();
 		// value = 父节点value * value
-		node.next[pos].value = Double.parseDouble(childElements.get(1).getText()) * node.value;
+		
+		// 暂时不考虑value
+		// node.next[pos].value = Double.parseDouble(childElements.get(1).getText()) * node.value;
 		node.next[pos].next = new Node[childElements.size()-2];
 		for (int i = 2; i < childElements.size(); i++) {
 			build_tree(node.next[pos], childElements.get(i).elements(), i-2);

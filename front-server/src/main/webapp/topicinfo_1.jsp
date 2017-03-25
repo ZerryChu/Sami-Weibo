@@ -256,7 +256,7 @@ a:hover {
 					<div class="col-md-4">
 						<div>
 							<ul class="tpc">
-								<li class="imt_tpc"><a>19:35播国足VS韩国</a></li>
+								<li class="imt_tpc"><a href="topicinfo1_1.jsp?username=${param.username}&userToken=${param.userToken}&page=1">3分碰瓷数哈登概率超常人10倍</a></li>
 								<li><a>黄博文亲证无法出战</a></li>
 								<li><a>4年前雨战绝杀抢3分</a></li>
 
@@ -339,7 +339,6 @@ a:hover {
 					class="sub_ttl">
 					<span style="font-size: 30px; color: gray;" class="big_sub">篮球</span>
 					<span class="small_sub">NBA</span><span class="small_sub">中国男篮</span><span
-						class="small_sub">欧文</span><span
 						style="color: black; margin-left: 30px;">科比退役</span>
 				</div>
 				<!--  文字框 -->

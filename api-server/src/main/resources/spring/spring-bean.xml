@@ -20,10 +20,8 @@
 	<bean id="labelHeat" class="group.zerry.api_server.utils.LabelHeat"
 		init-method="init" />
 	
-	<!-- 弃用
 	<bean id="labelManageTools" class="group.zerry.api_server.utils.LabelManageTools"
 		init-method="init" />
-	 -->
 	 
 	<bean id="recommender" class="group.zerry.api_server.utils.Recommender" 
 		init-method="init" />
