@@ -24,6 +24,8 @@ public interface MessageService {
 	
 	public String show_messagesByLabelAndHeat(String username, String userToken, int label_id, int page);
 	
+	public String showMessagesByLabelId(String username, String label_id, int page);
+	
 	public String show_userOwnMessages(String nickname, int page);
 	
 	public String show_announcement();

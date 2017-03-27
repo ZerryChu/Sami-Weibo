@@ -17,6 +17,8 @@ public interface MessageDao {
 	
 	public Message[] getMessagesAndHeatByLabel(int label_id);
 	
+	public Message[] getMessagesAndHeatByLabels(int[] label_id);
+	
 	public Message[] getMessagesByLabel(int label_id);
 	
 	public Message[] getOwnMessages(String nickname);
@@ -50,4 +52,7 @@ public interface MessageDao {
 	 * @return 查询结果条数
 	 */
 	public Count findIfSupportedByUsername(String username, int id);
+	
+	public Count getMessageNumByLabelId(int[] label_id);
+	
 }

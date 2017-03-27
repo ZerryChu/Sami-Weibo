@@ -113,10 +113,11 @@ public class LabelServiceImpl implements LabelService {
 		return lbs;
 	}
 	
-	public void addLabels(int msg_id, List<String> labels) {
+	public void addLabels(int user_id, int msg_id, List<String> labels) {
 		for (String label : labels) {
 			int lbl_id = labelDao.searchLabelIdByName(label);
 			labelDao.addLabel(msg_id, lbl_id);
+			labelHeatDao.updateLabelHeatById(user_id, lbl_id, 3);
 		}
 	}
 

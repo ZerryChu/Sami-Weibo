@@ -16,6 +16,8 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.alibaba.fastjson.JSON;
+
 import group.zerry.front_server.annotation.AuthPass;
 import group.zerry.front_server.service.LabelService;
 import group.zerry.front_server.service.MessageService;
@@ -281,6 +283,13 @@ public class MessageController {
 			String returnMsg = messageService.show_messagesByHeat(username, userToken, page);
 			return returnMsg;
 		}
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/show_messagesByLabelId", produces = "text/html;charset=UTF-8")
+	public String showMessagesByLabelId(String username, String label_id, int page) {
+		String returnMsg = messageService.showMessagesByLabelId(username, label_id, page);
+		return returnMsg;
 	}
 	
 }

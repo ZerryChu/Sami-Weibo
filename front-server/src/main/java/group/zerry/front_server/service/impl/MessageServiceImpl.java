@@ -33,9 +33,10 @@ public class MessageServiceImpl implements MessageService {
 	/**
 	 * @content 图片存储位置
 	 */
-	//private String path = "/root/apache-tomcat-7.0.65/webapps/weibo/message/";
+	// private String path =
+	// "/root/apache-tomcat-7.0.65/webapps/weibo/message/";
 	private String path = "/Users/zhuzirui/GitHub/Social-Network/front-server/src/main/webapp/message/";
-	
+
 	private boolean fileUpload(MultipartFile pic, UUID uuid) {
 		// 图片大小，像素等的处理
 		if (pic == null || pic.getSize() >= 5242880)
@@ -55,8 +56,8 @@ public class MessageServiceImpl implements MessageService {
 		return true;
 	}
 
-	public boolean send_message(String username, String userToken, String content, int type,
-			MultipartFile pic, String label) {
+	public boolean send_message(String username, String userToken, String content, int type, MultipartFile pic,
+			String label) {
 		// TODO Auto-generated method stub
 		try {
 			logger.error("content: " + content);
@@ -68,11 +69,11 @@ public class MessageServiceImpl implements MessageService {
 			paramsMap.put("content", content);
 			paramsMap.put("type", String.valueOf(type));
 			paramsMap.put("label", label);
-			if(null != pic)
+			if (false == pic.isEmpty())
 				paramsMap.put("pic", uuid.toString());
 			ReturnMsgDto returnMsgDto = JSON.parseObject(fetchURLTool.doPost(url, paramsMap), ReturnMsgDto.class);
 			if (returnMsgDto.getReturnMsg().trim().equals(MessageStatusEnum.AMS.getValue())) {
-				if(null != pic && false == fileUpload(pic, uuid))
+				if (null != pic && false == fileUpload(pic, uuid))
 					logger.error("图片上传失败");
 				return true;
 			} else
@@ -268,11 +269,11 @@ public class MessageServiceImpl implements MessageService {
 		paramsMap.put("userToken", userToken);
 		paramsMap.put("content", content);
 		paramsMap.put("topic_id", String.valueOf(topic_id));
-		if(!pic.isEmpty())
+		if (!pic.isEmpty())
 			paramsMap.put("pic", uuid.toString());
 		ReturnMsgDto returnMsgDto = JSON.parseObject(fetchURLTool.doPost(url, paramsMap), ReturnMsgDto.class);
 		if (returnMsgDto.getReturnMsg().trim().equals(MessageStatusEnum.AMS.getValue())) {
-			if(!pic.isEmpty() && false == fileUpload(pic, uuid))
+			if (!pic.isEmpty() && false == fileUpload(pic, uuid))
 				logger.error("图片上传失败");
 			return true;
 		} else
@@ -282,14 +283,27 @@ public class MessageServiceImpl implements MessageService {
 	@Override
 	public String show_messagesByHeat(String username, String userToken, int page) {
 		// TODO Auto-generated method stub
-				String url = httpTarget.getHostname() + httpTarget.getPath() + "message/showByHeat";
-				Map<String, String> paramsMap = new HashMap<String, String>();
-				paramsMap.put("username", username);
-				paramsMap.put("userToken", userToken);
-				paramsMap.put("page", String.valueOf(page));
-				// List<Message> messages = JSON.parseArray(fetchURLTool.doPost(url,
-				// paramsMap), Message.class);
-				return fetchURLTool.doPost(url, paramsMap);
+		String url = httpTarget.getHostname() + httpTarget.getPath() + "message/showByHeat";
+		Map<String, String> paramsMap = new HashMap<String, String>();
+		paramsMap.put("username", username);
+		paramsMap.put("userToken", userToken);
+		paramsMap.put("page", String.valueOf(page));
+		// List<Message> messages = JSON.parseArray(fetchURLTool.doPost(url,
+		// paramsMap), Message.class);
+		return fetchURLTool.doPost(url, paramsMap);
+	}
+
+	@Override
+	public String showMessagesByLabelId(String username, String label_id, int page) {
+		// TODO Auto-generated method stub
+		String url = httpTarget.getHostname() + httpTarget.getPath() + "message//show_messagesByLabelId";
+		Map<String, String> paramsMap = new HashMap<String, String>();
+		paramsMap.put("username", username);
+		paramsMap.put("_label_id_str", label_id);
+		paramsMap.put("page", String.valueOf(page));
+		// List<Message> messages = JSON.parseArray(fetchURLTool.doPost(url,
+		// paramsMap), Message.class);
+		return fetchURLTool.doPost(url, paramsMap);	
 	}
 
 }

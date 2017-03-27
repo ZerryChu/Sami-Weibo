@@ -154,6 +154,36 @@
 			order by heat
 	</select>
 	
+	<select id="getMessagesAndHeatByLabels" resultMap="MessageMap">
+		SELECT
+		DISTINCT
+			message_inf.id,
+			type,
+			author,
+			content,
+			message_inf.create_time,
+			repost_times,
+			comment_times,
+			support_times,
+			message_inf.pic,
+			(DATE_FORMAT(now(),'%Y%m%d') - DATE_FORMAT(create_time,'%Y%m%d')) * 5 - comment_times * 3 - support_times as heat	
+		FROM
+			message_inf,
+			msg_lbl_relation,
+			label_inf
+		WHERE
+			message_inf.id = msg_lbl_relation.msg_id
+			AND label_inf.id = msg_lbl_relation.label_id
+			AND (
+				<foreach collection="array" item="label_id" index="index" open=" "
+						close=" " separator=" or ">
+						label_inf.id = #{label_id}
+				</foreach>
+			)
+			
+			order by heat
+	</select>
+	
 	<select id="getMessagesByLabel" resultMap="MessageMap">
 		SELECT
 			message_inf.id,
@@ -293,6 +323,22 @@
 		AND message_inf.id = #{msg_id}
 	</select>
 
+	<select id="getMessageNumByLabelId" resultType="Count">
+		SELECT
+			count(id) AS number
+		FROM
+			message_inf,
+			msg_lbl_relation
+		WHERE
+			message_inf.id = msg_lbl_relation.msg_id
+		AND (
+		<foreach collection="array" item="label_id" index="index" open=" "
+				close=" " separator=" or ">
+				msg_lbl_relation.label_id = #{label_id}
+		</foreach>
+		)
+	</select>
+	
 	<insert id="addLabel">
 		INSERT INTO msg_lbl_relation
 		VALUES

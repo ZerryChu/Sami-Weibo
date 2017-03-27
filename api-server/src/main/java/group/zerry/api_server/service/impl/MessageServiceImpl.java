@@ -3,10 +3,8 @@ package group.zerry.api_server.service.impl;
 import java.util.List;
 
 import org.apache.log4j.Logger;
-import org.hamcrest.core.IsNot;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
-import org.springframework.web.multipart.MultipartFile;
 
 import group.zerry.api_server.dao.CommentDao;
 import group.zerry.api_server.dao.LabelDao;
@@ -39,32 +37,32 @@ import group.zerry.api_server.utils.LabelManageTools;
 public class MessageServiceImpl implements MessageService {
 
 	@Autowired
-	MessageDao       messageDao;
+	MessageDao messageDao;
 
 	@Autowired
-	CommentDao       commentDao;
+	CommentDao commentDao;
 
 	@Autowired
-	UserDao          userDao;
+	UserDao userDao;
 
 	@Autowired
-	LabelDao         labelDao;
+	LabelDao labelDao;
 
 	@Autowired
-	LabelService     labelService;
-	
-	@Autowired
-	TopicDao         topicDao;
+	LabelService labelService;
 
 	@Autowired
-	LabelHeatDao     labelHeatDao;
-	
+	TopicDao topicDao;
+
+	@Autowired
+	LabelHeatDao labelHeatDao;
+
 	@Autowired
 	LabelManageTools labelManageTools;
-	
+
 	@Autowired
 	private BatchHandlerForLabelHeat batchHandleWrapperForLabel;
-	
+
 	private Logger logger = Logger.getLogger(MessageServiceImpl.class);
 
 	@Override
@@ -81,32 +79,40 @@ public class MessageServiceImpl implements MessageService {
 		}
 		message.setContent(content);
 		message.setType(type);
-		
+
 		try {
 			messageDao.addMessage(message);
 			if (label != null) {
 				Message lastMessage = messageDao.getLastMessage(user.getNickname());
 				int msg_id = lastMessage.getId();
 				int user_id = user.getId();
-				
 				List<String> topics = labelManageTools.extractLabel(content);
-				labelService.addLabels(msg_id, topics);
-				
+				// 包含labelheat + 3
+				labelService.addLabels(user_id, msg_id, topics);
+
 				// 标签可多个
 				String[] labels = label.split("#");
-				for (int i = 0;i < labels.length; i++) {
-					Count count = labelDao.judgeIfLabelExists(labels[i]);
-					if (count.getNumber() == 0) {
-						System.out.println("create new label: " + labels[i]);
-						labelDao.insertNewLabel(labels[i]);
+				for (int i = 0; i < labels.length; i++) {
+					int label_id;
+					if (topics.contains(labels[i]) == false) {
+						Count count = labelDao.judgeIfLabelExists(labels[i]);
+						if (count.getNumber() == 0) {
+							System.out.println("create new label: " + labels[i]);
+							labelDao.insertNewLabel(labels[i]);
+						}
+						label_id = labelDao.searchLabelIdByName(labels[i]);
+						messageDao.addLabel(msg_id, label_id);
+						labelHeatDao.updateLabelHeatById(user_id, label_id, 5);
+					} else {
+						label_id = labelDao.searchLabelIdByName(labels[i]);
+						labelHeatDao.updateLabelHeatById(user_id, label_id, 5);
 					}
-					int id = labelDao.searchLabelIdByName(labels[i]);
-					messageDao.addLabel(msg_id, id);
-					labelHeatDao.updateLabelHeatById(user_id, id, 5);
 				}
 			}
+
 		} catch (Exception e) {
-			System.out.println(e.getMessage());
+			e.printStackTrace();
+			// System.out.println(e.getMessage());
 			return MessageStatusEnum.AMF;
 		}
 		return MessageStatusEnum.AMS;
@@ -161,7 +167,7 @@ public class MessageServiceImpl implements MessageService {
 			Message message = messageDao.getMessageById(id);
 			// 获取原作者id
 			int _author_id = message.getAuthor().getId();
-			
+
 			message.setAuthor(user);
 			if (message.getType() == 1) {
 				message.setContent(_content + ";" + id);
@@ -172,10 +178,10 @@ public class MessageServiceImpl implements MessageService {
 			}
 			messageDao.addMessage(message);
 			messageDao.addRepostTimes(id);
-			
+
 			Label[] labels = null;
 			if ((labels = message.getLabels()) != null) {
-				for (int i = 0;i < labels.length; i++) {
+				for (int i = 0; i < labels.length; i++) {
 					// update_labelHeat
 					labelHeatDao.updateLabelHeatById(_author_id, labels[i].getId(), 3);
 				}
@@ -200,12 +206,12 @@ public class MessageServiceImpl implements MessageService {
 			comment.setContent(content);
 			comment.setMessage_id(id);
 			commentDao.addComment(comment);
-			
+
 			Integer[] label_ids = labelDao.searchLabelIDByMsgId(id);
 			if (label_ids.length > 0) {
 				int _author_id = messageDao.getMessageById(id).getAuthor().getId();
 
-				for (int i = 0;i < label_ids.length; i++) {
+				for (int i = 0; i < label_ids.length; i++) {
 					// update_labelHeat
 					labelHeatDao.updateLabelHeatById(_author_id, label_ids[i], 2);
 				}
@@ -227,13 +233,13 @@ public class MessageServiceImpl implements MessageService {
 			} else if (num == 1)
 				return MessageStatusEnum.HAS;
 			messageDao.addSupportInfo(id, username);
-					
+
 			Integer[] label_ids = labelDao.searchLabelIDByMsgId(id);
 
 			if (label_ids.length > 0) {
 				int _author_id = messageDao.getMessageById(id).getAuthor().getId();
-				
-				for (int i = 0;i < label_ids.length; i++) {
+
+				for (int i = 0; i < label_ids.length; i++) {
 					// update_labelHeat
 					labelHeatDao.updateLabelHeatById(_author_id, label_ids[i], 1);
 				}
@@ -258,12 +264,12 @@ public class MessageServiceImpl implements MessageService {
 			if (num > 1 || num < 0)
 				return MessageStatusEnum.OF;
 			messageDao.decreaseSupportInfo(id, username);
-			
+
 			Integer[] label_ids = labelDao.searchLabelIDByMsgId(id);
 			if (label_ids.length > 0) {
 				int _author_id = messageDao.getMessageById(id).getAuthor().getId();
-				
-				for (int i = 0;i < label_ids.length; i++) {
+
+				for (int i = 0; i < label_ids.length; i++) {
 					// update_labelHeat
 					labelHeatDao.updateLabelHeatById(_author_id, label_ids[i], -1);
 				}
@@ -344,15 +350,13 @@ public class MessageServiceImpl implements MessageService {
 		Message[] message = null;
 		try {
 			// 待做 获取user heat 再分页
-			
-			
-			
+
 			PageHelperInterceptor.startPage(page, pageSize);
 			message = messageDao.getMessagesByLabel(label_id);
 			Page<Message> myPage = PageHelperInterceptor.endPage();
 			List<Message> list = myPage.getResult();
 			message = (Message[]) list.toArray(new Message[list.size()]);
-			
+
 			messageCompletion(message, username);
 		} catch (Exception e) {
 			logger.error(e.getMessage());
@@ -367,9 +371,8 @@ public class MessageServiceImpl implements MessageService {
 		int pageSize = 5;
 		Message[] message = null;
 		try {
-			// 待做 获取user heat 再分页 
-			
-			
+			// 待做 获取user heat 再分页
+
 			PageHelperInterceptor.startPage(page, pageSize);
 			message = messageDao.getMessagesAndHeatByLabel(label_id);
 			Page<Message> myPage = PageHelperInterceptor.endPage();
@@ -385,15 +388,15 @@ public class MessageServiceImpl implements MessageService {
 	}
 
 	@Override
-	public Message[] showWeiboByTopicId(String username, int topic_id, int page) {
+	public Message[] showMessagesByLabelAndHeat(String username, int[] label_id, int page) {
 		// TODO Auto-generated method stub
-		Topic topic = topicDao.selectTopicById(topic_id);
-		int pageSize = 3;
+		int pageSize = 5;
 		Message[] message = null;
 		try {
+			// 待做 获取user heat 再分页
+
 			PageHelperInterceptor.startPage(page, pageSize);
-			// mysql like语句
-			message = messageDao.selectWeiboByTopicName("#" + topic.getName() + "#%");
+			message = messageDao.getMessagesAndHeatByLabels(label_id);
 			Page<Message> myPage = PageHelperInterceptor.endPage();
 			List<Message> list = myPage.getResult();
 			message = (Message[]) list.toArray(new Message[list.size()]);
@@ -405,6 +408,22 @@ public class MessageServiceImpl implements MessageService {
 		}
 		return message;
 	}
+
+	/*
+	 * 弃用
+	 * 
+	 * @Override public Message[] showWeiboByTopicId(String username, int
+	 * topic_id, int page) { // TODO Auto-generated method stub Topic topic =
+	 * topicDao.selectTopicById(topic_id); int pageSize = 3; Message[] message =
+	 * null; try { PageHelperInterceptor.startPage(page, pageSize); // mysql
+	 * like语句 message = messageDao.selectWeiboByTopicName("#" + topic.getName()
+	 * + "#%"); Page<Message> myPage = PageHelperInterceptor.endPage();
+	 * List<Message> list = myPage.getResult(); message = (Message[])
+	 * list.toArray(new Message[list.size()]);
+	 * 
+	 * messageCompletion(message, username); } catch (Exception e) {
+	 * logger.error(e.getMessage()); return null; } return message; }
+	 */
 
 	@Override
 	public MessageStatusEnum send_topicMessage(String username, String content, String pic, int topic_id) {
@@ -439,17 +458,17 @@ public class MessageServiceImpl implements MessageService {
 			message[i].setAuthor(author);
 			message[i].setSupported(judgeIfSupport(username, message[i].getId()));
 			String content = message[i].getContent();
-			
+
 			// set labels
 			String[] label_names = messageDao.findLabel(message[i].getId());
 			Label[] labels = new Label[label_names.length];
-			for (int j = 0;j < labels.length; j++) {
+			for (int j = 0; j < labels.length; j++) {
 				labels[j] = new Label();
 				labels[j].setName(label_names[j]);
 				labels[j].setId(labelService.showLabelIdByName(label_names[j]));
 			}
 			message[i].setLabels(labels);
-			
+
 			if (message[i].getType() == 2) {
 				int index = content.indexOf(';');
 				message[i].setContent(content.substring(0, index));
@@ -473,12 +492,12 @@ public class MessageServiceImpl implements MessageService {
 		// set labels
 		String[] label_names = messageDao.findLabel(message.getId());
 		Label[] labels = new Label[label_names.length];
-		for (int i = 0;i < labels.length; i++) {
+		for (int i = 0; i < labels.length; i++) {
 			labels[i].setName(label_names[i]);
 			labels[i].setId(labelService.showLabelIdByName(label_names[i]));
 		}
 		message.setLabels(labels);
-		
+
 		if (message.getType() == 2) {
 			int index = content.indexOf(';');
 			message.setContent(content.substring(0, index));
@@ -513,6 +532,13 @@ public class MessageServiceImpl implements MessageService {
 			return null;
 		}
 		return message;
+	}
+
+	@Override
+	public int getMessageNumByLabel(int[] label_id) {
+		// TODO Auto-generated method stub
+		Count count = messageDao.getMessageNumByLabelId(label_id);
+		return count.getNumber();
 	}
 
 }

@@ -23,6 +23,8 @@
 	<bean id="labelManageTools" class="group.zerry.api_server.utils.LabelManageTools"
 		init-method="init" />
 	 
+	 <bean id="rootNode" class="group.zerry.api_server.entity.Node" />
+		
 	<bean id="recommender" class="group.zerry.api_server.utils.Recommender" 
 		init-method="init" />
 	

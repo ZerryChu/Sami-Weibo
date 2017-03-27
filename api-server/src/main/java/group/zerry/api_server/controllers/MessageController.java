@@ -16,6 +16,7 @@ import com.alibaba.fastjson.serializer.SimplePropertyPreFilter;
 import group.zerry.api_server.annotation.AuthPass;
 import group.zerry.api_server.entity.Label;
 import group.zerry.api_server.entity.Message;
+import group.zerry.api_server.entity.Topic;
 import group.zerry.api_server.enumtypes.MessageStatusEnum;
 import group.zerry.api_server.enumtypes.TopicStatusEnum;
 import group.zerry.api_server.service.LabelService;
@@ -140,7 +141,7 @@ public class MessageController {
 	@AuthPass
 	@ResponseBody
 	@RequestMapping(value = "/show_by_label", produces = "text/html;charset=UTF-8")
-	public String show_messageByLabel(String username, String userToken, int label_id, int page) {
+	public String show_messagesByLabel(String username, String userToken, int label_id, int page) {
 		StringBuilder regMsg = new StringBuilder("{\"returndata\":");
 		Message[] messages = null;
 		Label[] rec_labels = null;
@@ -311,6 +312,7 @@ public class MessageController {
 		return regMsg.toString();
 	}
 
+	/* 弃用
 	@ResponseBody
 	@RequestMapping(value = "/show_topicWeibo", produces = "text/html;charset=UTF-8")
 	public String showWeiboByTopicId(String username, int topic_id, int page) {
@@ -325,6 +327,7 @@ public class MessageController {
 		regMsg.append("}");
 		return regMsg.toString();
 	}
+	*/
 
 	@AuthPass
 	@ResponseBody
@@ -334,6 +337,28 @@ public class MessageController {
 		regMsg.append(messageService.send_topicMessage(username, content, pic, topic_id).getValue());
 		regMsg.append("\"}");
 		// logger.error(regMsg.toString());
+		return regMsg.toString();
+	}
+	
+	@ResponseBody
+	@RequestMapping(value = "/show_messagesByLabelId", produces = "text/html;charset=UTF-8")
+	public String showMessagesByLabelId(String username, String _label_id_str, int page) {
+		StringBuilder regMsg = new StringBuilder("{\"returndata\":{\"messages\":");
+		
+		String[] label_id_str = _label_id_str.split("#");
+		int[] label_id = new int[label_id_str.length];
+		for (int i = 0; i < label_id_str.length; i++)
+			label_id[i] = Integer.valueOf(label_id_str[i]);
+		// check
+		System.out.println(label_id);
+		
+		Message[] messages = messageService.showMessagesByLabelAndHeat(username, label_id, page);
+		int sum = messageService.getMessageNumByLabel(label_id);
+		regMsg.append(JSON.toJSON(messages));
+		regMsg.append(", \"sum\":");
+		regMsg.append(JSON.toJSON(sum));
+		regMsg.append("}}");
+		System.out.println(regMsg.toString());
 		return regMsg.toString();
 	}
 }

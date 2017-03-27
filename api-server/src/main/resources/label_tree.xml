@@ -1,154 +1,153 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <root>
 	<!-- 话题关系的决策树 -->
-	<label id="1">
+	<label>
+		<id>50</id>
 		<name>运动</name>
 		<value>1</value>
-		<label id="">
+		<label>
+			<id>12</id>
 			<name>足球</name>
 			<value></value>
-			<label id="110">
+			<label>
+				<id>110</id>
 				<name>国足</name>
 				<value></value>
-			
+
 			</label>
-			<label id="111">
+			<label>
+				<id>111</id>
 				<name>中超</name>
 				<value></value>
-			
+
 			</label>
-			<label id="112">
+			<label>
+				<id>112</id>
 				<name>转会</name>
 				<value></value>
-			
+
 			</label>
-			<label id="113">
+			<label>
+				<id>113</id>
 				<name>世界杯</name>
 				<value></value>
 			</label>
 
 		</label>
-		<label id="">
+
+		<label>
+			<id>114</id>
 			<name>健身</name>
 			<value></value>
-			
+
 		</label>
-		<label id="">
+
+		<label>
+			<id>7</id>
 			<name>篮球</name>
 			<value></value>
-			
-			<label id="120">
+
+			<label>
+				<id>120</id>
 				<name>NBA</name>
 				<value></value>
 			</label>
-			<label id="121">
+			<label>
+				<id>121</id>
 				<name>中国男篮</name>
 				<value></value>
 			</label>
-			<label id="122">
+			<label>
+				<id>122</id>
 				<name>转会</name>
 				<value></value>
 			</label>
-			<label id="123">
+			<label>
+				<id>123</id>
 				<name>哈登</name>
 				<value></value>
 			</label>
-			<label id="124">
-				<!--  科比退役前后加入此关键字   -->
+			<label>
+				<!-- 科比退役前后加入此关键字 -->
+				<id>124</id>
 				<name>科比退役</name>
 				<value></value>
 			</label>
 		</label>
 	</label>
 
-	<label id="2">
+	<label>
+		<id>51</id>
 		<name>军事</name>
 		<value>1</value>
-		<label id="">
-			<name></name>
-			<value></value>
-		</label>
 
 	</label>
 
-	<label id="3">
+	<label>
+		<id>52</id>
 		<name>国际</name>
 		<value>1</value>
-		<label id="">
-			<name></name>
-			<value></value>
-		</label>
 
 	</label>
 
-	<label id="4">
+	<label>
+		<id>53</id>
 		<name>社会</name>
 		<value>1</value>
-		<label id="">
-			<name></name>
-			<value></value>
-		</label>
 
 	</label>
 
-	<label id="5">
+	<label>
+		<id>54</id>
 		<name>旅游</name>
 		<value>1</value>
-		<label id="">
-			<name></name>
-			<value></value>
-		</label>
 
 	</label>
 
-	<label id="6">
+	<label>
+		<id>55</id>
 		<name>娱乐</name>
 		<value>1</value>
-		<label id="">
-			<name></name>
-			<value></value>
-		</label>
 
 	</label>
 
-	<label id="7">
+	<label>
+		<id>56</id>
 		<name>科技</name>
 		<value>1</value>
-		<label id="">
-			<name></name>
-			<value></value>
-		</label>
 
 	</label>
 
-	<label id="8">
+	<label>
+		<id>57</id>
 		<name>艺术</name>
 		<value>1</value>
-		<label id="100">
+		<label>
+			<id>100</id>
 			<name>赵雷</name>
 			<value></value>
 		</label>
-		<label id="101">
+		<label>
+			<id>101</id>
 			<name>马丁吉他</name>
 			<value></value>
 		</label>
-		<label id="102">
+		<label>
+			<id>102</id>
 			<name>指弹</name>
 			<value></value>
 		</label>
-		<label id="103">
+		<label>
+			<id>103</id>
 			<name>沙画</name>
 			<value></value>
 		</label>
 	</label>
 
-	<label id="9">
+	<label>
+		<id>57</id>
 		<name>宠物</name>
 		<value>1</value>
-		<label id="">
-			<name></name>
-			<value></value>
-		</label>
 
 	</label>
 </root>

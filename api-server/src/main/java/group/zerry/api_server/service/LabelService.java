@@ -11,7 +11,7 @@ public interface LabelService {
 	
 	public Label[] showRecommendedLabels(String username);
 
-	public void addLabels(int msg_id, List<String> labels);
+	public void addLabels(int user_id, int msg_id, List<String> labels);
 	
 	public Label[] showSimilarLabels(int label_id);
 	

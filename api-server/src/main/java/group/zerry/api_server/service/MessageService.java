@@ -1,7 +1,7 @@
 package group.zerry.api_server.service;
 
+import group.zerry.api_server.entity.Count;
 import group.zerry.api_server.entity.Message;
-import group.zerry.api_server.entity.Topic;
 import group.zerry.api_server.enumtypes.MessageStatusEnum;
 
 public interface MessageService {
@@ -16,6 +16,8 @@ public interface MessageService {
 	public Message[] show_messagesByLabel(String username, int label_id, int page);
 	
 	public Message[] showMessagesByLabelAndHeat(String username, int label_id, int page);
+
+	public Message[] showMessagesByLabelAndHeat(String username, int[] label_id, int page);
 
 	public Message[] show_ownMessages(String nickname, int page);
 
@@ -37,7 +39,9 @@ public interface MessageService {
 	public void addLabelHeat(String username, long id, int timeoutMS);
 	*/
 	
-	public Message[] showWeiboByTopicId(String username, int topic_id, int page);
+	// public Message[] showWeiboByTopicId(String username, int topic_id, int page);
+	
+	public int getMessageNumByLabel(int[] label_id);
 	
 	public MessageStatusEnum send_topicMessage(String username, String content, String pic, int topic_id);
 	

@@ -67,7 +67,7 @@ a:hover {
 	border: 1px #0066cc solid;
 }
 
-#msg_page li a{
+#msg_page li a {
 	border: 0px;
 	background-color: #f5f5f5;
 	margin-left: 30px;
@@ -87,7 +87,6 @@ a:hover {
 	font-size: 17px;
 	margin-top: 10px;
 }
-
 </style>
 </head>
 
@@ -118,7 +117,7 @@ a:hover {
 										<div class="text-muted font-12">
 											By <a href="#">体坛+</a> in <a href="#">新浪微博</a> <span
 												class="m-left-xs m-right-xs">|</span> <span><i
-												id="msg_sum" class="fa fa-comments"></i> 32 条相关微博</span>
+												id="msg_sum" class="fa fa-comments"></i> <sum>32</sum> 条相关微博</span>
 										</div>
 									</div>
 								</div>
@@ -181,8 +180,14 @@ a:hover {
 									标签：<a href="">篮球</a><a href="">NBA</a><a href="">哈登</a>
 								</p>
 								<div>
-									分享 : <ul class="share_ul"><li><img src="images/label1.png"/></li><li><img src="images/label2.png"/></li><li><img src="images/label3.png"/></li></ul>
-									<span style="float: right;"><img src="images/label4.png"/> 微博 : <span id="weibo_sum"> 322</span></span>
+									分享 :
+									<ul class="share_ul">
+										<li><img src="images/label1.png" /></li>
+										<li><img src="images/label2.png" /></li>
+										<li><img src="images/label3.png" /></li>
+									</ul>
+									<span style="float: right;"><img src="images/label4.png" />
+										微博 : <span id="weibo_sum"> 322</span></span>
 								</div>
 							</div>
 
@@ -225,8 +230,8 @@ a:hover {
 														<div style="margin-top: 10px;">
 															<input style="display: inline; width: 60%;" type="text"
 																name="label" class="form-control"
-																placeholder="标签...多个标签用#隔开" value="篮球#NBA#哈登"> <span id="msg_emotion"
-																class="msg_emotion"></span> <input
+																placeholder="标签...多个标签用#隔开" value="篮球#NBA#哈登"> <span
+																id="msg_emotion" class="msg_emotion"></span> <input
 																style="display: inline; width: 20%;" type="submit"
 																value="提交" class="form-control">
 														</div>
@@ -239,97 +244,101 @@ a:hover {
 									<!-- ./timeline-item-inner -->
 								</div>
 							</div>
-							<!-- ./timeline-item -->
-							<div class="timeline-row alt">
-								<div class="timeline-item">
-									<div class="timeline-icon">
-										<i class="fa fa-photo"></i>
-									</div>
-									<!-- ./timeline-icon -->
-									<div class="timeline-item-inner">
-										<div class="timeline-body">
-											<div class="timeline-avatar">
-												<img src="images/profile/profile5.jpg" alt=""
-													class="img-circle">
-											</div>
-											<div class="timeline-content">
-												<div class="font-semi-bold">
-													<a href="#">Karen Martin</a> updated his profile picture
+							<div id="receive_msg">
+								<!-- ./timeline-item -->
+								<div class="timeline-row alt">
+									<div class="timeline-item">
+										<div class="timeline-icon">
+											<i class="fa fa-photo"></i>
+										</div>
+										<!-- ./timeline-icon -->
+										<div class="timeline-item-inner">
+											<div class="timeline-body">
+												<div class="timeline-avatar">
+													<img src="images/profile/profile5.jpg" alt=""
+														class="img-circle">
 												</div>
-												<small class="block text-muted m-bottom-xs">16 Feb,
-													2013, 04:14</small> <img src="images/profile/profile5.jpg" alt=""
-													style="widht: 100px; height: 100px;">
-											</div>
-											<div class="seperate-bar bg-grey font-12 m-top-md">
-												<small class="inline-block m-right-sm"><i
-													class="fa fa-comments"></i> 83 Comments</small> <small
-													class="inline-block m-right-sm"><i
-													class="fa fa-heart"></i> 122 Like</small> <small
-													class="inline-block m-right-sm"><i
-													class="fa fa-share"></i> 31 Shares</small>
-											</div>
+												<div class="timeline-content">
+													<div class="font-semi-bold">
+														<a href="#">Karen Martin</a> updated his profile picture
+													</div>
+													<small class="block text-muted m-bottom-xs">16 Feb,
+														2013, 04:14</small> <img src="images/profile/profile5.jpg" alt=""
+														style="widht: 100px; height: 100px;">
+												</div>
+												<div class="seperate-bar bg-grey font-12 m-top-md">
+													<small class="inline-block m-right-sm"><i
+														class="fa fa-comments"></i> 83 Comments</small> <small
+														class="inline-block m-right-sm"><i
+														class="fa fa-heart"></i> 122 Like</small> <small
+														class="inline-block m-right-sm"><i
+														class="fa fa-share"></i> 31 Shares</small>
+												</div>
 
-											<ul class="social-comment-list m-top-md">
-												<li class="clearfix"><img
-													src="images/profile/profile7.jpg" alt="">
-													<div class="comment-body">
-														<p>
-															<a href="#" class="comment-name">Sarah Garcia</a>Lorem
-															ipsum dolor sit amet, consectetur adipiscing elit.
-														</p>
-														<small class="block text-muted m-bottom-xs">Yesterday,
-															08:02 <a href="#" class="m-left-sm m-right-sm">Like</a><a
-															href="#" class="m-right-sm">Report</a>
-														</small>
-													</div> <!-- ./comment-list --></li>
-												<li class="clearfix"><img
-													src="images/profile/profile6.jpg" alt="">
-													<div class="comment-body">
-														<p>
-															<a href="#" class="comment-name">Jame Smith</a>Lorem
-															ipsum dolor sit amet, consectetur adipiscing elit.
-															Vestibulum auctor suscipit lobortis.
-														</p>
-														<small class="block text-muted m-bottom-xs">Yesterday,
-															08:02 <a href="#" class="m-left-sm m-right-sm">Like</a><a
-															href="#" class="m-right-sm">Report</a>
-														</small>
-													</div> <!-- ./comment-list --></li>
-											</ul>
+												<ul class="social-comment-list m-top-md">
+													<li class="clearfix"><img
+														src="images/profile/profile7.jpg" alt="">
+														<div class="comment-body">
+															<p>
+																<a href="#" class="comment-name">Sarah Garcia</a>Lorem
+																ipsum dolor sit amet, consectetur adipiscing elit.
+															</p>
+															<small class="block text-muted m-bottom-xs">Yesterday,
+																08:02 <a href="#" class="m-left-sm m-right-sm">Like</a><a
+																href="#" class="m-right-sm">Report</a>
+															</small>
+														</div> <!-- ./comment-list --></li>
+													<li class="clearfix"><img
+														src="images/profile/profile6.jpg" alt="">
+														<div class="comment-body">
+															<p>
+																<a href="#" class="comment-name">Jame Smith</a>Lorem
+																ipsum dolor sit amet, consectetur adipiscing elit.
+																Vestibulum auctor suscipit lobortis.
+															</p>
+															<small class="block text-muted m-bottom-xs">Yesterday,
+																08:02 <a href="#" class="m-left-sm m-right-sm">Like</a><a
+																href="#" class="m-right-sm">Report</a>
+															</small>
+														</div> <!-- ./comment-list --></li>
+												</ul>
 
-											<div class="social-reply-section clearfix">
-												<img src="images/profile/profile1.jpg" alt="">
-												<div class="input-wrapper">
-													<input type="text" class="form-control"
-														placeholder="Write a comment...">
-													<div class="input-icon-link">
-														<a href="#" class="text-normal"><i
-															class="fa fa-camera fa-lg"></i></a>
+												<div class="social-reply-section clearfix">
+													<img src="images/profile/profile1.jpg" alt="">
+													<div class="input-wrapper">
+														<input type="text" class="form-control"
+															placeholder="Write a comment...">
+														<div class="input-icon-link">
+															<a href="#" class="text-normal"><i
+																class="fa fa-camera fa-lg"></i></a>
+														</div>
 													</div>
 												</div>
 											</div>
+											<!-- ./timeline-body -->
 										</div>
-										<!-- ./timeline-body -->
+										<!-- ./timeline-item-inner -->
 									</div>
-									<!-- ./timeline-item-inner -->
+									<!-- ./timeline-item -->
 								</div>
-								<!-- ./timeline-item -->
+								<!-- ./timeline-row -->
 							</div>
-							<!-- ./timeline-row -->
 						</div>
 						<div style="margin-left: 38%; background-color: #f5f5f5;">
-								<ul id="msg_page" class="pagination vertical-middle">
-									<li id="opt1"><a href="#"><i
-											class="fa fa-step-backward"></i></a></li>
-									<li id="opt2"><a href="#"><i
-											class="fa fa-caret-left large"></i></a></li>
-									<li id="opt3"><a href="#"><i class="fa fa-caret-right large"></i></a></li>
-									<li id="opt4" class="disabled"><a href="#"><i class="fa fa-step-forward"></i></a></li>
-								</ul>
-							</div>
+							<ul id="msg_page" class="pagination vertical-middle">
+								<li id="opt1"><a href="#"><i
+										class="fa fa-step-backward"></i></a></li>
+								<li id="opt2"><a href="#"><i
+										class="fa fa-caret-left large"></i></a></li>
+								<li id="opt3"><a href="#"><i
+										class="fa fa-caret-right large"></i></a></li>
+								<li id="opt4" class="disabled"><a href="#"><i
+										class="fa fa-step-forward"></i></a></li>
+							</ul>
+						</div>
 					</div>
 					<!-- ./col -->
-					
+
 					<div class="col-md-4">
 						<form>
 							<div class="form-group">
@@ -376,12 +385,18 @@ a:hover {
 						<h4 style="color: black; font-weight: bold; font-size: 24px;">话题排名</h4>
 
 						<ul id="list" class="blog-sidebar-list">
-							<li><span style="color: red; font-weight: bold;">1</span> <a style="display: inline;" href="#">NBA爆了!20岁超新星砍下70+</a></li>
-							<li><span style="color: red; font-weight: bold;">2</span> <a style="display: inline;" href="#">伊朗主帅:里皮令国足发生质变</a></li>
-							<li><span style="color: gray; font-weight: bold;">3</span> <a style="display: inline;" href="#">热身赛-胡尔克埃神破门韦世豪头槌</a></li>
-							<li><span style="color: gray; font-weight: bold;">4</span> <a style="display: inline;" href="#">中韩之战引爆社交媒体</a></li>
-							<li><span style="color: gray; font-weight: bold;">5</span> <a style="display: inline;" href="#">特鲁西埃：里皮果断变阵制胜</a></li>
-							<li><span style="color: gray; font-weight: bold;">6</span> <a style="display: inline;" href="#">新核！西班牙哈维接班人上位</a></li>
+							<li><span style="color: red; font-weight: bold;">1</span> <a
+								style="display: inline;" href="#">NBA爆了!20岁超新星砍下70+</a></li>
+							<li><span style="color: red; font-weight: bold;">2</span> <a
+								style="display: inline;" href="#">伊朗主帅:里皮令国足发生质变</a></li>
+							<li><span style="color: gray; font-weight: bold;">3</span> <a
+								style="display: inline;" href="#">热身赛-胡尔克埃神破门韦世豪头槌</a></li>
+							<li><span style="color: gray; font-weight: bold;">4</span> <a
+								style="display: inline;" href="#">中韩之战引爆社交媒体</a></li>
+							<li><span style="color: gray; font-weight: bold;">5</span> <a
+								style="display: inline;" href="#">特鲁西埃：里皮果断变阵制胜</a></li>
+							<li><span style="color: gray; font-weight: bold;">6</span> <a
+								style="display: inline;" href="#">新核！西班牙哈维接班人上位</a></li>
 						</ul>
 
 						<hr />
@@ -431,6 +446,9 @@ a:hover {
 	<!-- Simplify -->
 	<script src="js/simplify/simplify.js"></script>
 
+	<!--  /ajax  -->
+	<script src="ajax/message.js" type="text/javascript"></script>
+
 	<!--  表情包  -->
 	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
 
@@ -442,21 +460,20 @@ a:hover {
 
 	<script type="text/javascript">
 		//isLogin();
-		
+
 		/////////////      表情包        /////////////////////////////////////////////////////////////
-			$(function() {
-				$('#msg_emotion').qqFace({
-					assign : '#content', //给输入框赋值 
-					path : 'old/face/' //表情图片存放的路径 
-				});
+		$(function() {
+			$('#msg_emotion').qqFace({
+				assign : '#content', //给输入框赋值 
+				path : 'old/face/' //表情图片存放的路径 
 			});
+		});
 		//////////////////////////////////////////////////////////////////////////////////////////
 
-					
 		$("#cmr").click(function() {
 			$("#t_file").click();
 		});
-			
+
 		// pageNum
 		var pageNum = $.query.get("page");
 
@@ -464,21 +481,28 @@ a:hover {
 			pageNum = 1;
 			$("#opt1").attr("class", "disabled");
 			$("#opt2").attr("class", "disabled");
-		} 
-		$("#opt2 a").attr("href", "labelinfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&page=" + (parseInt(pageNum, 10) - 1));
-		$("#opt3 a").attr("href", "labelinfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&page=" + (parseInt(pageNum, 10) + 1));
-		
-		show_msgByTopic(1, pageNum);
+		}
+		$("#opt2 a").attr(
+				"href",
+				"labelinfo1_1.jsp?username=" + $.query.get("username")
+						+ "&userToken=" + $.query.get("userToken") + "&page="
+						+ (parseInt(pageNum, 10) - 1));
+		$("#opt3 a").attr(
+				"href",
+				"labelinfo1_1.jsp?username=" + $.query.get("username")
+						+ "&userToken=" + $.query.get("userToken") + "&page="
+						+ (parseInt(pageNum, 10) + 1));
 
-		function show_msgByTopic(id, pageNumber) {
+		show_msgByTopic("7#120#123", pageNum);
+
+		function show_msgByTopic(id_str, pageNumber) {
 			$
 					.ajax({
 						type : "post",
-						url : message/show_by_topicAndHeat,
+						url : "message/show_messagesByLabelId",
 						data : {
 							username : $.query.get("username"),
-							userToken : $.query.get("userToken"),
-							label_id : id,
+							label_id : id_str,
 							page : pageNum
 						// 设计分页
 						},
@@ -490,41 +514,48 @@ a:hover {
 											function() {
 												var i = 0;
 												$("#receive_msg").empty();
-												while (data.returndata[i] != undefined) {
-													var return_content = replace_em(data.returndata[i].content);
+												while (data.returndata != undefined) {
+
+													$(".fa-comments sum")
+															.text(
+																	data.returndata.sum);
+													$("#weibo_sum")
+															.text(
+																	data.returndata.sum);
+													var return_content = replace_em(data.returndata.messages[i].content);
 
 													var message = "<div id=\""
-											+ data.returndata[i].id
+											+ data.returndata.messages[i].id
 											+ "\" class=\"timeline-row alt\"><div class=\"timeline-item\"><div class=\"timeline-icon\"><i class=\"fa fa-comment\"></i></div><div class=\"timeline-item-inner\"><div class=\"timeline-body\"><div class=\"timeline-avatar\"><img src=\"images/profile/"
-											+ data.returndata[i].author.username
+											+ data.returndata.messages[i].author.username
 											+ ".jpg\" alt=\"\" class=\"img-circle\"></div><div class=\"timeline-content\"><div class=\"font-semi-bold\"><a href=\"#\">"
-															+ data.returndata[i].author.nickname
+															+ data.returndata.messages[i].author.nickname
 															+ "</a></div><small class=\"block text-muted m-bottom-xs\">"
-															+ data.returndata[i].create_time
+															+ data.returndata.messages[i].create_time
 															+ "</small>"
 															+ return_content;
 
-													if (data.returndata[i].pic != undefined
-															&& data.returndata[i].pic != "") {
+													if (data.returndata.messages[i].pic != undefined
+															&& data.returndata.messages[i].pic != "") {
 														message += "<img src=\"message/"
-												+ data.returndata[i].pic
+												+ data.returndata.messages[i].pic
 												+ ".jpg\" alt=\"\" style=\"widht: 100px; height: 100px;\">";
 													}
 
 													message += "</div><div class=\"seperate-bar bg-grey font-12 m-top-md\"><small class=\"inline-block m-right-sm\"><i class=\"fa fa-comments\"></i><span id=\"comment"
-											+ data.returndata[i].id
+											+ data.returndata.messages[i].id
 											+ "\">"
-															+ data.returndata[i].comment_times
+															+ data.returndata.messages[i].comment_times
 															+ "</span> 评论</small> <small class=\"inline-block m-right-sm\"><i class=\"fa fa-heart\"></i><span id=\"support"
-											+ data.returndata[i].id
+											+ data.returndata.messages[i].id
 											+ "\">"
-															+ data.returndata[i].support_times
+															+ data.returndata.messages[i].support_times
 															+ "</span> 点赞</small> <small class=\"inline-block m-right-sm\"><i style=\"cursor: pointer;\" class=\"fa fa-share\"></i><span>"
 															// 分享
 															+ "n</span> 分享</small> <small class=\"inline-block m-right-sm\"><i class=\"fa fa-tags\"></i>";
 
 													var j = 0;
-													while (data.returndata[i].labels[j] != undefined) {
+													while (data.returndata.messages[i].labels[j] != undefined) {
 														message += "<a style=\"text-decoration:none;\" href=\"labelinfo.jsp?username="
 																+ $.query
 																		.get("username")
@@ -532,9 +563,9 @@ a:hover {
 																+ $.query
 																		.get("userToken")
 																+ "&id="
-																+ data.returndata[i].labels[j].id
+																+ data.returndata.messages[i].labels[j].id
 																+ "&flag=1\">"
-																+ data.returndata[i].labels[j].name
+																+ data.returndata.messages[i].labels[j].name
 																+ "</a>&nbsp;&nbsp;";
 														j++;
 													}
@@ -542,13 +573,13 @@ a:hover {
 															+ $.query
 																	.get("username")
 															+ ".jpg\" alt=\"\"><div class=\"input-wrapper\"><input type=\"text\" id=\"comarea_"
-											+ data.returndata[i].id
+											+ data.returndata.messages[i].id
 											+ "\"class=\"form-control\" placeholder=\"Write a comment...\"><span id=\"cmt_emotion"
-											+ data.returndata[i].id
+											+ data.returndata.messages[i].id
 											+ "\" class=\"cmt_emotion\"></span><input style=\"float: right;\" value=\"提交\" type=\"button\" onclick=\"send_comment("
-															+ data.returndata[i].id
+															+ data.returndata.messages[i].id
 															+ ")\"><div class=\"input-icon-link\"><a href=\"#\" class=\"text-normal\"></a></div></div></div><ul id=\"cmtList_"
-											+ data.returndata[i].id
+											+ data.returndata.messages[i].id
 											+ "\" class=\"social-comment-list m-top-md\">";
 
 													message += "</ul><div class=\"pagination-row clearfix m-bottom-md\" style=\"margin-top: 10px; margin-bottom: 0px;\"><div class=\"pull-right pull-left-sm\"><div class=\"inline-block vertical-middle m-right-xs\">Page 1 </div><ul class=\"pagination vertical-middle\" style=\"margin: 0px;\"><li class=\"disabled\"><a href=\"#\"><i class=\"fa fa-step-backward\"></i></a></li><li class=\"disabled\"><a href=\"#\"><i class=\"fa fa-caret-left large\"></i></a></li><li><a href=\"#\"><i class=\"fa fa-caret-right large\"></i></a></li><li><a href=\"#\"><i class=\"fa fa-step-forward\"></i></a></li></ul></div></div></div></div></div></div>";
@@ -558,16 +589,16 @@ a:hover {
 
 													// 显示第一页评论
 													show_comments(
-															data.returndata[i].id,
+															data.returndata.messages[i].id,
 															1);
 													judgeIfSupport(
-															data.returndata[i].id,
-															data.returndata[i].supported);
+															data.returndata.messages[i].id,
+															data.returndata.messages[i].supported);
 
 													var textarea = "#comarea_"
-															+ data.returndata[i].id;
+															+ data.returndata.messages[i].id;
 													var emotion = '#cmt_emotion'
-															+ data.returndata[i].id;
+															+ data.returndata.messages[i].id;
 													$(emotion).qqFace({
 														assign : textarea, // 给输入框赋值
 														path : 'old/face/' // 表情图片存放的路径
