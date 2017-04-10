@@ -63,7 +63,7 @@
 
 									<div class="m-top-xs">
 										<i id="job" class="fa fa-briefcase user-profile-icon"></i>
-										student
+										<span id="title">student</span>
 									</div>
 
 									<!--  个人微博 -->
@@ -711,9 +711,9 @@
 											+ data.returndata[i].username
 											+ ".jpg\" alt=\"\"></div><div class=\"user-detail small-img\"><div class=\"font-16\">"
 										+ data.returndata[i].nickname
-										+ "</div><small class=\"block text-muted font-12\">"
+										+ "</div><small class=\"block text-muted font-12\">@"
 										// 领域
-										+ "@student"
+										+ data.returndata[i].title
 										+ "</small><small class=\"freelancer-rating\"><i class=\"fa fa-star text-warning\"></i><i class=\"fa fa-star text-warning\"></i><i class=\"fa fa-star text-warning\"></i><i class=\"fa fa-star text-warning\"></i><i class=\"fa fa-star text-warning\"></i></small> <small>关注: "
 										+ data.returndata[i].friend_num
 										+ " 收听: "

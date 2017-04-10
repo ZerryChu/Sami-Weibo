@@ -25,6 +25,7 @@ function showUserInfo() {
 					$("#follower").text(data.returndata.friend_num);
 					$("#following").text(data.returndata.focus_num);
 					$("#weibo").text(data.returndata.message_num);
+					$("#title").text(data.returndata.title);
 					// 修改头像
 					// $("#user_icon").attr(
 					//		"onclick",

@@ -107,6 +107,23 @@
 		limit 0, 5
  	</select>
  	
+ 	<select id="selectHotLabelsByUserId" resultType="Label">
+	 	SELECT
+			label_inf.id,
+			label_inf. NAME,
+			label_inf.pic
+		FROM
+			label_heat,
+			label_inf
+		WHERE
+			user_id = #{id}
+		AND label_inf.id = label_heat.label_id
+		ORDER BY
+			times DESC
+		LIMIT 0,
+		 5
+ 	</select>
+ 	
  	<insert id="addLabel">
  		INSERT INTO msg_lbl_relation
  		VALUES

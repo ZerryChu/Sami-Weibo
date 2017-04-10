@@ -20,7 +20,12 @@
 
 <!-- Simplify -->
 <link href="css/simplify.min.css" rel="stylesheet">
-
+<style>
+	<!-- 改！  -->
+	.pvt_msg_list:focus {
+		background-color: #999;
+	}
+</style>
 </head>
 
 <body class="overflow-hidden">
@@ -174,15 +179,15 @@
 						<table class="table table-bordereds">
 							<thead>
 								<tr>
-									<th class="text-center">
+									<th style="width: 70px;" class="text-center">
 										<div class="custom-checkbox">
 											<input type="checkbox" id="chkAll" class="inbox-check">
 											<label for="chkAll"></label>
 										</div>
 									</th>
-									<th>未读</th>
+									<th style="width: 70px;">未读</th>
 									<th>用户</th>
-									<th>消息内容</th>
+									<th style="width: 400px;">消息内容</th>
 									<th>日期</th>
 								</tr>
 							</thead>
@@ -296,11 +301,11 @@
 							+  data.returndata[i].targetUsername
 							+  ".jpg\" alt=\"\"></div><div class=\"author-name\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
 										+ data.returndata[i].targetUsername
-										+ "\"><strong class=\"targetNickname block font-md\">"
+										+ "\"><span class=\"targetNickname font-md\">"
 										+ data.returndata[i].targetNickname
-										+ "</strong></a> <a href=\"#\" class=\"text-muted\">"
+										+ "</span></span></a> "
 										/*  职位 +  data.returndata[i].job  */
-										+ "student</a></div></td></a></div></td><td>"
+										+ "<div>student</div></div></td></td><td>"
 										+ return_content
 										+ "</td><td><time class=\"timeago\"></time></td></tr>";
 								if (data.returndata[i].has_noRead == true) {
@@ -368,7 +373,8 @@
 			});
 		});
 
-		$(".pvt_msg_list")
+		// 设置除了第一个td之外
+		$(".pvt_msg_link")
 				.live(
 						'click',
 						function() {
@@ -382,7 +388,7 @@
 									+ targetNickname
 									+ "&targetNickname=" + targetNickname + "'";
 							setTimeout(forward, 0);
-						})
+						});
 	</script>
 
 </body>

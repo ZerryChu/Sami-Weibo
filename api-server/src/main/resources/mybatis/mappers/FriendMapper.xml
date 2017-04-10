@@ -94,7 +94,8 @@
 		SELECT
 			username,
 			nickname,
-			id	
+			id,
+			title
 		FROM
 			user_inf
 		WHERE
@@ -114,7 +115,8 @@
 		SELECT
 			username,
 			nickname,
-			id
+			id,
+			title
 		FROM
 			user_inf
 		WHERE

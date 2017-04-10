@@ -6,6 +6,7 @@ package group.zerry.api_server.entity;
 public class Target {
 	private String username;
 	private String nickname;
+	private String title;
 	private int    id;
 	private int    friend_num;
 	private int    focus_num;
@@ -39,6 +40,12 @@ public class Target {
 	}
 	public void setNickname(String nickname) {
 		this.nickname = nickname;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 
 }

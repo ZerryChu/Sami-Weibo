@@ -10,7 +10,7 @@ public interface LabelHeatDao {
 	int selectTotalLabelHeat(int id);
 
 	void updateLabelHeatById(int user_id, long id, int heat);
-
+	
 	LabelHeat[] selectLabelHeat(int id);
 
 	LabelHeat   selectUserLabelHeat(int user_id, int label_id);

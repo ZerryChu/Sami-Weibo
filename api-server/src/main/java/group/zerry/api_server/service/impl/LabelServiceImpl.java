@@ -9,6 +9,7 @@ import java.util.Random;
 import org.apache.log4j.Logger;
 import org.mockito.asm.tree.IntInsnNode;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.EnableLoadTimeWeaving;
 import org.springframework.stereotype.Service;
 
 import group.zerry.api_server.dao.LabelDao;
@@ -78,38 +79,53 @@ public class LabelServiceImpl implements LabelService {
 		return labels;
 	}
 
+	
+	// 修改。。。标签不限制数目，增加搜索功能。（删除常用标签功能） 1: 常用标签 2：热门标签 3：推荐标签 3者用不同颜色底色
 	@Override
 	public Label[] showRecommendedLabels(String username) {
 		// TODO Auto-generated method stub
-		Label[] lbs = new Label[10];
+		Label[] lbs = new Label[20];
 		Map<Long, Integer> map = new HashMap<Long, Integer>();
 		User user = userDao.selectUserByUsername(username);
-		// 由mahout的item-based协同过滤算法推荐产生
-		long[] labelsId = recommender.recommend(user.getId(), 10);
-		int labels_size = labelsId.length;
-		for (int i = 0;i < labels_size; i++) {
-			lbs[i] = new Label();
-			lbs[i].setId(labelsId[i]);
-			lbs[i].setName(labelDao.searchLabelNameById(labelsId[i]));
-			map.put(labelsId[i], 1);
+		int lbs_index = 0;
+		Label[] labellist1 = labelDao.selectHotLabelsByUserId(user.getId());
+		for (;lbs_index < labellist1.length; lbs_index++) {
+			map.put(labellist1[lbs_index].getId(), 1);
+
+			lbs[lbs_index] = new Label();
+			lbs[lbs_index].setId(labellist1[lbs_index].getId());
+			lbs[lbs_index].setName(labellist1[lbs_index].getName());
 		}
-		// logger.info("recommended_label_size: " + labels_size);
-		//int labels_size = 0;
-		List<Long> list = lh.getLabelList();
-		for(int i = 0;i < list.size(); i++) {
-			if (labels_size == 10)
-				break;
-			long num = list.get(i);
+				
+		List<Long> labelList2 = lh.getLabelList();
+		for(int i = 0;i < labelList2.size(); i++) {
+			long num = labelList2.get(i);
+
 			if (map.get(num) != null) {
 				continue;
 			}			
-			lbs[labels_size] = new Label();
-			lbs[labels_size].setId(num);
-			lbs[labels_size].setName(labelDao.searchLabelNameById(num));
-			labels_size++;
+			map.put(num, 1);
+
+			lbs[lbs_index] = new Label();
+			lbs[lbs_index].setId(num);
+			lbs[lbs_index].setName(labelDao.searchLabelNameById(num));
+			lbs_index++;
+
 		}
-		//for(int i = 0;i < labels_size; i++)
-			//System.out.println(lbs[i].getId());
+		
+		// 由mahout的item-based协同过滤算法推荐产生
+		long[] labelList3 = recommender.recommend(user.getId(), 5);
+		System.out.println("推荐标签数目： " + labelList3.length);
+		for (int i = 0;i < labelList3.length; i++) {
+			if (map.get(labelList3[i]) != null) {
+				continue;
+			}
+			
+			lbs[lbs_index] = new Label();
+			lbs[lbs_index].setId(labelList3[i]);
+			lbs[lbs_index].setName(labelDao.searchLabelNameById(labelList3[i]));
+		}
+		
 		return lbs;
 	}
 	

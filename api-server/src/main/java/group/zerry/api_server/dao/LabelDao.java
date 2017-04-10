@@ -26,5 +26,7 @@ public interface LabelDao {
 	Label[] showSubscribedLabels(String username);
 	
 	Label[] showRelatedLabels(int id);
+	
+	Label[] selectHotLabelsByUserId(int user_id);
 		
 }

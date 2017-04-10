@@ -13,6 +13,7 @@ public class User {
 	private String  username;
 	private String  password;
 	private int     type;
+	private String  title;
 	private String  habit;
 	private int     friend_num;
 	private int     focus_num;
@@ -84,6 +85,12 @@ public class User {
 	}
 	public void setMessage_num(int message_num) {
 		this.message_num = message_num;
+	}
+	public String getTitle() {
+		return title;
+	}
+	public void setTitle(String title) {
+		this.title = title;
 	}
 	
 }

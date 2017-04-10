@@ -11,7 +11,7 @@ import com.mysql.jdbc.Statement;
 
 /**
  * @author zhuzirui
- * 每1分钟 获取一次最新的标签的热度
+ * 每1分钟 获取一次最新的标签的热度(周期短方便测试)
  * 热度计算算法待设计
  */
 public class LabelHeat implements Runnable {
@@ -32,7 +32,7 @@ public class LabelHeat implements Runnable {
 		Class.forName("com.mysql.jdbc.Driver");
 		Connection conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/social network", "root", "486579");
 		Statement stmt = (Statement) conn.createStatement();
-		String sql = "SELECT * FROM (SELECT label_id,sum(times) AS times FROM label_heat GROUP BY label_id) AS a ORDER BY times DESC LIMIT 0,10";
+		String sql = "SELECT * FROM (SELECT label_id, sum(times) AS times FROM label_heat GROUP BY label_id) AS a ORDER BY times DESC LIMIT 0, 10";
 		ResultSet rs = stmt.executeQuery(sql);
 		while (rs.next()) {
 			long id = rs.getLong(1);

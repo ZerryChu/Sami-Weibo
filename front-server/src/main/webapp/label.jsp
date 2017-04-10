@@ -243,7 +243,7 @@
 					if (data.returndata != undefined) {
 						$("#lbl_list").empty();
 						var i = 0;
-						while (data.returndata[i] != null && i < 9) {
+						while (data.returndata[i] != null) {
 							var str = "";
 							str += "<div class=\"gallery-item\" id=\"lbl"
 								+  data.returndata[i].id

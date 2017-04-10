@@ -106,7 +106,7 @@
 								<li style="background-color: #fff;" data-color="reset"></li>
 							</ul>
 						</div>
-						<div class="smart-widget-body">
+						<div class="smart-widget-body" style="max-height: 300px; overflow-y: auto;">
 							<div id="chatScroll">
 								<ul class="chat">
 								</ul>
