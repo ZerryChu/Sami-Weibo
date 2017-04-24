@@ -79,9 +79,8 @@
 
 								<!--  加入一段描述 -->
 								<h4 class="m-top-md m-bottom-sm">关于我</h4>
-								<p class="m-top-sm">Lorem ipsum dolor sit amet, consectetur
-									adipiscing elit. Curabitur bibendum ornare dolor, quis
-									ullamcorper ligula sodales at.
+								<p class="m-top-sm">
+									这位用户很懒，什么消息也没留下。
 								<p>
 								<h4 class="m-top-md m-bottom-sm">Get Social</h4>
 

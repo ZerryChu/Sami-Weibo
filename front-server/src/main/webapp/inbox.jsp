@@ -21,10 +21,10 @@
 <!-- Simplify -->
 <link href="css/simplify.min.css" rel="stylesheet">
 <style>
-	<!-- 改！  -->
-	.pvt_msg_list:focus {
-		background-color: #999;
-	}
+<!--
+改！  -->.pvt_msg_list:focus {
+	background-color: #999;
+}
 </style>
 </head>
 
@@ -267,8 +267,7 @@
 		showMsgInfoList();
 
 		function showMsgInfoList() {
-			// qq expression!
-			
+
 			$
 					.ajax({
 						type : "post",
@@ -292,12 +291,12 @@
 							+  index
 							+  "\" class=\"inbox-check\"><label for=\"chk"
 							+  index
-							+  "\"></label></div></td><td>";
+							+  "\"></label></div></td><td class=\"showCnt\">";
 								if (data.returndata[i].has_noRead == true)
 									str += "<i class=\"fa fa-star fa-lg text-warning\"></i>";
 								else
 									str += "<i class=\"fa fa-star-o fa-lg\"></i>";
-								str += "</td><td><div class=\"author-avatar\"><img src=\"images/profile/"
+								str += "</td><td class=\"showCnt\"><div class=\"author-avatar\"><img src=\"images/profile/"
 							+  data.returndata[i].targetUsername
 							+  ".jpg\" alt=\"\"></div><div class=\"author-name\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
 										+ data.returndata[i].targetUsername
@@ -305,9 +304,9 @@
 										+ data.returndata[i].targetNickname
 										+ "</span></span></a> "
 										/*  职位 +  data.returndata[i].job  */
-										+ "<div>student</div></div></td></td><td>"
+										+ "<div>student</div></div></td></td><td class=\"showCnt\">"
 										+ return_content
-										+ "</td><td><time class=\"timeago\"></time></td></tr>";
+										+ "</td><td class=\"showCnt\"><time class=\"timeago\"></time></td></tr>";
 								if (data.returndata[i].has_noRead == true) {
 									num++;
 								}
@@ -374,12 +373,12 @@
 		});
 
 		// 设置除了第一个td之外
-		$(".pvt_msg_link")
+		$(".showCnt")
 				.live(
 						'click',
 						function() {
-							var targetNickname = $(this)
-									.find(".targetNickname").text();
+							var targetNickname = $(this).parent(".pvt_msg_list").find(
+									".targetNickname").text();
 							var forward = "window.location='privateMsgInfo.jsp?username="
 									+ $.query.get("username")
 									+ "&userToken="

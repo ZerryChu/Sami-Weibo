@@ -298,7 +298,7 @@ public class MessageServiceImpl implements MessageService {
 			User user = userDao.selectUserByNickname(nickname);
 			messageCompletion(message, user.getUsername());
 		} catch (Exception e) {
-			logger.error(e.getMessage());
+			e.printStackTrace();	
 			return null;
 		}
 		return message;

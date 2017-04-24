@@ -22,12 +22,6 @@
 
 			</label>
 			<label>
-				<id>112</id>
-				<name>转会</name>
-				<value></value>
-
-			</label>
-			<label>
 				<id>113</id>
 				<name>世界杯</name>
 				<value></value>
@@ -55,11 +49,6 @@
 			<label>
 				<id>121</id>
 				<name>中国男篮</name>
-				<value></value>
-			</label>
-			<label>
-				<id>122</id>
-				<name>转会</name>
 				<value></value>
 			</label>
 			<label>
