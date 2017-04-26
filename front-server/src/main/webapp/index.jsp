@@ -295,7 +295,7 @@
 
 
 	<!-- Jquery -->
-	<script type="text/javascript" src="js/jquery-1.11.1.min.js"></script>
+	<script src="js/jquery-1.11.1.min.js"></script>
 
 	<!-- Bootstrap -->
 	<script src="bootstrap/js/bootstrap.min.js"></script>
@@ -335,6 +335,11 @@
 	<script src="js/simplify/simplify_dashboard.js"></script>
 
 	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
+	
+	<!--  表情包  -->
+	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js" type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
 
 	<script src="js/login.js" type="text/javascript"></script>
 	<script>

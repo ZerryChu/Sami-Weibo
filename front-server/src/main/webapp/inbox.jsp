@@ -306,12 +306,14 @@
 										/*  职位 +  data.returndata[i].job  */
 										+ "<div>student</div></div></td></td><td class=\"showCnt\">"
 										+ return_content
-										+ "</td><td class=\"showCnt\"><time class=\"timeago\"></time></td></tr>";
+										+ "</td><td class=\"showCnt\"><time id=\"pvtmsg"
+										+ index
+										+ "\" class=\"timeago\"></time></td></tr>";
 								if (data.returndata[i].has_noRead == true) {
 									num++;
 								}
 								$(".user_list").append(str);
-								$(".timeago").attr("datetime",
+								$("#pvtmsg" + index).attr("datetime",
 										data.returndata[i].time);
 								i++;
 								index++;

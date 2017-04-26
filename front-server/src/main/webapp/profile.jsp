@@ -47,7 +47,7 @@
 						<div class="row">
 							<div class="col-sm-4 col-md-12">
 								<div class="user-profile-pic">
-									<img id="user_icon" src="images/profile/profile1.jpg"
+									<img id="user_icon" src=""
 										alt="userIcon">
 									<div class="ribbon-wrapper">
 										<div class="ribbon-inner shadow-pulse bg-success">user</div>
@@ -74,7 +74,7 @@
 								</div>
 
 								<div class="m-top-sm text-centers">
-									<a class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>编写私信</a>
+									<a id="send_pvtmsg" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>编写私信</a>
 								</div>
 
 								<!--  加入一段描述 -->

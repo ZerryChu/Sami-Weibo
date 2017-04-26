@@ -106,7 +106,8 @@
 								<li style="background-color: #fff;" data-color="reset"></li>
 							</ul>
 						</div>
-						<div class="smart-widget-body" style="max-height: 300px; overflow-y: auto;">
+						<div class="smart-widget-body"
+							style="height: 350px; overflow-y: auto;">
 							<div id="chatScroll">
 								<ul class="chat">
 								</ul>
@@ -246,14 +247,15 @@
 											+ ".jpg\" alt=\"User Avatar\"></span><div class=\"chat-body clearfix\"><div class=\"header\"><strong class=\"primary-font\">"
 											+ $.query.get("targetNickname");
 								}
-								str += "</strong> <small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i><time class=\"timeago\"></time>"
+								str += "</strong> <small class=\"pull-right text-muted\"><i class=\"fa fa-clock-o\"></i><time id=\"pvtmsg"
+									+   i
+									+ "\" class=\"timeago\"></time>"
 										+ "</small></div><p>"
 										+ return_content
 										+ "</p></div></li>";
-								$(".timeago").attr("datetime",
-										data.returndata[i].time);
-
 								$(".chat").append(str);
+								$("#pvtmsg" + i).attr("datetime",
+										data.returndata[i].time);
 								i++;
 							}
 							$(".timeago").timeago();
