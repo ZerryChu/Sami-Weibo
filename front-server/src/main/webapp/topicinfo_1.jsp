@@ -256,7 +256,8 @@ a:hover {
 					<div class="col-md-4">
 						<div>
 							<ul class="tpc">
-								<li class="imt_tpc"><a href="topicinfo1_1.jsp?username=${param.username}&userToken=${param.userToken}&page=1">3分碰瓷数哈登概率超常人10倍</a></li>
+								<li class="imt_tpc"><a
+									href="topicinfo1_1.jsp?username=${param.username}&userToken=${param.userToken}&page=1">3分碰瓷数哈登概率超常人10倍</a></li>
 								<li><a>黄博文亲证无法出战</a></li>
 								<li><a>4年前雨战绝杀抢3分</a></li>
 
@@ -343,8 +344,10 @@ a:hover {
 				</div>
 				<!--  文字框 -->
 				<div class="sub_tpc">
-					<div style="display:inline-block; position: relative;">
-						<a><img style="width: 270px; height: 100px; margin-right: 30px; margin-top: -100px;" src="images/topic/${param.id}/9.jpg" /><span
+					<div style="display: inline-block; position: relative;">
+						<a><img
+							style="width: 270px; height: 100px; margin-right: 30px; margin-top: -100px;"
+							src="images/topic/${param.id}/9.jpg" /><span
 							style="position: absolute; left: 0px; top: -19px; width: 270px; background: url('images/background.png'); text-align: center; color: white;">姚明揭晓2019年中国篮球世界杯会徽</span></a>
 					</div>
 					<ul>
@@ -419,6 +422,10 @@ a:hover {
 	<script src="old/plugins/timeago.js" type="text/javascript"></script>
 
 	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
+
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
 
 	<script src="js/login.js" type="text/javascript"></script>
 

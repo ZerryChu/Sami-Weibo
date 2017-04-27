@@ -44,7 +44,7 @@
 }
 
 .popular-blog-post li .popular-blog-detail {
-    margin-left: 100px;
+	margin-left: 100px;
 }
 </style>
 </head>
@@ -203,6 +203,10 @@
 	<script src="old/plugins/timeago.js" type="text/javascript"></script>
 
 	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
+
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
 
 	<script src="js/login.js" type="text/javascript"></script>
 

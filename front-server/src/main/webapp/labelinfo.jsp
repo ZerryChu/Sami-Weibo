@@ -83,9 +83,8 @@
 }
 
 .popular-blog-post li .popular-blog-detail {
-    margin-left: 100px;
+	margin-left: 100px;
 }
-
 </style>
 </head>
 
@@ -300,9 +299,11 @@
 															</div>
 														</div>
 													</div>
-													<div style="float: right; margin-left: 50px; margin-top: 22px;">
+													<div
+														style="float: right; margin-left: 50px; margin-top: 22px;">
 														<small class="text-upper text-muted block font-sm">heat</small>
-														<h1 style="font-size: 25px; color: #fc5050;" class="no-margin">4312</h1>
+														<h1 style="font-size: 25px; color: #fc5050;"
+															class="no-margin">4312</h1>
 													</div>
 												</div>
 												<!-- ./task-widget-body -->
@@ -369,8 +370,10 @@
 											class="fa fa-step-backward"></i></a></li>
 									<li id="opt2"><a href="#"><i
 											class="fa fa-caret-left large"></i></a></li>
-									<li id="opt3"><a href="#"><i class="fa fa-caret-right large"></i></a></li>
-									<li id="opt4" class="disabled"><a href="#"><i class="fa fa-step-forward"></i></a></li>
+									<li id="opt3"><a href="#"><i
+											class="fa fa-caret-right large"></i></a></li>
+									<li id="opt4" class="disabled"><a href="#"><i
+											class="fa fa-step-forward"></i></a></li>
 								</ul>
 							</div>
 							<!-- ./pagination-row -->
@@ -419,6 +422,10 @@
 
 	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
 
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
+
 	<script src="js/login.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
@@ -455,10 +462,20 @@
 			pageNum = 1;
 			$("#opt1").attr("class", "disabled");
 			$("#opt2").attr("class", "disabled");
-		} 
-		$("#opt2 a").attr("href", "labelinfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&id=" + $.query.get("id") + "&flag=" + $.query.get("flag") + "&page=" + (parseInt(pageNum, 10) - 1));
-		$("#opt3 a").attr("href", "labelinfo.jsp?username=" + $.query.get("username") + "&userToken=" + $.query.get("userToken") + "&id=" + $.query.get("id") + "&flag=" + $.query.get("flag") + "&page=" + (parseInt(pageNum, 10) + 1));
-		
+		}
+		$("#opt2 a").attr(
+				"href",
+				"labelinfo.jsp?username=" + $.query.get("username")
+						+ "&userToken=" + $.query.get("userToken") + "&id="
+						+ $.query.get("id") + "&flag=" + $.query.get("flag")
+						+ "&page=" + (parseInt(pageNum, 10) - 1));
+		$("#opt3 a").attr(
+				"href",
+				"labelinfo.jsp?username=" + $.query.get("username")
+						+ "&userToken=" + $.query.get("userToken") + "&id="
+						+ $.query.get("id") + "&flag=" + $.query.get("flag")
+						+ "&page=" + (parseInt(pageNum, 10) + 1));
+
 		$("#cmr").click(function() {
 			$("#t_file").click();
 		});
@@ -604,8 +621,8 @@
 										var str = "<li class=\"clearfix\"><div class=\"task-widget\"><div class=\"task-widget-body clearfix\"><div class=\"pie-chart-wrapper\"><div class=\"img-wrapper clearfix\"><img class=\"small-img img-circle img-thumbnail\" src=\"images/profile/"
 												+ data.returndata.user[i].username
 												+ ".jpg\" alt=\"\"></div><div class=\"popular-blog-detail\"><a href=\"profile.jsp?username=${param.username}&userToken=${param.userToken}&targetUsername="
-														+ data.returndata.user[i].username
-														+ "\" style=\"font-size: 20px;\" class=\"h5\">"
+												+ data.returndata.user[i].username
+												+ "\" style=\"font-size: 20px;\" class=\"h5\">"
 												+ data.returndata.user[i].nickname
 												+ "</a><div class=\"text-muted m-top-sm\"><span>user</span></div></div></div><div style=\"float: right; margin-top: 22px;\"><small class=\"text-upper text-muted block font-sm\">heat</small><h1 style=\"font-size: 25px; color: #fc5050;\" class=\"no-margin\">"
 												+ data.returndata.heat[i]
@@ -615,8 +632,8 @@
 												+ data.returndata.user[i].friend_num
 												// 浏览量
 												+ "</li><li class=\"bg-grey border-purple\"><div class=\"text-muted text-upper font-sm\">浏览</div> 2176"
-												+ "</li></ul></div></div></li>";	
-									$(".ppl_user").append(str);			
+												+ "</li></ul></div></div></li>";
+										$(".ppl_user").append(str);
 									}
 							}
 						}

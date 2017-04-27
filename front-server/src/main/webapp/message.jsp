@@ -55,7 +55,7 @@
 	border: 1px #0066cc solid;
 }
 
-#msg_page li a{
+#msg_page li a {
 	border: 0px;
 	background-color: #f5f5f5;
 	margin-left: 30px;
@@ -255,8 +255,10 @@
 											class="fa fa-step-backward"></i></a></li>
 									<li id="opt2"><a href="#"><i
 											class="fa fa-caret-left large"></i></a></li>
-									<li id="opt3"><a href="#"><i class="fa fa-caret-right large"></i></a></li>
-									<li id="opt4" class="disabled"><a href="#"><i class="fa fa-step-forward"></i></a></li>
+									<li id="opt3"><a href="#"><i
+											class="fa fa-caret-right large"></i></a></li>
+									<li id="opt4" class="disabled"><a href="#"><i
+											class="fa fa-step-forward"></i></a></li>
 								</ul>
 							</div>
 							<!-- ./pagination-row -->
@@ -298,10 +300,11 @@
 				<!--  /ajax  -->
 				<script src="ajax/message.js" type="text/javascript"></script>
 
-				<!--  表情包  -->
-				<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
-
 				<script src="old/plugins/timeago.js" type="text/javascript"></script>
+
+				<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+					type="text/javascript"></script>
+				<script src='ajax/user_frame.js'></script>
 
 				<script src="js/login.js" type="text/javascript"></script>
 
@@ -318,8 +321,6 @@
 					});
 					//////////////////////////////////////////////////////////////////////////////////////////
 
-					
-		
 					// pageNum
 					var pageNum = $.query.get("page");
 
@@ -328,19 +329,19 @@
 						$("#opt1").attr("class", "disabled");
 						$("#opt2").attr("class", "disabled");
 					}
-					
+
 					$("#opt2 a").attr(
 							"href",
 							"message.jsp?username=" + $.query.get("username")
 									+ "&userToken=" + $.query.get("userToken")
-									+ "&flag=" + $.query.get("flag")
-									+ "&page=" + (parseInt(pageNum, 10) - 1));
+									+ "&flag=" + $.query.get("flag") + "&page="
+									+ (parseInt(pageNum, 10) - 1));
 					$("#opt3 a").attr(
 							"href",
 							"message.jsp?username=" + $.query.get("username")
 									+ "&userToken=" + $.query.get("userToken")
-									+ "&flag=" + $.query.get("flag")
-									+ "&page=" + (parseInt(pageNum, 10) + 1));
+									+ "&flag=" + $.query.get("flag") + "&page="
+									+ (parseInt(pageNum, 10) + 1));
 
 					if ($.query.get("flag") == 1) {
 						$("#list1").attr('class', 'active');

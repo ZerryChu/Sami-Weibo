@@ -33,12 +33,12 @@
 			<div class="title-block">常用列表</div>
 			<div class="content-block">
 				<ul id="chatting" class="sidebar-list">
-					<li><a href="#" class="clearfix"> <img
-							src="images/profile/zhouzhou.jpg" class="img-circle"
+					<!-- <li><a href="#" class="clearfix"> <img
+							src="images/profile/profile6.jpg" class="img-circle"
 							alt="user avatar">
 							<div class="chat-detail m-left-sm">
-								<div class="chat-name">zhouzhou</div>
-								<div class="chat-message">Where are you?</div>
+								<div class="chat-name"></div>
+								<div class="chat-message"></div>
 							</div>
 							<div class="chat-status">
 								<i class="block fa fa-envelope fa-lg"></i>
@@ -48,11 +48,11 @@
 							</div>
 					</a></li>
 					<li><a href="#" class="clearfix"> <img
-							src="images/profile/lucy.jpg" class="img-circle"
+							src="images/profile/profile6.jpg" class="img-circle"
 							alt="user avatar">
 							<div class="chat-detail m-left-sm">
-								<div class="chat-name">lucy</div>
-								<div class="chat-message">Hello</div>
+								<div class="chat-name"></div>
+								<div class="chat-message"></div>
 							</div>
 							<div class="chat-status">
 								<i class="block fa fa-envelope fa-lg"></i>
@@ -61,18 +61,18 @@
 								<span class="badge badge-info bounceIn animation-delay2">1</span>
 							</div>
 					</a></li>
-
+					-->
 				</ul>
 			</div>
 			<div class="title-block">关注用户</div>
 			<div class="content-block">
 				<ul id="following" class="sidebar-list">
-					<li><a href="#" class="clearfix"> <img
-							src="images/profile/profile6.jpg" class="img-circle"
+					<!-- <li><a href="#" class="clearfix"> <img
+							src="images/profile/timg.jpg" class="img-circle"
 							alt="user avatar">
 							<div class="chat-detail m-left-sm">
-								<div class="chat-name">John Doe</div>
-								<div class="chat-message">Where are you?</div>
+								<div class="chat-name"></div>
+								<div class="chat-message"></div>
 							</div>
 							<div class="chat-status">
 								<i class="block fa fa-envelope fa-lg"></i>
@@ -82,19 +82,20 @@
 							</div>
 					</a></li>
 					<li><a href="#" class="clearfix"> <img
-							src="images/profile/profile6.jpg" class="img-circle"
+							src="images/profile/time.jpg" class="img-circle"
 							alt="user avatar">
 							<div class="chat-detail m-left-sm">
-								<div class="chat-name">John Doe</div>
-								<div class="chat-message">Where are you?</div>
+								<div class="chat-name"></div>
+								<div class="chat-message"></div>
 							</div>
 							<div class="chat-status">
 								<i class="block fa fa-envelope fa-lg"></i>
 							</div>
 							<div class="chat-alert">
 								<span class="badge badge-success bounceIn animation-delay2">2</span>
-							</div> <!--  好友搜索！ -->
+							</div> 
 					</a></li>
+					 -->
 				</ul>
 			</div>
 		</div>
@@ -117,7 +118,7 @@
 					<ul class="dropdown-menu dropdown-sm pull-right user-dropdown">
 						<!--   用户信息 -->
 						<li class="user-avatar"><img
-							src="images/profile/${param.username}.jpg" alt=""
+							src="images/profile/${param.username}.jpg" onerror="this.src='images/profile/timg.jpg'" alt=""
 							class="img-circle">
 							<div class="user-content">
 								<h5 class="no-m-bottom">${param.username}</h5>

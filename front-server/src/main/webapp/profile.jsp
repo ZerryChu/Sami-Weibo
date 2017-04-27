@@ -48,7 +48,7 @@
 							<div class="col-sm-4 col-md-12">
 								<div class="user-profile-pic">
 									<img id="user_icon" src=""
-										alt="userIcon">
+										onerror="this.src='images/profile/timg.jpg'" alt="userIcon">
 									<div class="ribbon-wrapper">
 										<div class="ribbon-inner shadow-pulse bg-success">user</div>
 									</div>
@@ -62,8 +62,8 @@
 								<div class="m-top-sm">
 
 									<div class="m-top-xs">
-										<i id="job" class="fa fa-briefcase user-profile-icon"></i>
-										<span id="title">student</span>
+										<i id="job" class="fa fa-briefcase user-profile-icon"></i> <span
+											id="title">student</span>
 									</div>
 
 									<!--  个人微博 -->
@@ -74,13 +74,13 @@
 								</div>
 
 								<div class="m-top-sm text-centers">
-									<a id="send_pvtmsg" class="btn btn-success"><i class="fa fa-edit m-right-xs"></i>编写私信</a>
+									<a id="send_pvtmsg" class="btn btn-success"><i
+										class="fa fa-edit m-right-xs"></i>编写私信</a>
 								</div>
 
 								<!--  加入一段描述 -->
 								<h4 class="m-top-md m-bottom-sm">关于我</h4>
-								<p class="m-top-sm">
-									这位用户很懒，什么消息也没留下。
+								<p class="m-top-sm">这位用户很懒，什么消息也没留下。
 								<p>
 								<h4 class="m-top-md m-bottom-sm">Get Social</h4>
 
@@ -171,10 +171,9 @@
 																	<img src="images/profile/profile3.jpg" alt="">
 																</div>
 																<div class="activity-detail">
-																	<span class="font-semi-bold">Karen Martin</span>
-																	started following <span class="font-semi-bold">Jame
-																		Smith</span>. <small class="text-muted block">36 mins
-																		ago</small>
+																	<span class="font-semi-bold">Lucy</span> 开始关注 <span
+																		class="font-semi-bold"> Smith</span>. <small
+																		class="text-muted block">36 mins ago</small>
 																</div>
 															</li>
 															<li>
@@ -182,10 +181,9 @@
 																	<img src="images/profile/profile3.jpg" alt="">
 																</div>
 																<div class="activity-detail">
-																	<span class="font-semi-bold">Karen Martin</span> just
-																	added <span class="font-semi-bold">Simplify
-																		Admin</span> to dashboard. <small class="text-muted block">3
-																		hrs ago </small>
+																	<span class="font-semi-bold">Martin</span> 成为 <span
+																		class="font-semi-bold"> Sami微博 </span> 铁杆会员. <small
+																		class="text-muted block">3 hrs ago </small>
 																</div>
 															</li>
 															<li>
@@ -193,8 +191,8 @@
 																	<img src="images/profile/profile5.jpg" alt="">
 																</div>
 																<div class="activity-detail">
-																	<span class="font-semi-bold">Sarah Garcia</span> added
-																	new photo <small class="text-muted block">Yesterday</small>
+																	<span class="font-semi-bold">Sarah</span> 推送一张新照片 <small
+																		class="text-muted block">Yesterday</small>
 
 																	<div class="m-top-sm">
 																		<img src="images/img11.jpg" alt="">
@@ -206,10 +204,9 @@
 																	<img src="images/profile/profile4.jpg" alt="">
 																</div>
 																<div class="activity-detail">
-																	<span class="font-semi-bold">Jame Smith</span> started
-																	following <span class="font-semi-bold">Karen
-																		Martin</span>. <small class="text-muted block">36
-																		mins ago</small>
+																	<span class="font-semi-bold">Smith</span> 开始关注 <span
+																		class="font-semi-bold"> Martin</span>. <small
+																		class="text-muted block">36 mins ago</small>
 																</div>
 															</li>
 															<li>
@@ -228,8 +225,8 @@
 																	<img src="images/profile/profile7.jpg" alt="">
 																</div>
 																<div class="activity-detail">
-																	<span class="font-semi-bold">Elizabeth Carter</span>
-																	uploaded <a class="font-semi-bold">3 photos</a>. <small
+																	<span class="font-semi-bold">Carter</span>
+																	更新 <a class="font-semi-bold">3 张照片</a>. <small
 																		class="text-muted block">36 mins ago</small>
 
 																	<ul class="uploaded-photo-list m-top-sm clearfix">
@@ -679,6 +676,13 @@
 	<!--  /ajax  -->
 	<script src="ajax/profile.js" type="text/javascript"></script>
 
+
+	<!--  表情包  -->
+	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
+	
 	<script src="js/login.js" type="text/javascript"></script>
 
 	<script>
@@ -831,7 +835,7 @@
 			var targetName = $.query.get("targetUsername");
 			if (targetName == undefined || targetName == "")
 				targetName = $.query.get("username");
-			
+
 			$.ajax({
 				type : "post",
 				url : "label/show_labelheat",
@@ -867,7 +871,9 @@
 						}
 						var text = "#text" + i;
 						var chart = "#chart" + i;
-						var val = parseInt(data.returndata.labelheats[i].times, 10) / sum * 100;
+						var val = parseInt(data.returndata.labelheats[i].times,
+								10)
+								/ sum * 100;
 						$(text).text(data.returndata.labelheats[i].name);
 						$(chart).attr("data-percent", val.toFixed(2));
 						$(chart).text(val.toFixed(2) + "%");

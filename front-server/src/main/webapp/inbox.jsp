@@ -260,6 +260,10 @@
 
 	<script src="js/login.js" type="text/javascript"></script>
 
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
+	
 	<script src="old/plugins/timeago.js" type="text/javascript"></script>
 
 	<script>

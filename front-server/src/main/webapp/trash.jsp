@@ -474,8 +474,9 @@
 	<!--  /ajax  -->
 	<script src="ajax/private_msg.js" type="text/javascript"></script>
 	
-	<!--  表情包  -->
-	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
 	
 	<script src="js/login.js" type="text/javascript"></script>
 

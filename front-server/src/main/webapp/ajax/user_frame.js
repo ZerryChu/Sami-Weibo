@@ -83,7 +83,7 @@ function showChattingList() {
 					}
 				},
 				error : function() {
-					alert("error");
+					//...
 				}
 			});
 }

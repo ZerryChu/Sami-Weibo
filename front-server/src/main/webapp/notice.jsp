@@ -246,9 +246,10 @@
 	<!-- Simplify -->
 	<script src="js/simplify/simplify.js"></script>
 
-	<!--  表情包  -->
-	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
-
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
+	
 	<script src="old/plugins/timeago.js" type="text/javascript"></script>
 
 	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>

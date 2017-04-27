@@ -55,7 +55,7 @@
 	border: 1px #0066cc solid;
 }
 
-#msg_page li a{
+#msg_page li a {
 	border: 0px;
 	background-color: #f5f5f5;
 	margin-left: 30px;
@@ -190,10 +190,11 @@
 	<!--  /ajax  -->
 	<script src="ajax/message.js" type="text/javascript"></script>
 
-	<!--  表情包  -->
-	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
-
 	<script src="old/plugins/timeago.js" type="text/javascript"></script>
+
+	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
+		type="text/javascript"></script>
+	<script src='ajax/user_frame.js'></script>
 
 	<script src="js/login.js" type="text/javascript"></script>
 
@@ -215,7 +216,7 @@
 		});
 
 		showOwnmessages($.query.get("username"), 1, 1);
-		
+
 		/**
 		 * 
 		 * @content 点赞相关操作
@@ -284,7 +285,6 @@
 				});
 			} // 点赞
 		}
-
 	</script>
 </body>
 </html>
