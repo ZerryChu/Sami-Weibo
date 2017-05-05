@@ -244,9 +244,7 @@ a:hover {
 									<!-- ./timeline-item-inner -->
 								</div>
 							</div>
-							<div id="receive_msg">
-								
-							</div>
+							<div id="receive_msg"></div>
 						</div>
 						<div style="margin-left: 38%; background-color: #f5f5f5;">
 							<ul id="msg_page" class="pagination vertical-middle">
@@ -377,10 +375,13 @@ a:hover {
 
 	<script src="old/plugins/jquery.query-2.1.7.js" type="text/javascript"></script>
 
+	<!--  表情包  -->
+	<script src="old/plugins/jquery.qqFace.js" type="text/javascript"></script>
+
 	<script src="old/plugins/jquery-migrate-1.2.1.min.js"
 		type="text/javascript"></script>
 	<script src='ajax/user_frame.js'></script>
-	
+
 	<script src="js/login.js" type="text/javascript"></script>
 
 	<script type="text/javascript">
