@@ -7,7 +7,7 @@
 
 	<properties>
 		<!-- 指定spring.version -->
-		<spring.version>4.0.2.RELEASE</spring.version>
+		<spring.version>5.3.19</spring.version>
 		<!-- 指定mybatis.version -->
 		<mybatis.verison>3.2.5</mybatis.verison>
 		<!-- 指定编码集 -->
